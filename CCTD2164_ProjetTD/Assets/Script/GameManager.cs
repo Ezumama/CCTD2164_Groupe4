@@ -1,0 +1,134 @@
+using UnityEngine;
+using UnityEngine.Rendering;
+
+public class GameManager : MonoBehaviour
+{
+    #region instance
+    public static GameManager Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    #endregion
+
+    [Header("Ressources")]
+    public int CurrentMoneyAmount;
+    public int BaseMoneyAmount;
+
+    public int CurrentRedBlueprintAmount;
+    public int CurrentYellowBlueprintAmount;
+    public int CurrentGreenBlueprintAmount;
+
+    public int BaseRedBlueprintAmount;
+    public int BaseYellowBlueprintAmount;
+    public int BaseGreenBlueprintAmount;
+
+    public int CurrentEnergyAmount;
+    public int BaseEnergyAmount;
+
+    [Header("Tower Cost Money")]
+    public int GatlingCost;
+    public int TeslaCost;
+    public int GroundCost;
+
+    [Header("Tower Cost Energy")]
+    public int GatlingEnergyCost;
+    public int TeslaEnergyCost;
+    public int GroundEnergyCost;
+
+    [Header("Workers")]
+    public int MaxWorkerAmount;
+    public int CurrentWorkerAmount;
+
+    private void Start()
+    {
+        CurrentMoneyAmount = BaseMoneyAmount;
+        CurrentRedBlueprintAmount = BaseRedBlueprintAmount;
+        CurrentYellowBlueprintAmount = BaseYellowBlueprintAmount;
+        CurrentGreenBlueprintAmount = BaseGreenBlueprintAmount;
+        CurrentEnergyAmount = BaseEnergyAmount;
+
+        CurrentWorkerAmount = MaxWorkerAmount;
+    }
+
+    private int ClampToZero(int value)
+    {
+        return Mathf.Max(value, 0);
+    }
+
+    #region workers
+    public void HireWorker(int amount)
+    {
+            CurrentWorkerAmount += amount;
+    }
+    public void FireWorker(int amount)
+    {
+        if (CurrentWorkerAmount >= amount)
+        {
+            ClampToZero(CurrentWorkerAmount - amount);
+        }
+    }
+    #endregion
+
+    #region money
+
+    public void GainMoney(int amount)
+    {
+        CurrentMoneyAmount += amount;
+    }
+
+    public void LoseMoney(int amount)
+    {
+        CurrentMoneyAmount = ClampToZero(CurrentMoneyAmount - amount);
+    }
+
+    #endregion
+
+    #region blueprints
+    public void GainRedBlueprint(int amount)
+    {
+        CurrentRedBlueprintAmount += amount;
+    }
+
+    public void LoseRedBlueprint(int amount)
+    {
+        CurrentRedBlueprintAmount = ClampToZero(CurrentRedBlueprintAmount - amount);
+    }
+
+    public void GainYellowBlueprint(int amount)
+    {
+        CurrentYellowBlueprintAmount += amount;
+    }
+
+    public void LoseYellowBlueprint(int amount)
+    {
+        CurrentYellowBlueprintAmount = ClampToZero(CurrentYellowBlueprintAmount - amount);
+    }
+
+    public void GainGreenBlueprint(int amount)
+    {
+        CurrentGreenBlueprintAmount += amount;
+    }
+
+    public void LoseGreenBlueprint(int amount)
+    {
+        CurrentGreenBlueprintAmount = ClampToZero(CurrentGreenBlueprintAmount - amount);
+    }
+    #endregion
+
+    #region energy
+
+    public void GainEnergy(int amount)
+    {
+        CurrentEnergyAmount += amount;
+    }
+
+    public void LoseEnergy(int amount)
+    {
+        CurrentEnergyAmount = ClampToZero(CurrentEnergyAmount - amount);
+    }
+
+    #endregion
+}
