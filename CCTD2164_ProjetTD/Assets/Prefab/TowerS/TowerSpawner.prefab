@@ -61,6 +61,7 @@ MonoBehaviour:
   - {fileID: 7395371565769671855, guid: f47306a88abff2d49b045d00898050fb, type: 3}
   - {fileID: 7395371565769671855, guid: b3d4c8596d1495149a5f2b8a550e37f9, type: 3}
   towerChoicePanelPrefab: {fileID: 4820201920367666653, guid: 0b675531a6193d04bba134e43cb1e5e3, type: 3}
+  _towerDowngradePanelLvl3_Prefab: {fileID: 4820201920367666653, guid: 9000f00fcd136dc4a9871c59bd7db8d7, type: 3}
   _uiRaycaster: {fileID: 0}
   _eventSystem: {fileID: 0}
   _gatlingCostText: {fileID: 0}
@@ -76,6 +77,8 @@ MonoBehaviour:
   _spawnPopDuration: 0.5
   _towerChoicePanelPrefabLvl2: {fileID: 4820201920367666653, guid: 11da8eb951b677d43b91b0dfdd811592, type: 3}
   _towerChoicePanelPrefabLvl3: {fileID: 4820201920367666653, guid: bbd20797619bc3d40951dc4cd7d7385a, type: 3}
+  _towerDowngradePanelLvl2_Prefab: {fileID: 4820201920367666653, guid: 1d1875c5f20679f43824b05e2189d55b, type: 3}
+  _levelUpgrade: 0
   _blueprintCostLvl2: 0
   _blueprintCostLvl3: 0
   _currentTower: {fileID: 0}

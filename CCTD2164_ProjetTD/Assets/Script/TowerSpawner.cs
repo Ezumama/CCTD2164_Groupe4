@@ -11,6 +11,7 @@ public class TowerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] _towers;
     [SerializeField] private GameObject towerChoicePanelPrefab;
+    [SerializeField] private GameObject _towerDowngradePanelLvl3_Prefab;
 
     [SerializeField] private GraphicRaycaster _uiRaycaster;
     [SerializeField] private EventSystem _eventSystem;
@@ -38,10 +39,10 @@ public class TowerSpawner : MonoBehaviour
     #region tower animation
     [Header("Tower Animation")]
     [SerializeField] private Animator _towerAnimator;
-    [SerializeField] private float _openAnimationDuration = 1.0f; // Time to wait before spawning tower after opening animation
-    [SerializeField] private Transform _spawnStartPosition; // Where tower spawns from
-    [SerializeField] private Transform _spawnEndPosition; // Where tower pops to
-    [SerializeField] private float _spawnPopDuration = 0.5f; // Duration of the pop animation
+    [SerializeField] private float _openAnimationDuration = 1.0f;
+    [SerializeField] private Transform _spawnStartPosition;
+    [SerializeField] private Transform _spawnEndPosition;
+    [SerializeField] private float _spawnPopDuration = 0.5f;
     #endregion
 
     #region prefabs
@@ -50,6 +51,7 @@ public class TowerSpawner : MonoBehaviour
     private GameObject _towerLevel3;
     [SerializeField] private GameObject _towerChoicePanelPrefabLvl2;
     [SerializeField] private GameObject _towerChoicePanelPrefabLvl3;
+    [SerializeField] private GameObject _towerDowngradePanelLvl2_Prefab;
     #endregion
 
     #region boolean to know which tower it is and it's upgrade level
@@ -57,7 +59,7 @@ public class TowerSpawner : MonoBehaviour
     private bool _isTripleMelTower;
     private bool _isBigBettyTower;
     private bool _isSimpleLizaTower;
-    private int _levelUpgrade;
+    public int _levelUpgrade;
     #endregion
 
     #region upgrade cost
@@ -66,22 +68,21 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] private int _blueprintCostLvl3;
     #endregion
 
-    #region FX
-    // [Header("FX")]
-    // [SerializeField] private GameObject _upgradeFXLvl2;
-    // [SerializeField] private GameObject _upgradeFXLvl3;
-    #endregion
-
     #region private variables
     [Header("Private Variables")]
     private GameObject _towerUpgradePanelLvl2;
     private GameObject _towerUpgradePanelLvl3;
-    private TowerUpgradeUI _towerUpgradeUIScript;
+    private GameObject _towerDowngradePanelLvl3;
+    private TowerUpgradeUI _towerUpgradeUIScriptLvl2;
+    private TowerUpgradeUI _towerUpgradeUIScriptLvl3;
     private Camera _camera;
     [SerializeField] private GameObject _currentTower;
     private TowerChoiceUI _choiceUIScript;
     private GameObject _towerChoicePanel;
     [SerializeField] private bool _isBuilding = false;
+    private TowerUpgradeUI _towerDowngradeUIScriptLvl3;
+    private GameObject _towerDowngradePanelLvl2;
+    private TowerUpgradeUI _towerDowngradeUIScriptLvl2;
     #endregion
 
     private void Start()
@@ -106,12 +107,24 @@ public class TowerSpawner : MonoBehaviour
         _towerUpgradePanelLvl2.SetActive(false);
         _towerUpgradePanelLvl3 = Instantiate(_towerChoicePanelPrefabLvl3, transform);
         _towerUpgradePanelLvl3.SetActive(false);
+        _towerDowngradePanelLvl3 = Instantiate(_towerDowngradePanelLvl3_Prefab, transform);
+        _towerDowngradePanelLvl3.SetActive(false);
+        _towerDowngradePanelLvl2 = Instantiate(_towerDowngradePanelLvl2_Prefab, transform);
+        _towerDowngradePanelLvl2.SetActive(false);
 
-        _towerUpgradeUIScript = _towerUpgradePanelLvl2.GetComponentInChildren<TowerUpgradeUI>();
-        _towerUpgradeUIScript.SetUpgrade(this);
+        // Assign and set up the Level 2 UI script
+        _towerUpgradeUIScriptLvl2 = _towerUpgradePanelLvl2.GetComponentInChildren<TowerUpgradeUI>();
+        _towerUpgradeUIScriptLvl2.SetUpgrade(this);
 
-        _towerUpgradeUIScript = _towerUpgradePanelLvl3.GetComponentInChildren<TowerUpgradeUI>();
-        _towerUpgradeUIScript.SetUpgrade(this);
+        // Assign and set up the Level 3 UI script
+        _towerUpgradeUIScriptLvl3 = _towerUpgradePanelLvl3.GetComponentInChildren<TowerUpgradeUI>();
+        _towerUpgradeUIScriptLvl3.SetUpgrade(this);
+
+        _towerDowngradeUIScriptLvl3 = _towerDowngradePanelLvl3.GetComponentInChildren<TowerUpgradeUI>();
+        _towerDowngradeUIScriptLvl3.SetUpgrade(this);
+
+        _towerDowngradeUIScriptLvl2 = _towerDowngradePanelLvl2.GetComponentInChildren<TowerUpgradeUI>();
+        _towerDowngradeUIScriptLvl2.SetUpgrade(this);
 
         _levelUpgrade = 0;
     }
@@ -145,7 +158,7 @@ public class TowerSpawner : MonoBehaviour
         // Spawn specific tower at start position
         Vector3 startPos = _spawnStartPosition != null ? _spawnStartPosition.position : transform.position;
         Vector3 endPos = _spawnEndPosition != null ? _spawnEndPosition.position : transform.position;
-        
+
         _currentTower = Instantiate(_towers[index], startPos, Quaternion.identity, transform);
         _levelUpgrade = 1;
 
@@ -169,7 +182,7 @@ public class TowerSpawner : MonoBehaviour
 
     }
     #endregion
-    
+
     #region Upgrade Sequence Logic
     private IEnumerator UpgradeSequence(GameObject newTowerPrefab, int newLevelIndex)
     {
@@ -218,17 +231,26 @@ public class TowerSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log($"Mouse clicked! IsBuilding: {_isBuilding}");
+
             // mouse hovering over a UI element?
             if (EventSystem.current.IsPointerOverGameObject())
             {
-                // if yes then don't do raycast.
+                Debug.Log("Pointer is over UI - ignoring click");
                 return;
             }
 
-            // if not then proceed with click logic
-            OnClick();
+            if (_isBuilding == false)
+            {
+                Debug.Log("Calling OnClick()");
+                OnClick();
+            }
+            else
+            {
+                Debug.Log("Cannot click - currently building");
+            }
         }
     }
 
@@ -237,11 +259,13 @@ public class TowerSpawner : MonoBehaviour
     {
         if (GameManager.Instance.CurrentMoneyAmount >= _gatlingCost && GameManager.Instance.CurrentEnergyAmount >= _gatlingEnergyCost)
         {
-            SpawnTower(0);
             GameManager.Instance.LoseMoney(_gatlingCost);
             GameManager.Instance.LoseEnergy(_gatlingEnergyCost);
+            _isTripleMelTower = true;
+            _towerLevel1 = _towers[0];
             _towerLevel2 = _towers[3];
             _towerLevel3 = _towers[4];
+            SpawnTower(0);
         }
         else if (GameManager.Instance.CurrentMoneyAmount < _gatlingCost)
         {
@@ -259,12 +283,13 @@ public class TowerSpawner : MonoBehaviour
     {
         if (GameManager.Instance.CurrentMoneyAmount >= _teslaCost && GameManager.Instance.CurrentEnergyAmount >= _teslaEnergyCost)
         {
-            SpawnTower(1);
             GameManager.Instance.LoseMoney(_teslaCost);
             GameManager.Instance.LoseEnergy(_teslaEnergyCost);
             _isBigBettyTower = true;
+            _towerLevel1 = _towers[1];
             _towerLevel2 = _towers[5];
             _towerLevel3 = _towers[6];
+            SpawnTower(1);
         }
         else if (GameManager.Instance.CurrentMoneyAmount < _teslaCost)
         {
@@ -282,12 +307,13 @@ public class TowerSpawner : MonoBehaviour
     {
         if (GameManager.Instance.CurrentMoneyAmount >= _groundCost && GameManager.Instance.CurrentEnergyAmount >= _groundEnergyCost)
         {
-            SpawnTower(2);
             GameManager.Instance.LoseMoney(_groundCost);
             GameManager.Instance.LoseEnergy(_groundEnergyCost);
             _isSimpleLizaTower = true;
+            _towerLevel1 = _towers[2];
             _towerLevel2 = _towers[7];
             _towerLevel3 = _towers[8];
+            SpawnTower(2);
         }
         else if (GameManager.Instance.CurrentMoneyAmount < _groundCost)
         {
@@ -305,73 +331,69 @@ public class TowerSpawner : MonoBehaviour
 
     public void OnClick()
     {
-
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        //int mask = ~LayerMask.GetMask("Default");
-
-        float maxDistance = 100f; // Use the same distance as your Raycast
-
-        // VITAL STEP: Draw the ray to see where it goes.
-        // This ray will appear in the Scene view while the game is running.
-        Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.yellow, 5f);
+        float maxDistance = 100f;
 
         // What did we click?   
-        if (!Physics.Raycast(ray, out hit, 100))
+        if (!Physics.Raycast(ray, out hit, maxDistance))
         {
+            Debug.Log("Raycast hit nothing - closing panels");
             CloseAllPanels();
             return;
         }
 
-        if (Physics.Raycast(ray, out hit, 100))
-        {
-            // If this line executes, the Raycast worked. What did it hit?
-            Debug.Log($"Ray Hit! Object: {hit.collider.gameObject.name}");
-            // Draw the line green to confirm visually
-            Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green, 5f);
-        }
-        else
-        {
-            // Draw the ray red to confirm it passed through everything
-            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red, 5f);
-        }
+        // If this line executes, the Raycast worked. What did it hit?
+        Debug.Log($"Ray Hit! Object: {hit.collider.gameObject.name}, Parent: {(hit.collider.transform.parent != null ? hit.collider.transform.parent.name : "No Parent")}");
+        Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green, 5f);
 
-        // Did we click this spawner?
+        // Did we click this spawner or its children?
         TowerSpawner spawnerHit = hit.collider.GetComponentInParent<TowerSpawner>();
+
+        if (spawnerHit == null)
+        {
+            Debug.Log("No TowerSpawner found in hierarchy - closing panels");
+            CloseAllPanels();
+            return;
+        }
 
         // Clicked something that is NOT this spawner
         if (spawnerHit != this)
         {
+            Debug.Log($"Clicked different spawner: {spawnerHit.gameObject.name}");
             CloseAllPanels();
             return;
         }
 
         // Did we click THIS spawner?
-        if (spawnerHit == this)
+        Debug.Log($"Clicked THIS spawner! Current level: {_levelUpgrade}");
+        CloseAllPanels();
+
+        // If we clicked THIS spawner, then see if there's already a tower
+        if (_levelUpgrade == 0)
         {
-
-            // If we clicked THIS spawner, then see if there's already a tower
-            if (_levelUpgrade == 0)
-            {
-                _towerChoicePanel.SetActive(true);
-            }
-
-            // if there's a tower, then spawn upgrade panel (lvl 2)
-            else if (_levelUpgrade == 1)
-            {
-                _towerUpgradePanelLvl2.SetActive(true);
-            }
-
-            // if there's a tower, then spawn upgrade panel (lvl 3)
-            else if (_levelUpgrade == 2)
-            {
-                _towerUpgradePanelLvl3.SetActive(true);
-            }
-
-            return;
+            Debug.Log("Showing tower choice panel");
+            _towerChoicePanel.SetActive(true);
         }
-
+        else if (_levelUpgrade == 1)
+        {
+            Debug.Log("Showing level 2 upgrade panel");
+            _towerUpgradeUIScriptLvl2.ReInitialize();
+            _towerUpgradePanelLvl2.SetActive(true);
+        }
+        else if (_levelUpgrade == 2)
+        {
+            Debug.Log("Showing level 3 upgrade panel");
+            _towerUpgradeUIScriptLvl3.ReInitialize();
+            _towerUpgradePanelLvl3.SetActive(true);
+        }
+        else if (_levelUpgrade == 3)
+        {
+            Debug.Log("Showing level 3 downgrade panel");
+            _towerDowngradeUIScriptLvl3.ReInitialize();
+            _towerDowngradePanelLvl3.SetActive(true);
+        }
     }
 
     private void CloseAllPanels()
@@ -379,26 +401,28 @@ public class TowerSpawner : MonoBehaviour
         _towerChoicePanel.SetActive(false);
         _towerUpgradePanelLvl2.SetActive(false);
         _towerUpgradePanelLvl3.SetActive(false);
+        _towerDowngradePanelLvl2.SetActive(false);
+        _towerDowngradePanelLvl3.SetActive(false);
     }
 
     #region Level 2 Upgrade
-        public void UpgradeTowerLevel2()
-        {
-            // Don't upgrade if already building
-            if(_isBuilding) return; 
+    public void UpgradeTowerLevel2()
+    {
+        // Don't upgrade if already building
+        if (_isBuilding) return;
 
-            // Pay the cost
-            if (_isTripleMelTower)
-                GameManager.Instance.LoseRedBlueprint(_blueprintCostLvl2);
-            else if (_isBigBettyTower)
-                GameManager.Instance.LoseGreenBlueprint(_blueprintCostLvl2);
-            else if (_isSimpleLizaTower)
-                GameManager.Instance.LoseYellowBlueprint(_blueprintCostLvl2);
+        // Pay the cost
+        if (_isTripleMelTower)
+            GameManager.Instance.LoseRedBlueprint(_blueprintCostLvl2);
+        else if (_isBigBettyTower)
+            GameManager.Instance.LoseGreenBlueprint(_blueprintCostLvl2);
+        else if (_isSimpleLizaTower)
+            GameManager.Instance.LoseYellowBlueprint(_blueprintCostLvl2);
 
-            // Start the animation
-            StartCoroutine(UpgradeSequence(_towerLevel2, 2));
-        }
-        #endregion
+        // Start the animation
+        StartCoroutine(UpgradeSequence(_towerLevel2, 2));
+    }
+    #endregion
 
     #region Level 3 Upgrade
     public void UpgradeTowerLevel3()
@@ -419,4 +443,58 @@ public class TowerSpawner : MonoBehaviour
     }
     #endregion
 
-}
+    #region downgrade lvl 3 to lvl 2
+
+    public void DowngradeToLevel2()
+    {
+        if (_isBuilding)
+        {
+            return;
+        }
+
+        if (_isTripleMelTower)
+        {
+            GameManager.Instance.GainRedBlueprint(_blueprintCostLvl3);
+        }
+        else if (_isBigBettyTower)
+        {
+            GameManager.Instance.GainGreenBlueprint(_blueprintCostLvl3);
+        }
+        else if (_isSimpleLizaTower)
+        {
+            GameManager.Instance.GainYellowBlueprint(_blueprintCostLvl3);
+        }
+
+        // Start the animation
+        StartCoroutine(UpgradeSequence(_towerLevel2, 2));
+    }
+
+    #endregion
+
+    #region downgrade lvl 2 to lvl 1
+    public void DowngradeToLevel1()
+    {
+        if (_isBuilding)
+        {
+            return;
+        }
+
+        if (_isTripleMelTower)
+        {
+            GameManager.Instance.GainRedBlueprint(_blueprintCostLvl2);
+        }
+        else if (_isBigBettyTower)
+        {
+            GameManager.Instance.GainGreenBlueprint(_blueprintCostLvl2);
+        }
+        else if (_isSimpleLizaTower)
+        {
+            GameManager.Instance.GainYellowBlueprint(_blueprintCostLvl2);
+        }
+
+        // Start the animation
+        StartCoroutine(UpgradeSequence(_towerLevel1, 1));
+    }
+
+    #endregion
+}   

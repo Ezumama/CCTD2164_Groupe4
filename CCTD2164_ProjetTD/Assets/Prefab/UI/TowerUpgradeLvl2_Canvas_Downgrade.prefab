@@ -878,7 +878,7 @@ GameObject:
   - component: {fileID: 2307106950694851612}
   - component: {fileID: 4648893870702061719}
   m_Layer: 8
-  m_Name: TowerUpgradeLvl2_Canvas
+  m_Name: TowerUpgradeLvl2_Canvas_Downgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
