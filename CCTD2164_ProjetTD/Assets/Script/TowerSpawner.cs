@@ -218,32 +218,17 @@ public class TowerSpawner : MonoBehaviour
 
     private void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    // mouse hovering over a UI element?
-        //    if (EventSystem.current.IsPointerOverGameObject())
-        //    {
-        //        // if yes then don't do raycast.
-        //        return;
-        //    }
-
-        //    // if not then proceed with click logic
-        //    OnClick();
-        //}
-
-        // Check for the *press down* to mimic OnClick timing
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.yellow, 5f);
-
-            if (Physics.Raycast(ray, out hit, 100))
+            // mouse hovering over a UI element?
+            if (EventSystem.current.IsPointerOverGameObject())
             {
-                Debug.Log($"SUCCESS: Hit {hit.collider.gameObject.name}");
-                Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green, 5f);
+                // if yes then don't do raycast.
+                return;
             }
+
+            // if not then proceed with click logic
+            OnClick();
         }
     }
 
@@ -318,76 +303,76 @@ public class TowerSpawner : MonoBehaviour
     #endregion
 
 
-    //public void OnClick()
-    //{
+    public void OnClick()
+    {
 
-    //    Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-    //    RaycastHit hit;
+        Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-    //    //int mask = ~LayerMask.GetMask("Default");
+        //int mask = ~LayerMask.GetMask("Default");
 
-    //    float maxDistance = 100f; // Use the same distance as your Raycast
+        float maxDistance = 100f; // Use the same distance as your Raycast
 
-    //    // VITAL STEP: Draw the ray to see where it goes.
-    //    // This ray will appear in the Scene view while the game is running.
-    //    Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.yellow, 5f);
+        // VITAL STEP: Draw the ray to see where it goes.
+        // This ray will appear in the Scene view while the game is running.
+        Debug.DrawRay(ray.origin, ray.direction * maxDistance, Color.yellow, 5f);
 
-    //    // What did we click?   
-    //    if (!Physics.Raycast(ray, out hit, 100))
-    //    {
-    //        CloseAllPanels();   
-    //        return;
-    //    }
+        // What did we click?   
+        if (!Physics.Raycast(ray, out hit, 100))
+        {
+            CloseAllPanels();
+            return;
+        }
 
-    //    if (Physics.Raycast(ray, out hit, 100))
-    //    {
-    //        // If this line executes, the Raycast worked. What did it hit?
-    //        Debug.Log($"Ray Hit! Object: {hit.collider.gameObject.name}");
-    //        // Draw the line green to confirm visually
-    //        Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green, 5f);
-    //    }
-    //    else
-    //    {
-    //        // Draw the ray red to confirm it passed through everything
-    //        Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red, 5f);
-    //    }
+        if (Physics.Raycast(ray, out hit, 100))
+        {
+            // If this line executes, the Raycast worked. What did it hit?
+            Debug.Log($"Ray Hit! Object: {hit.collider.gameObject.name}");
+            // Draw the line green to confirm visually
+            Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green, 5f);
+        }
+        else
+        {
+            // Draw the ray red to confirm it passed through everything
+            Debug.DrawRay(ray.origin, ray.direction * 100f, Color.red, 5f);
+        }
 
-    //    // Did we click this spawner?
-    //    TowerSpawner spawnerHit = hit.collider.GetComponentInParent<TowerSpawner>();
+        // Did we click this spawner?
+        TowerSpawner spawnerHit = hit.collider.GetComponentInParent<TowerSpawner>();
 
-    //    // Clicked something that is NOT this spawner
-    //    if (spawnerHit != this)
-    //    {
-    //        CloseAllPanels();
-    //        return;
-    //    }
+        // Clicked something that is NOT this spawner
+        if (spawnerHit != this)
+        {
+            CloseAllPanels();
+            return;
+        }
 
-    //    // Did we click THIS spawner?
-    //    if (spawnerHit == this)
-    //    {
+        // Did we click THIS spawner?
+        if (spawnerHit == this)
+        {
 
-    //        // If we clicked THIS spawner, then see if there's already a tower
-    //        if (_levelUpgrade == 0)
-    //        {
-    //            _towerChoicePanel.SetActive(true);
-    //        }
+            // If we clicked THIS spawner, then see if there's already a tower
+            if (_levelUpgrade == 0)
+            {
+                _towerChoicePanel.SetActive(true);
+            }
 
-    //        // if there's a tower, then spawn upgrade panel (lvl 2)
-    //        else if (_levelUpgrade == 1)
-    //        {
-    //            _towerUpgradePanelLvl2.SetActive(true);
-    //        }
+            // if there's a tower, then spawn upgrade panel (lvl 2)
+            else if (_levelUpgrade == 1)
+            {
+                _towerUpgradePanelLvl2.SetActive(true);
+            }
 
-    //        // if there's a tower, then spawn upgrade panel (lvl 3)
-    //        else if (_levelUpgrade == 2)
-    //        {
-    //            _towerUpgradePanelLvl3.SetActive(true);
-    //        }   
+            // if there's a tower, then spawn upgrade panel (lvl 3)
+            else if (_levelUpgrade == 2)
+            {
+                _towerUpgradePanelLvl3.SetActive(true);
+            }
 
-    //        return;
-    //    }
+            return;
+        }
 
-    //}
+    }
 
     private void CloseAllPanels()
     {
