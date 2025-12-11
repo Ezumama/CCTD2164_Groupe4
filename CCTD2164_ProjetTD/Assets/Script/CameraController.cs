@@ -24,9 +24,17 @@ public class CameraController : MonoBehaviour
     public float minDistance = 5f;   // Hauteur minimale (Zoom In Max)
     public float maxDistance = 60f;  // Hauteur maximale (Dézoom Max)
 
+    [Header("Centrage et Ciblage")]
+    [Tooltip("Hauteur verticale de la caméra par défaut lorsqu'elle est centrée sur un objet.")]
+    public float defaultCenterHeight = 25f; // Hauteur Y de la caméra lors d'un centrage
+
     [Header("Limits on world plane (X,Z)")]
     public Vector2 limitX = new Vector2(-50f, 50f);
     public Vector2 limitZ = new Vector2(-50f, 50f);
+
+    [Header("Click to focus")]
+    public string towerSpawnerTag = "TowerSpawner"; // 🔥 NOUVEAU : Tag de vos prefabs TowerSpawner
+    public int mouseButtonToClick = 0; // 0 pour le clic gauche
 
     Camera cam;
     Vector3 targetPosition;
@@ -52,11 +60,34 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        HandleClick();
         HandleMouseDrag();
         HandleKeyboardPan();
         HandleZoom();
         ApplySmoothing();
         ClampPosition();
+    }
+
+    void HandleClick()
+    {
+        if (Input.GetMouseButtonDown(mouseButtonToClick))
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            // Effectue un Raycast depuis la caméra
+            if (Physics.Raycast(ray, out hit))
+            {
+                // Vérifie si l'objet cliqué a le tag TowerSpawner
+                if (hit.collider.CompareTag(towerSpawnerTag))
+                {
+                    Debug.Log($"[Camera] Ciblage de : {hit.collider.name}");
+                    // Centre la caméra sur la position de l'objet cliqué
+                    CenterOn(hit.transform.position);
+                }
+                // Optionnel : Vous pourriez ajouter ici d'autres actions de clic
+            }
+        }
     }
 
     void HandleMouseDrag()
@@ -175,9 +206,16 @@ public class CameraController : MonoBehaviour
     // Centrer la caméra sur un point (préserve la hauteur/current Y)
     public void CenterOn(Vector3 worldPos)
     {
-        targetPosition = new Vector3(worldPos.x, targetPosition.y, worldPos.z);
+        targetPosition.y = defaultCenterHeight;
+        Quaternion targetRotation = Quaternion.Euler(tilt, rotationY, 0f);
+        float distanceToPoint = targetPosition.y / Mathf.Tan(tilt * Mathf.Deg2Rad);
+        Vector3 offset = targetRotation * Vector3.back * distanceToPoint;
+
+        targetPosition.x = worldPos.x + offset.x;
+        targetPosition.z = worldPos.z + offset.z;
+
+        ClampPosition();
     }
 }
-
 
 
