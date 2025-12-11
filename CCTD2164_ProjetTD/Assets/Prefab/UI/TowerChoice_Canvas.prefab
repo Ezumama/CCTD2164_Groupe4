@@ -369,8 +369,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0.5424528, b: 0.5424528, a: 1}
-    m_HighlightedColor: {r: 0.5943396, g: 0.18783373, b: 0.18783373, a: 1}
+    m_NormalColor: {r: 0.9490196, g: 0.23529412, b: 0.38039216, a: 1}
+    m_HighlightedColor: {r: 0.5283019, g: 0.12709148, b: 0.20865622, a: 1}
     m_PressedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0, g: 1, b: 0.08193016, a: 0.5019608}
@@ -998,7 +998,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &4648893870702061719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1333,8 +1333,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.9411765, g: 0.8352941, b: 0.11764706, a: 1}
+    m_HighlightedColor: {r: 0.49056602, g: 0.43523487, b: 0.06247775, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0, g: 1, b: 0.08235294, a: 0.5019608}
@@ -1358,7 +1358,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8527479093709942989}
         m_TargetAssemblyTypeName: TowerChoiceUI, Assembly-CSharp
-        m_MethodName: AirClicked
+        m_MethodName: GroundClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1465,8 +1465,8 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.4470588, g: 1, b: 0.5657468, a: 1}
-    m_HighlightedColor: {r: 0.17225882, g: 0.46226418, b: 0.27305335, a: 1}
+    m_NormalColor: {r: 0.25490198, g: 0.8666667, b: 0.50980395, a: 1}
+    m_HighlightedColor: {r: 0.08566217, g: 0.3301887, b: 0.18754824, a: 1}
     m_PressedColor: {r: 0.7843138, g: 0.7843138, b: 0.7843138, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0, g: 1, b: 0.08193016, a: 0.5019608}

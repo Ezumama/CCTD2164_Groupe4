@@ -278,28 +278,28 @@ public class TowerSpawner : MonoBehaviour
         }
     }
 
-    //public void GroundChoice()
-    //{
-    //    if (GameManager.Instance.CurrentMoneyAmount >= _groundCost && GameManager.Instance.CurrentEnergyAmount >= _groundEnergyCost)
-    //    {
-    //        SpawnTower(2);
-    //        GameManager.Instance.LoseMoney(_groundCost);
-    //        GameManager.Instance.LoseEnergy(_groundEnergyCost);
-    //        _isSimpleLizaTower = true;
-    //        _towerLevel2 = _towers[7];
-    //        _towerLevel3 = _towers[8];
-    //    }
-    //    else if (GameManager.Instance.CurrentMoneyAmount < _groundCost)
-    //    {
-    //        Debug.Log("Not enough money to build Ground Tower!");
-    //        _groundCostText.color = Color.red;
-    //    }
-    //    else if (GameManager.Instance.CurrentEnergyAmount < _groundEnergyCost)
-    //    {
-    //        Debug.Log("Not enough energy to build Ground Tower!");
-    //        _groundEnergyCostText.color = Color.red;
-    //    }
-    //}
+    public void GroundChoice()
+    {
+        if (GameManager.Instance.CurrentMoneyAmount >= _groundCost && GameManager.Instance.CurrentEnergyAmount >= _groundEnergyCost)
+        {
+            SpawnTower(2);
+            GameManager.Instance.LoseMoney(_groundCost);
+            GameManager.Instance.LoseEnergy(_groundEnergyCost);
+            _isSimpleLizaTower = true;
+            _towerLevel2 = _towers[7];
+            _towerLevel3 = _towers[8];
+        }
+        else if (GameManager.Instance.CurrentMoneyAmount < _groundCost)
+        {
+            Debug.Log("Not enough money to build Ground Tower!");
+            _groundCostText.color = Color.red;
+        }
+        else if (GameManager.Instance.CurrentEnergyAmount < _groundEnergyCost)
+        {
+            Debug.Log("Not enough energy to build Ground Tower!");
+            _groundEnergyCostText.color = Color.red;
+        }
+    }
     #endregion
 
 
