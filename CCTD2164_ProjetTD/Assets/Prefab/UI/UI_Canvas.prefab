@@ -1784,7 +1784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a157c19f09e8c54eae95191a2929765, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blueprintBuyPanel: {fileID: 0}
+  _blueprintBuyPanel: {fileID: 3743689143335771984}
 --- !u!1 &8388301974459265135
 GameObject:
   m_ObjectHideFlags: 0
