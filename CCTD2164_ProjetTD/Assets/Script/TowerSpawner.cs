@@ -11,7 +11,6 @@ public class TowerSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] _towers;
     [SerializeField] private GameObject towerChoicePanelPrefab;
-    [SerializeField] private GameObject _towerDowngradePanelLvl3_Prefab;
 
     [SerializeField] private GraphicRaycaster _uiRaycaster;
     [SerializeField] private EventSystem _eventSystem;
@@ -49,9 +48,9 @@ public class TowerSpawner : MonoBehaviour
     private GameObject _towerLevel1;
     private GameObject _towerLevel2;
     private GameObject _towerLevel3;
-    [SerializeField] private GameObject _towerChoicePanelPrefabLvl2;
-    [SerializeField] private GameObject _towerChoicePanelPrefabLvl3;
-    [SerializeField] private GameObject _towerDowngradePanelLvl2_Prefab;
+    [SerializeField] private GameObject _towerUpgradeDowngradePanelLvl1_Prefab;
+    [SerializeField] private GameObject _towerUpgradeDowngradePanelLvl2_Prefab;
+    [SerializeField] private GameObject _towerUpgradeDowngradePanelLvl3_Prefab;
     #endregion
 
     #region boolean to know which tower it is and it's upgrade level
@@ -70,19 +69,17 @@ public class TowerSpawner : MonoBehaviour
 
     #region private variables
     [Header("Private Variables")]
-    private GameObject _towerUpgradePanelLvl2;
-    private GameObject _towerUpgradePanelLvl3;
-    private GameObject _towerDowngradePanelLvl3;
-    private TowerUpgradeUI _towerUpgradeUIScriptLvl2;
-    private TowerUpgradeUI _towerUpgradeUIScriptLvl3;
+    private GameObject _towerPanelLvl1;
+    private GameObject _towerPanelLvl2;
+    private GameObject _towerPanelLvl3;
+    private TowerUpgradeUI _towerUIScriptLvl1;
+    private TowerUpgradeUI _towerUIScriptLvl2;
+    private TowerUpgradeUI _towerUIScriptLvl3;
     private Camera _camera;
     [SerializeField] private GameObject _currentTower;
     private TowerChoiceUI _choiceUIScript;
     private GameObject _towerChoicePanel;
     [SerializeField] private bool _isBuilding = false;
-    private TowerUpgradeUI _towerDowngradeUIScriptLvl3;
-    private GameObject _towerDowngradePanelLvl2;
-    private TowerUpgradeUI _towerDowngradeUIScriptLvl2;
     #endregion
 
     private void Start()
@@ -103,28 +100,23 @@ public class TowerSpawner : MonoBehaviour
         _teslaEnergyCost = GameManager.Instance.TeslaEnergyCost;
         _groundEnergyCost = GameManager.Instance.GroundEnergyCost;
 
-        _towerUpgradePanelLvl2 = Instantiate(_towerChoicePanelPrefabLvl2, transform);
-        _towerUpgradePanelLvl2.SetActive(false);
-        _towerUpgradePanelLvl3 = Instantiate(_towerChoicePanelPrefabLvl3, transform);
-        _towerUpgradePanelLvl3.SetActive(false);
-        _towerDowngradePanelLvl3 = Instantiate(_towerDowngradePanelLvl3_Prefab, transform);
-        _towerDowngradePanelLvl3.SetActive(false);
-        _towerDowngradePanelLvl2 = Instantiate(_towerDowngradePanelLvl2_Prefab, transform);
-        _towerDowngradePanelLvl2.SetActive(false);
+        // Initialize Level 1 panel (downgrade from level 2)
+        _towerPanelLvl1 = Instantiate(_towerUpgradeDowngradePanelLvl1_Prefab, transform);
+        _towerPanelLvl1.SetActive(false);
+        _towerUIScriptLvl1 = _towerPanelLvl1.GetComponentInChildren<TowerUpgradeUI>();
+        _towerUIScriptLvl1.SetUpgrade(this);
 
-        // Assign and set up the Level 2 UI script
-        _towerUpgradeUIScriptLvl2 = _towerUpgradePanelLvl2.GetComponentInChildren<TowerUpgradeUI>();
-        _towerUpgradeUIScriptLvl2.SetUpgrade(this);
+        // Initialize Level 2 panel (upgrade/downgrade)
+        _towerPanelLvl2 = Instantiate(_towerUpgradeDowngradePanelLvl2_Prefab, transform);
+        _towerPanelLvl2.SetActive(false);
+        _towerUIScriptLvl2 = _towerPanelLvl2.GetComponentInChildren<TowerUpgradeUI>();
+        _towerUIScriptLvl2.SetUpgrade(this);
 
-        // Assign and set up the Level 3 UI script
-        _towerUpgradeUIScriptLvl3 = _towerUpgradePanelLvl3.GetComponentInChildren<TowerUpgradeUI>();
-        _towerUpgradeUIScriptLvl3.SetUpgrade(this);
-
-        _towerDowngradeUIScriptLvl3 = _towerDowngradePanelLvl3.GetComponentInChildren<TowerUpgradeUI>();
-        _towerDowngradeUIScriptLvl3.SetUpgrade(this);
-
-        _towerDowngradeUIScriptLvl2 = _towerDowngradePanelLvl2.GetComponentInChildren<TowerUpgradeUI>();
-        _towerDowngradeUIScriptLvl2.SetUpgrade(this);
+        // Initialize Level 3 panel (downgrade only)
+        _towerPanelLvl3 = Instantiate(_towerUpgradeDowngradePanelLvl3_Prefab, transform);
+        _towerPanelLvl3.SetActive(false);
+        _towerUIScriptLvl3 = _towerPanelLvl3.GetComponentInChildren<TowerUpgradeUI>();
+        _towerUIScriptLvl3.SetUpgrade(this);
 
         _levelUpgrade = 0;
     }
@@ -188,6 +180,7 @@ public class TowerSpawner : MonoBehaviour
     {
         _isBuilding = true;
         CloseAllPanels();
+
         // Calculate positions
         Vector3 downPos = _spawnStartPosition != null ? _spawnStartPosition.position : transform.position;
         Vector3 upPos = _spawnEndPosition != null ? _spawnEndPosition.position : transform.position;
@@ -328,7 +321,6 @@ public class TowerSpawner : MonoBehaviour
     }
     #endregion
 
-
     public void OnClick()
     {
         Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -370,7 +362,7 @@ public class TowerSpawner : MonoBehaviour
         Debug.Log($"Clicked THIS spawner! Current level: {_levelUpgrade}");
         CloseAllPanels();
 
-        // If we clicked THIS spawner, then see if there's already a tower
+        // Show appropriate panel based on tower level
         if (_levelUpgrade == 0)
         {
             Debug.Log("Showing tower choice panel");
@@ -378,34 +370,33 @@ public class TowerSpawner : MonoBehaviour
         }
         else if (_levelUpgrade == 1)
         {
-            Debug.Log("Showing level 2 upgrade panel");
-            _towerUpgradeUIScriptLvl2.ReInitialize();
-            _towerUpgradePanelLvl2.SetActive(true);
+            Debug.Log("Showing level 1 panel (upgrade to level 2 only)");
+            _towerUIScriptLvl1.ReInitialize();
+            _towerPanelLvl1.SetActive(true);
         }
         else if (_levelUpgrade == 2)
         {
-            Debug.Log("Showing level 3 upgrade panel");
-            _towerUpgradeUIScriptLvl3.ReInitialize();
-            _towerUpgradePanelLvl3.SetActive(true);
+            Debug.Log("Showing level 2 panel (upgrade to 3 or downgrade to 1)");
+            _towerUIScriptLvl2.ReInitialize();
+            _towerPanelLvl2.SetActive(true);
         }
         else if (_levelUpgrade == 3)
         {
-            Debug.Log("Showing level 3 downgrade panel");
-            _towerDowngradeUIScriptLvl3.ReInitialize();
-            _towerDowngradePanelLvl3.SetActive(true);
+            Debug.Log("Showing level 3 panel (downgrade to level 2 only)");
+            _towerUIScriptLvl3.ReInitialize();
+            _towerPanelLvl3.SetActive(true);
         }
     }
 
     private void CloseAllPanels()
     {
         _towerChoicePanel.SetActive(false);
-        _towerUpgradePanelLvl2.SetActive(false);
-        _towerUpgradePanelLvl3.SetActive(false);
-        _towerDowngradePanelLvl2.SetActive(false);
-        _towerDowngradePanelLvl3.SetActive(false);
+        _towerPanelLvl1.SetActive(false);
+        _towerPanelLvl2.SetActive(false);
+        _towerPanelLvl3.SetActive(false);
     }
 
-    #region Level 2 Upgrade
+    #region Level 2 Upgrade (from Level 1)
     public void UpgradeTowerLevel2()
     {
         // Don't upgrade if already building
@@ -424,7 +415,7 @@ public class TowerSpawner : MonoBehaviour
     }
     #endregion
 
-    #region Level 3 Upgrade
+    #region Level 3 Upgrade (from Level 2)
     public void UpgradeTowerLevel3()
     {
         // Don't upgrade if already building
@@ -443,8 +434,7 @@ public class TowerSpawner : MonoBehaviour
     }
     #endregion
 
-    #region downgrade lvl 3 to lvl 2
-
+    #region Downgrade Level 3 to Level 2
     public void DowngradeToLevel2()
     {
         if (_isBuilding)
@@ -452,6 +442,7 @@ public class TowerSpawner : MonoBehaviour
             return;
         }
 
+        // Refund the Level 3 upgrade cost
         if (_isTripleMelTower)
         {
             GameManager.Instance.GainRedBlueprint(_blueprintCostLvl3);
@@ -465,13 +456,12 @@ public class TowerSpawner : MonoBehaviour
             GameManager.Instance.GainYellowBlueprint(_blueprintCostLvl3);
         }
 
-        // Start the animation
+        // Start the downgrade animation
         StartCoroutine(UpgradeSequence(_towerLevel2, 2));
     }
-
     #endregion
 
-    #region downgrade lvl 2 to lvl 1
+    #region Downgrade Level 2 to Level 1
     public void DowngradeToLevel1()
     {
         if (_isBuilding)
@@ -479,6 +469,7 @@ public class TowerSpawner : MonoBehaviour
             return;
         }
 
+        // Refund the Level 2 upgrade cost
         if (_isTripleMelTower)
         {
             GameManager.Instance.GainRedBlueprint(_blueprintCostLvl2);
@@ -492,9 +483,8 @@ public class TowerSpawner : MonoBehaviour
             GameManager.Instance.GainYellowBlueprint(_blueprintCostLvl2);
         }
 
-        // Start the animation
+        // Start the downgrade animation
         StartCoroutine(UpgradeSequence(_towerLevel1, 1));
     }
-
     #endregion
-}   
+}
