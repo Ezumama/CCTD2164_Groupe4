@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    #region variables
     [Header("Ressources")]
     public int CurrentMoneyAmount;
     public int BaseMoneyAmount;
@@ -41,6 +42,12 @@ public class GameManager : MonoBehaviour
     [Header("Workers")]
     public int MaxWorkerAmount;
     public int CurrentWorkerAmount;
+
+    [Header("Blueprint Costs")]
+    public int RedBluePrintCost;
+    public int GreenBluePrintCost;
+    public int YellowBluePrintCost;
+    #endregion
 
     private void Start()
     {
