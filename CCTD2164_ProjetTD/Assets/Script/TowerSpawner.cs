@@ -77,6 +77,7 @@ public class TowerSpawner : MonoBehaviour
     private TowerUpgradeUI _towerUIScriptLvl3;
     private Camera _camera;
     private GameObject _currentTower;
+    private GameObject _spawner;
     private TowerChoiceUI _choiceUIScript;
     private GameObject _towerChoicePanel;
     private bool _isBuilding = false;
@@ -84,6 +85,8 @@ public class TowerSpawner : MonoBehaviour
 
     private void Start()
     {
+        _spawner = gameObject;
+
         // Get TowerChoiceUI script from UI Panel and assign Spawner to this tower spawner
         _towerChoicePanel = Instantiate(towerChoicePanelPrefab, transform);
         _towerChoicePanel.SetActive(false);
@@ -117,6 +120,11 @@ public class TowerSpawner : MonoBehaviour
         _towerPanelLvl3.SetActive(false);
         _towerUIScriptLvl3 = _towerPanelLvl3.GetComponentInChildren<TowerUpgradeUI>();
         _towerUIScriptLvl3.SetUpgrade(this);
+
+        foreach (Renderer r in _spawner.GetComponentsInChildren<Renderer>())
+        {
+            r.material.SetInt("_UpgradeEmmisive", 1);
+        }
 
         _levelUpgrade = 0;
     }
@@ -171,6 +179,7 @@ public class TowerSpawner : MonoBehaviour
         }
 
         _isBuilding = false;
+
 
     }
     #endregion
@@ -243,6 +252,21 @@ public class TowerSpawner : MonoBehaviour
             else
             {
                 Debug.Log("Cannot click - currently building");
+            }
+        }
+
+        if(!_isBuilding)
+        {
+            foreach (Renderer r in _spawner.GetComponentsInChildren<Renderer>())
+            {
+                r.material.SetInt("_UpgradeEmmisive", 0);
+            }
+        }
+        else
+        {
+            foreach (Renderer r in _spawner.GetComponentsInChildren<Renderer>())
+            {
+                r.material.SetInt("_UpgradeEmmisive", 1);
             }
         }
     }

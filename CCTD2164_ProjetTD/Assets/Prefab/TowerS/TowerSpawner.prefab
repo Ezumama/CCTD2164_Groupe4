@@ -80,8 +80,6 @@ MonoBehaviour:
   _levelUpgrade: 0
   _blueprintCostLvl2: 0
   _blueprintCostLvl3: 0
-  _currentTower: {fileID: 0}
-  _isBuilding: 0
 --- !u!114 &3508742159765835672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +243,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 50712d1ed98e7024481874aa0ac0c89e, type: 2}
+  - {fileID: 2100000, guid: 60798c74b311ee34f96885438c7112bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
