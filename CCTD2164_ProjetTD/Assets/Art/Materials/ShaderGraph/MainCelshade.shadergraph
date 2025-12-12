@@ -2910,10 +2910,10 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": 0.0,
-    "m_FloatType": 0,
+    "m_FloatType": 1,
     "m_RangeValues": {
         "x": 0.0,
-        "y": 1.0
+        "y": 100.0
     }
 }
 
@@ -7908,7 +7908,7 @@
     "m_ObjectId": "9aac18b8d2e144e0b5f5cb8c5c7131d8",
     "m_Title": "Emmisive",
     "m_Position": {
-        "x": -2070.000244140625,
+        "x": -2070.0,
         "y": 1324.0
     }
 }
