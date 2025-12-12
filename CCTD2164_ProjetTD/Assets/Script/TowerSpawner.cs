@@ -336,16 +336,11 @@ public class TowerSpawner : MonoBehaviour
             return;
         }
 
-        // If this line executes, the Raycast worked. What did it hit?
-        Debug.Log($"Ray Hit! Object: {hit.collider.gameObject.name}, Parent: {(hit.collider.transform.parent != null ? hit.collider.transform.parent.name : "No Parent")}");
-        Debug.DrawRay(ray.origin, ray.direction * hit.distance, Color.green, 5f);
-
         // Did we click this spawner or its children?
         TowerSpawner spawnerHit = hit.collider.GetComponentInParent<TowerSpawner>();
 
         if (spawnerHit == null)
         {
-            Debug.Log("No TowerSpawner found in hierarchy - closing panels");
             CloseAllPanels();
             return;
         }
@@ -353,13 +348,11 @@ public class TowerSpawner : MonoBehaviour
         // Clicked something that is NOT this spawner
         if (spawnerHit != this)
         {
-            Debug.Log($"Clicked different spawner: {spawnerHit.gameObject.name}");
             CloseAllPanels();
             return;
         }
 
         // Did we click THIS spawner?
-        Debug.Log($"Clicked THIS spawner! Current level: {_levelUpgrade}");
         CloseAllPanels();
 
         // Show appropriate panel based on tower level
