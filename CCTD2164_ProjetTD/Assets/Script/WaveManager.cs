@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using TMPro;
 
 public class WaveManager : MonoBehaviour
 {
@@ -40,6 +41,10 @@ public class WaveManager : MonoBehaviour
 
     [Header("Référence au PathManager")]
     public PathManager pathManager;
+
+    [Header("Interface Utilisateur")]
+    [Tooltip("L'élément Text qui affiche le numéro de la vague actuelle.")]
+    public TextMeshProUGUI waveDisplay; 
 
     private int currentWave = 0;
     private int aliveEnemies = 0;
@@ -85,6 +90,8 @@ public class WaveManager : MonoBehaviour
     {
         while (currentWave < waves.Length)
         {
+            UpdateWaveDisplay(currentWave + 1);
+
             Debug.Log($"Début de la vague {currentWave + 1}...");
 
             isSpawning = true; 
@@ -100,6 +107,21 @@ public class WaveManager : MonoBehaviour
 
         Debug.Log("Toutes les vagues terminées !");
         CheckForVictory();
+    }
+
+    private void UpdateWaveDisplay(int waveNumber)
+    {
+        if (waveDisplay != null)
+        {
+            if (waveNumber > waves.Length)
+            {
+                waveDisplay.text = "DERNIÈRE VAGUE TERMINÉE";
+            }
+            else
+            {
+                waveDisplay.text = $"{currentWave + 1}";
+            }
+        }
     }
 
     IEnumerator SpawnWave(Wave wave)

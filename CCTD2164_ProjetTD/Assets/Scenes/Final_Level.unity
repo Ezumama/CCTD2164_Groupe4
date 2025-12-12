@@ -1019,6 +1019,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694513256}
   m_CullTransparentMesh: 1
+--- !u!114 &786909964 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1904958033428077410, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+  m_PrefabInstance: {fileID: 1921207288}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &788529473
 GameObject:
   m_ObjectHideFlags: 0
@@ -3101,6 +3112,10 @@ PrefabInstance:
       propertyPath: pathManager
       value: 
       objectReference: {fileID: 1778680043}
+    - target: {fileID: 5153488039188184876, guid: d4b2d2d08a7d5434c9021fbcfd7ff44e, type: 3}
+      propertyPath: waveDisplay
+      value: 
+      objectReference: {fileID: 786909964}
     - target: {fileID: 5153488039188184876, guid: d4b2d2d08a7d5434c9021fbcfd7ff44e, type: 3}
       propertyPath: timeBetweenWaves
       value: 10
