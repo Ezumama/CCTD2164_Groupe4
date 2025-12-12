@@ -32,6 +32,9 @@ public class Shooter_MultiTarget : MonoBehaviour
     [Tooltip("Prevents cannons from swapping targets when enemies get near the center.")]
     [SerializeField] private float SideDeadZone;
 
+    [Header("Aim smoothing")]
+    [SerializeField] private float _rotationSpeed = 8f;
+
     [Header("Tags")]
     [SerializeField] private string Tag1;
     [SerializeField] private string Tag2;
@@ -120,7 +123,8 @@ public class Shooter_MultiTarget : MonoBehaviour
             if (dir.sqrMagnitude > 0.01f)
             {
                 Quaternion look = Quaternion.LookRotation(dir.normalized);
-                cannon.ShootingHead.transform.rotation = look * Quaternion.Euler(cannon.ModelForwardOffset);
+                Quaternion desired = look * Quaternion.Euler(cannon.ModelForwardOffset);
+                cannon.ShootingHead.transform.rotation = Quaternion.Slerp(cannon.ShootingHead.transform.rotation, desired, _rotationSpeed * Time.deltaTime);
             }
         }
     }
