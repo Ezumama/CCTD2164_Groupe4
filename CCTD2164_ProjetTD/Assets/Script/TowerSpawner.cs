@@ -15,6 +15,8 @@ public class TowerSpawner : MonoBehaviour
     [SerializeField] private GraphicRaycaster _uiRaycaster;
     [SerializeField] private EventSystem _eventSystem;
 
+    public LayerMask mask;
+
     #region int costs
     private int _gatlingCost;
     private int _teslaCost;
@@ -86,6 +88,7 @@ public class TowerSpawner : MonoBehaviour
     private void Start()
     {
         _spawner = gameObject;
+        mask = LayerMask.GetMask("Default");
 
         // Get TowerChoiceUI script from UI Panel and assign Spawner to this tower spawner
         _towerChoicePanel = Instantiate(towerChoicePanelPrefab, transform);
@@ -353,7 +356,7 @@ public class TowerSpawner : MonoBehaviour
         float maxDistance = 100f;
 
         // What did we click?   
-        if (!Physics.Raycast(ray, out hit, maxDistance))
+        if (!Physics.Raycast(ray, out hit, maxDistance, ~mask))
         {
             Debug.Log("Raycast hit nothing - closing panels");
             CloseAllPanels();

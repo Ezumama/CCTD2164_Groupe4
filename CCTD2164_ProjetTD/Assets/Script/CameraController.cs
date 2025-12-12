@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
@@ -58,15 +59,22 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        HandleClick();
-        HandleMouseDrag();
-        HandleKeyboardPan();
-        HandleZoom();
-        ApplySmoothing();
-        ClampPosition();
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+        else 
+        { 
+            HandleClick();
+            HandleMouseDrag();
+            HandleKeyboardPan();
+            HandleZoom();
+            ApplySmoothing();
+            ClampPosition();
+        }
     }
 
-    void HandleClick()
+        void HandleClick()
     {
         if (Input.GetMouseButtonDown(mouseButtonToClick))
         {
