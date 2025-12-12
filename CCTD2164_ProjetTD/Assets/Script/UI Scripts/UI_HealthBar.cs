@@ -12,10 +12,14 @@ public class UI_HealthBar : MonoBehaviour
 
     private Color _green, _red, _orange;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _health = _generator.GetComponent<Health>();
+        if (_health == null)
+        {
+            Debug.LogError("Le GameObject assigné à '_generator' ne possède pas le composant Health !", _generator);
+            Destroy(this);
+        }
 
         _maxHp = _health.maxHealth;
         _currentHp = _health.currentHealth;
@@ -24,13 +28,10 @@ public class UI_HealthBar : MonoBehaviour
         _orange = new Color(0.85f, 0.46f, 0f);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (_health == null)
         {
-            // Si la cible est morte, détruire la barre de santé ou arrêter l'exécution.
-            // On détruit l'objet UI_HealthBar, qui est l'objet courant (this.gameObject).
             //Destroy(gameObject);
             return;
         }

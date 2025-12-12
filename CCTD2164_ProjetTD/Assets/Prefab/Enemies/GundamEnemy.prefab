@@ -534,5 +534,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6111d2408515f3e45ae2d131b6717b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runOnAwake: 1
+  runOnAwake: 0
   cloneMesh: 1

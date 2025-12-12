@@ -8,7 +8,6 @@ public class EnemyNexusDamage : MonoBehaviour
 
     void Start()
     {
-        // Initialiser pour permettre au premier coup de passer immédiatement (Time.time est > 0 au Start)
         lastAttackTime = Time.time - attackCooldown;
     }
 
@@ -19,7 +18,6 @@ public class EnemyNexusDamage : MonoBehaviour
             if (nexusHealth != null)
             {
                 nexusHealth.TakeDamage(damageToNexus);
-                // Si vous voulez le déloguer
                 Debug.Log($"[Attaque Nexus] {gameObject.name} fait {damageToNexus} dégâts."); 
             }
             lastAttackTime = Time.time;

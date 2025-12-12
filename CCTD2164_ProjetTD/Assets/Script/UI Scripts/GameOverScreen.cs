@@ -10,17 +10,17 @@ public class GameOverScreen : MonoBehaviour
 
     [Header("UI")]
     public GameObject gameOverPanel;
+    public GameObject victoryPanel;
 
     [Header("Fade Effect")] 
     [Tooltip("Le Canvas Group sur le panneau noir pour le fondu.")]
     public CanvasGroup fadeGroup;
-    public float fadeDuration = 1.5f; // Durée du fondu en secondes
+    public float fadeDuration = 1.5f;
 
     private bool isGameOver = false;
 
     void Awake()
     {
-        // Singleton pattern
         if (Instance == null)
         {
             Instance = this;
@@ -33,28 +33,31 @@ public class GameOverScreen : MonoBehaviour
 
     void Start()
     {
-        // Masquer le panneau de Game Over au démarrage
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(false);
         }
 
-        // Initialiser l'effet de fondu
         if (fadeGroup != null)
         {
-            fadeGroup.alpha = 0f; // Complètement transparent au début
-            // S'assurer qu'il ne bloque pas les clics pendant le jeu
+            fadeGroup.alpha = 0f;
             fadeGroup.blocksRaycasts = false;
             fadeGroup.interactable = false;
         }
 
-        // S'abonner à l'événement de mort du Nexus
+        if (victoryPanel != null)
+        {
+            victoryPanel.SetActive(false);
+        }
+
         Health.OnNexusDied += HandleGameOver;
+        WaveManager.OnGameVictory += HandleGameVictory;
     }
 
     void OnDestroy()
     {
         Health.OnNexusDied -= HandleGameOver;
+        WaveManager.OnGameVictory -= HandleGameVictory;
     }
 
     private void HandleGameOver()
@@ -63,19 +66,47 @@ public class GameOverScreen : MonoBehaviour
 
         isGameOver = true;
 
-        Debug.Log("GAME OVER ! Le Nexus a été détruit.");
+        Debug.Log("GAME OVER !");
 
-        // 🔥 Démarrer la coroutine de fondu au lieu d'arrêter le temps immédiatement
         StartCoroutine(FadeToBlackAndShowGameOver());
     }
 
-    private IEnumerator FadeToBlackAndShowGameOver()
+    private void HandleGameVictory()
+    {
+        if (isGameOver) return; 
+
+        isGameOver = true;
+
+        Debug.Log("Le joueur a gagné !");
+
+        StartCoroutine(FadeToBlackAndShowVictoryScreen());
+    }
+
+    private IEnumerator FadeToBlackAndShowVictoryScreen()
+    {
+        yield return StartCoroutine(FadeToBlack());
+
+
+        Time.timeScale = 0f;
+
+        if (victoryPanel != null)
+        {
+            victoryPanel.SetActive(true);
+        }
+
+        if (fadeGroup != null)
+        {
+            fadeGroup.blocksRaycasts = false;
+            fadeGroup.interactable = false;
+        }
+    }
+
+    private IEnumerator FadeToBlack()
     {
         if (fadeGroup != null)
         {
             float timer = 0f;
 
-            // Boucle de fondu : de 0 (transparent) à 1 (noir)
             while (timer < fadeDuration)
             {
                 timer += Time.unscaledDeltaTime;
@@ -85,33 +116,27 @@ public class GameOverScreen : MonoBehaviour
 
                 yield return null;
             }
-            fadeGroup.alpha = 1f; // Assure que le fond est complètement noir
+            fadeGroup.alpha = 1f;
         }
+    }
 
-        // --- Une fois le fondu terminé (l'écran est noir) ---
+    private IEnumerator FadeToBlackAndShowGameOver()
+    {
+        yield return StartCoroutine(FadeToBlack());
 
-        // 1. Arrêter le temps
         Time.timeScale = 0f;
 
-        // 2. Afficher l'écran de Game Over (boutons, titres, etc.)
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
         }
 
-        // 3. 🔥 CORRECTION : Empêcher le panneau de fondu de bloquer les clics.
         if (fadeGroup != null)
         {
             fadeGroup.blocksRaycasts = false;
             fadeGroup.interactable = false;
         }
-
-        // Rendre le panneau de Game Over cliquable si vous utilisez un Canvas Group dessus.
-        // Si votre GameOverPanel contient un CanvasGroup, assurez-vous qu'il est cliquable (interactable = true).
     }
-
-
-    // --- Fonctions appelées par les Boutons UI (inchangées) ---
 
     public void RestartGame()
     {

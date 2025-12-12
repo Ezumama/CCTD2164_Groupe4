@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 public class WaveManager : MonoBehaviour
 {
-    public static WaveManager instance;
+    public static event System.Action OnGameVictory;
 
-    // --- Structures de Configuration (Inch.) ---
+    public static WaveManager instance;
 
     [System.Serializable]
     public class EnemyBatch
@@ -33,8 +33,6 @@ public class WaveManager : MonoBehaviour
         public PathGroup[] pathGroups;
     }
 
-    // --- Variables du Manager (Inch.) ---
-
     public Wave[] waves;
     [Tooltip("Les points de spawn pour les ennemis volants. DOIVENT ÊTRE DANS LE MÊME ORDRE QUE LES CHEMINS DU PATHMANAGER.")]
     public Transform[] airSpawnPoints;
@@ -43,10 +41,9 @@ public class WaveManager : MonoBehaviour
     [Header("Référence au PathManager")]
     public PathManager pathManager;
 
-    // --- État du Manager ---
     private int currentWave = 0;
     private int aliveEnemies = 0;
-    private bool isSpawning = false; // 🔥 NOUVEAU : Indique si l'instanciation est en cours
+    private bool isSpawning = false;
 
 
     void Awake()
@@ -67,8 +64,6 @@ public class WaveManager : MonoBehaviour
         StartCoroutine(StartWaves());
     }
 
-    // --- Gestion des Ennemis ---
-
     public void RegisterEnemy()
     {
         aliveEnemies++;
@@ -76,41 +71,35 @@ public class WaveManager : MonoBehaviour
 
     public void UnregisterEnemy()
     {
-        // 🔥 CORRECTION : Vérification pour éviter de décrémenter sous zéro.
         if (aliveEnemies > 0)
         {
             aliveEnemies--;
         }
         else
         {
-            // Ceci peut aider au débogage si un ennemi tente de se désenregistrer deux fois.
             Debug.LogWarning("[WaveManager] Tentative de désenregistrer un ennemi alors que le compteur est déjà à zéro.");
         }
     }
-
-    // --- Logique des Vagues ---
 
     IEnumerator StartWaves()
     {
         while (currentWave < waves.Length)
         {
-            Debug.Log($"🚀 Début de la vague {currentWave + 1}...");
+            Debug.Log($"Début de la vague {currentWave + 1}...");
 
-            isSpawning = true; // Début de l'instanciation
+            isSpawning = true; 
             yield return StartCoroutine(SpawnWave(waves[currentWave]));
-            isSpawning = false; // Fin de l'instanciation (toutes les coroutines SpawnPathGroup ont terminé)
+            isSpawning = false; 
 
-
-            // 🔥 CORRECTION CRUCIALE : On attend que le spawn soit terminé ET que tous les ennemis soient morts.
             yield return new WaitUntil(() => !isSpawning && aliveEnemies <= 0);
-            // Si aliveEnemies reste > 0 ici, le problème est dans les scripts EnemyNav/EnemyAir.
 
             currentWave++;
-            Debug.Log($"⏸️ Pause avant la vague {currentWave + 1}");
+            Debug.Log($"Pause avant la vague {currentWave + 1}");
             yield return new WaitForSeconds(timeBetweenWaves);
         }
 
-        Debug.Log("🎉 Toutes les vagues terminées !");
+        Debug.Log("Toutes les vagues terminées !");
+        CheckForVictory();
     }
 
     IEnumerator SpawnWave(Wave wave)
@@ -133,8 +122,6 @@ public class WaveManager : MonoBehaviour
     {
         int pathIndex = pathGroup.pathManagerIndex;
 
-        // --- 1. Récupérer les données du chemin (Path) et des points ---
-
         if (pathIndex < 0 || pathIndex >= pathManager.spawnPointsData.Length)
         {
             Debug.LogError($"[WaveManager] Index de chemin invalide : {pathIndex}. Assurez-vous qu'il existe dans le PathManager.");
@@ -152,9 +139,6 @@ public class WaveManager : MonoBehaviour
 
         Transform[] availableNodes = spData.waypoints;
 
-
-        // --- 2. Parcourir tous les lots d'ennemis pour ce chemin et les spawner ---
-
         foreach (var batch in pathGroup.enemies)
         {
             for (int i = 0; i < batch.count; i++)
@@ -167,7 +151,6 @@ public class WaveManager : MonoBehaviour
 
                 if (isFlying)
                 {
-                    // Logique pour Volants (utilise l'index du chemin)
                     if (airSpawnPoints != null && airSpawnPoints.Length > 0)
                     {
                         Transform airSpawn = null;
@@ -190,8 +173,6 @@ public class WaveManager : MonoBehaviour
                 }
                 else if (isGrounded)
                 {
-                    // Logique pour les ennemis au sol (EnemyNav, chemin aléatoire)
-
                     Transform selectedNode = availableNodes[Random.Range(0, availableNodes.Length)];
 
                     List<Transform> pathPoints = new List<Transform>();
@@ -202,7 +183,7 @@ public class WaveManager : MonoBehaviour
 
                     if (pathPoints.Count == 0)
                     {
-                        Debug.LogWarning($"Le Nœud sélectionné ({selectedNode.name}) ne contient aucun point de chemin !");
+                        //Debug.LogWarning($"Le Nœud sélectionné ({selectedNode.name}) ne contient aucun point de chemin !");
                         continue;
                     }
 
@@ -216,7 +197,7 @@ public class WaveManager : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogError($"L'ennemi au sol {batch.enemyPrefab.name} n'a pas de composant EnemyNav !");
+                            Debug.LogError($"L'ennemi au sol {batch.enemyPrefab.name} n'a pas de composant EnemyNav !");
                     }
                 }
 
@@ -226,6 +207,20 @@ public class WaveManager : MonoBehaviour
                 }
 
                 yield return new WaitForSeconds(batch.spawnInterval);
+            }
+        }
+    }
+    private void CheckForVictory()
+    {
+        if (currentWave >= waves.Length)
+        {
+            Debug.Log("VICTOIRE FINALE : Toutes les vagues sont vaincues et les ennemis sont détruits.");
+
+            if (aliveEnemies <= 0)
+            {
+                OnGameVictory?.Invoke();
+                StopAllCoroutines();
+                this.enabled = false;
             }
         }
     }

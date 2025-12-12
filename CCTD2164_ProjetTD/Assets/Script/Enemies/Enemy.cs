@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
         Vector3 dir = (targetPoint.position - transform.position).normalized;
         transform.position += dir * moveSpeed * Time.deltaTime;
 
-        // Si l'ennemi atteint sa cible, on peut le détruire ou infliger des dégâts à la base
         float distance = Vector3.Distance(transform.position, targetPoint.position);
         if (distance < 0.1f)
         {
@@ -34,7 +33,6 @@ public class Enemy : MonoBehaviour
 
     void ReachDestination()
     {
-        // Ici tu peux infliger des dégâts à la base
         Destroy(gameObject);
     }
 
