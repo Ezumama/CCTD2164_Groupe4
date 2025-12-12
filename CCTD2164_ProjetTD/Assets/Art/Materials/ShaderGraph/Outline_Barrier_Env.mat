@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5369672032811890480
+--- !u!114 &-5541702441364276614
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: OutLine
+  m_Name: Outline_Barrier_Env
   m_Shader: {fileID: -6465566751694194690, guid: 0ff2388b860723f45b9d541ef9df9709, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -101,8 +101,8 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
-    - _CameraScale: 0
-    - _CameraScaleFactor: 8.8
+    - _CameraScale: 1
+    - _CameraScaleFactor: 2
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
@@ -118,7 +118,7 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _Outline_Thickness: 0.1
+    - _Outline_Thickness: 0.008
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
