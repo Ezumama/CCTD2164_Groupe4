@@ -76,10 +76,10 @@ public class TowerSpawner : MonoBehaviour
     private TowerUpgradeUI _towerUIScriptLvl2;
     private TowerUpgradeUI _towerUIScriptLvl3;
     private Camera _camera;
-    [SerializeField] private GameObject _currentTower;
+    private GameObject _currentTower;
     private TowerChoiceUI _choiceUIScript;
     private GameObject _towerChoicePanel;
-    [SerializeField] private bool _isBuilding = false;
+    private bool _isBuilding = false;
     #endregion
 
     private void Start()
@@ -461,30 +461,30 @@ public class TowerSpawner : MonoBehaviour
     }
     #endregion
 
-    #region Downgrade Level 2 to Level 1
-    public void DowngradeToLevel1()
-    {
-        if (_isBuilding)
-        {
-            return;
-        }
+    //#region Downgrade Level 2 to Level 1
+    //public void DowngradeToLevel1()
+    //{
+    //    if (_isBuilding)
+    //    {
+    //        return;
+    //    }
 
-        // Refund the Level 2 upgrade cost
-        if (_isTripleMelTower)
-        {
-            GameManager.Instance.GainRedBlueprint(_blueprintCostLvl2);
-        }
-        else if (_isBigBettyTower)
-        {
-            GameManager.Instance.GainGreenBlueprint(_blueprintCostLvl2);
-        }
-        else if (_isSimpleLizaTower)
-        {
-            GameManager.Instance.GainYellowBlueprint(_blueprintCostLvl2);
-        }
+    //    // Refund the Level 2 upgrade cost
+    //    if (_isTripleMelTower)
+    //    {
+    //        GameManager.Instance.GainRedBlueprint(_blueprintCostLvl2);
+    //    }
+    //    else if (_isBigBettyTower)
+    //    {
+    //        GameManager.Instance.GainGreenBlueprint(_blueprintCostLvl2);
+    //    }
+    //    else if (_isSimpleLizaTower)
+    //    {
+    //        GameManager.Instance.GainYellowBlueprint(_blueprintCostLvl2);
+    //    }
 
-        // Start the downgrade animation
-        StartCoroutine(UpgradeSequence(_towerLevel1, 1));
-    }
-    #endregion
+    //    // Start the downgrade animation
+    //    StartCoroutine(UpgradeSequence(_towerLevel1, 1));
+    //}
+    //#endregion
 }

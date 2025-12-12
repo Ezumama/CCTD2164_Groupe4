@@ -15,12 +15,12 @@ public class TowerUpgradeUI : MonoBehaviour
     }
     private void InitializeUI()
     {
-        if (_towerUpgradeScript._levelUpgrade == 1)
+        if (_towerUpgradeScript._levelUpgrade == 1 || _towerUpgradeScript._levelUpgrade == 2)
         {
             _downgradeButton.SetActive(false);
         }
         else
-        {
+        {   
             _downgradeButton.SetActive(true);
         }
 
@@ -61,10 +61,10 @@ public class TowerUpgradeUI : MonoBehaviour
         _towerUpgradeScript.DowngradeToLevel2();
     }
 
-    // Downgrade level 2 to level 1
-    public void DowngradeFromLvl2()
-    {
-        _towerUpgradeScript.DowngradeToLevel1();
-    }
+    //// Downgrade level 2 to level 1
+    //public void DowngradeFromLvl2()
+    //{
+    //    _towerUpgradeScript.DowngradeToLevel1();
+    //}
 
 }
