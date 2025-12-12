@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2380631177355249949}
   - component: {fileID: 7714852419890273591}
   - component: {fileID: 8278152395315669726}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: InfoEnergyON
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4088378590534012845}
   - component: {fileID: 7544635186052018367}
   - component: {fileID: 6835531311058663699}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: ButtonEnergy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 4954081884776047483}
   - component: {fileID: 6960842741652612042}
   - component: {fileID: 3382590786023441211}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: DowngradePrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 7586898714729220505}
   - component: {fileID: 1711128181055412322}
   - component: {fileID: 9017692716814702787}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: InfoBoostON
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 7029893399616217953}
   - component: {fileID: 7149822321505555176}
   - component: {fileID: 4106743482397363941}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: ButtonChoiceGatling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   - component: {fileID: 6496521893342037886}
   - component: {fileID: 8000503962243131651}
   - component: {fileID: 966763388057685065}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: UpgradePrice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 6711007991664599921}
   - component: {fileID: 1925295238860407842}
   - component: {fileID: 4150431140954293169}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: ButtonDowngrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -775,7 +775,7 @@ GameObject:
   - component: {fileID: 370044677803509571}
   - component: {fileID: 8247042232726079814}
   - component: {fileID: 1093139102048582707}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: TowerChoicePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -891,7 +891,7 @@ GameObject:
   - component: {fileID: 7259088752407753413}
   - component: {fileID: 2307106950694851612}
   - component: {fileID: 4648893870702061719}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: TowerUpgradeLvl1_Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -992,7 +992,7 @@ GameObject:
   - component: {fileID: 5754568407569754461}
   - component: {fileID: 2654540842189062805}
   - component: {fileID: 5271723830161760029}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: TowerChoiceImageBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,7 +1079,7 @@ GameObject:
   - component: {fileID: 2115075936408092030}
   - component: {fileID: 8807043826930727269}
   - component: {fileID: 2776318076109148279}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: InfoPanelOFF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1155,7 +1155,7 @@ GameObject:
   - component: {fileID: 8744972480242384642}
   - component: {fileID: 2954650368346732915}
   - component: {fileID: 195108839454549092}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: ButtonBoost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1290,7 +1290,7 @@ GameObject:
   - component: {fileID: 279623658272117274}
   - component: {fileID: 5840687897232745518}
   - component: {fileID: 8571237748805575063}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: BoostIconON
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1365,7 +1365,7 @@ GameObject:
   - component: {fileID: 5886683316235598576}
   - component: {fileID: 3201867076981114620}
   - component: {fileID: 3534652674159689802}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: BoostIconOFF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1440,7 +1440,7 @@ GameObject:
   - component: {fileID: 4953658283980320162}
   - component: {fileID: 2824493419011646522}
   - component: {fileID: 971861912838532914}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: InfoPanelOFF (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
