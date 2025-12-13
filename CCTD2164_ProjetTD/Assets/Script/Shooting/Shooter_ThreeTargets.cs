@@ -31,6 +31,9 @@ public class Shooter_ThreeTargets : MonoBehaviour
     [SerializeField] private string _targetTag1;
     [SerializeField] private string _targetTag2;
 
+    [Header("Aim smoothing")]
+    [SerializeField] private float _rotationSpeed = 8f;
+
     private void Start()
     {
         StartCoroutine(ShootingRoutine());
@@ -86,8 +89,8 @@ public class Shooter_ThreeTargets : MonoBehaviour
             if (dir.sqrMagnitude > 0.01f)
             {
                 Quaternion look = Quaternion.LookRotation(dir);
-                cannon.ShootingHead.transform.rotation =
-                    look * Quaternion.Euler(cannon.ModelForwardOffset);
+                Quaternion desired = look * Quaternion.Euler(cannon.ModelForwardOffset);
+                cannon.ShootingHead.transform.rotation = Quaternion.Slerp(cannon.ShootingHead.transform.rotation, desired, _rotationSpeed * Time.deltaTime);
             }
         }
     }
