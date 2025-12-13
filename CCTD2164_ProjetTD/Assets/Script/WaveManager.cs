@@ -1,249 +1,156 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 
 public class WaveManager : MonoBehaviour
 {
     public static event System.Action OnGameVictory;
-
     public static WaveManager instance;
 
-    [System.Serializable]
-    public class EnemyBatch
-    {
-        public GameObject enemyPrefab;
-        public int count = 5;
-        public float spawnInterval = 1f;
-    }
-
-    [System.Serializable]
-    public class PathGroup
-    {
-        [Tooltip("Index du SpawnPoint dans le PathManager.spawnPointsData (e.g., 0 pour Path 1, 1 pour Path 2, etc.)")]
-        public int pathManagerIndex;
-
-        [Tooltip("Les lots d'ennemis qui vont spawner sur ce chemin.")]
-        public EnemyBatch[] enemies;
-    }
-
-    [System.Serializable]
-    public class Wave
-    {
-        public PathGroup[] pathGroups;
-    }
+    // --- Structures (inchangées) ---
+    [System.Serializable] public class EnemyBatch { public GameObject enemyPrefab; public int count = 5; public float spawnInterval = 1f; }
+    [System.Serializable] public class PathGroup { public int pathManagerIndex; public EnemyBatch[] enemies; }
+    [System.Serializable] public class Wave { public PathGroup[] pathGroups; }
 
     public Wave[] waves;
-    [Tooltip("Les points de spawn pour les ennemis volants. DOIVENT ÊTRE DANS LE MÊME ORDRE QUE LES CHEMINS DU PATHMANAGER.")]
     public Transform[] airSpawnPoints;
     public float timeBetweenWaves = 2f;
 
-    [Header("Référence au PathManager")]
+    [Header("Références")]
     public PathManager pathManager;
+    public TextMeshProUGUI waveDisplay;
 
-    [Header("Interface Utilisateur")]
-    [Tooltip("L'élément Text qui affiche le numéro de la vague actuelle.")]
-    public TextMeshProUGUI waveDisplay; 
-
-    private int currentWave = 0;
-    private int aliveEnemies = 0;
+    [Header("Debug (Lecture seule)")]
+    [SerializeField] private int currentWaveIndex = 0;
+    [SerializeField] private int aliveEnemies = 0;
     private bool isSpawning = false;
-
 
     void Awake()
     {
-        if (instance != null) { return; }
+        if (instance != null) { Destroy(gameObject); return; }
         instance = this;
     }
 
     void Start()
     {
-        if (pathManager == null)
-        {
-            Debug.LogError("[WaveManager] Le PathManager n'est pas assigné ! Le système de vagues ne peut pas démarrer.");
-            enabled = false;
-            return;
-        }
-
-        StartCoroutine(StartWaves());
+        if (pathManager == null) { Debug.LogError("PathManager manquant !"); return; }
+        StartCoroutine(StartWavesRoutine());
     }
 
-    public void RegisterEnemy()
+    public void RegisterEnemy(string enemyName)
     {
         aliveEnemies++;
+        Debug.Log($"[INSCRIPTION] {enemyName} ajouté. Total : {aliveEnemies}");
     }
 
-    public void UnregisterEnemy()
+    public void UnregisterEnemy(string enemyName)
     {
-        if (aliveEnemies > 0)
+        aliveEnemies = Mathf.Max(0, aliveEnemies - 1);
+        Debug.Log($"[DÉPART] {enemyName} est mort. Restants : {aliveEnemies}");
+
+        if (!isSpawning && aliveEnemies <= 0)
         {
-            aliveEnemies--;
-        }
-        else
-        {
-            Debug.LogWarning("[WaveManager] Tentative de désenregistrer un ennemi alors que le compteur est déjà à zéro.");
+            Debug.Log("<color=yellow>Compteur à zéro, prêt pour la suite.</color>");
         }
     }
 
-    IEnumerator StartWaves()
+    IEnumerator StartWavesRoutine()
     {
-        while (currentWave < waves.Length)
+        while (currentWaveIndex < waves.Length)
         {
-            UpdateWaveDisplay(currentWave + 1);
+            UpdateWaveDisplay(currentWaveIndex + 1);
+            Debug.Log($"<color=cyan>--- Lancement Vague {currentWaveIndex + 1} ---</color>");
 
-            Debug.Log($"Début de la vague {currentWave + 1}...");
+            isSpawning = true;
+            yield return StartCoroutine(SpawnWave(waves[currentWaveIndex]));
 
-            isSpawning = true; 
-            yield return StartCoroutine(SpawnWave(waves[currentWave]));
-            isSpawning = false; 
+            // Sécurité : On attend un peu pour être sûr que les derniers ennemis 
+            // sont bien instanciés et enregistrés
+            yield return new WaitForSeconds(0.5f);
+            isSpawning = false;
 
-            yield return new WaitUntil(() => !isSpawning && aliveEnemies <= 0);
+            // ATTENTE CRUCIALE
+            // On attend que le spawn soit fini ET qu'il n'y ait plus d'ennemis
+            while (isSpawning || aliveEnemies > 0)
+            {
+                yield return new WaitForSeconds(0.2f);
+            }
 
-            currentWave++;
-            Debug.Log($"Pause avant la vague {currentWave + 1}");
-            yield return new WaitForSeconds(timeBetweenWaves);
+            Debug.Log($"<color=green>Vague {currentWaveIndex + 1} terminée !</color>");
+            currentWaveIndex++;
+
+            if (currentWaveIndex < waves.Length)
+            {
+                yield return new WaitForSeconds(timeBetweenWaves);
+            }
         }
 
-        Debug.Log("Toutes les vagues terminées !");
+        Debug.Log("Félicitations, toutes les vagues sont terminées !");
         CheckForVictory();
     }
 
     private void UpdateWaveDisplay(int waveNumber)
     {
-        if (waveDisplay != null)
-        {
-            if (waveNumber > waves.Length)
-            {
-                waveDisplay.text = "DERNIÈRE VAGUE TERMINÉE";
-            }
-            else
-            {
-                waveDisplay.text = $"{currentWave + 1}";
-            }
-        }
+        if (waveDisplay != null) waveDisplay.text = waveNumber.ToString();
     }
 
     IEnumerator SpawnWave(Wave wave)
     {
         List<Coroutine> pathSpawners = new List<Coroutine>();
-
-        foreach (var pathGroup in wave.pathGroups)
+        foreach (var group in wave.pathGroups)
         {
-            Coroutine spawner = StartCoroutine(SpawnPathGroup(pathGroup));
-            pathSpawners.Add(spawner);
+            pathSpawners.Add(StartCoroutine(SpawnPathGroup(group)));
         }
-
-        foreach (Coroutine spawner in pathSpawners)
-        {
-            yield return spawner;
-        }
+        foreach (var spawner in pathSpawners) yield return spawner;
     }
 
     IEnumerator SpawnPathGroup(PathGroup pathGroup)
     {
-        int pathIndex = pathGroup.pathManagerIndex;
+        int pIndex = pathGroup.pathManagerIndex;
+        if (pIndex < 0 || pIndex >= pathManager.spawnPointsData.Length) yield break;
 
-        if (pathIndex < 0 || pathIndex >= pathManager.spawnPointsData.Length)
-        {
-            Debug.LogError($"[WaveManager] Index de chemin invalide : {pathIndex}. Assurez-vous qu'il existe dans le PathManager.");
-            yield break;
-        }
-
-        PathManager.SpawnPointData spData = pathManager.spawnPointsData[pathIndex];
-        Transform spawnPointTransform = spData.spawnPointTransform;
-
-        if (spData.waypoints == null || spData.waypoints.Length == 0)
-        {
-            Debug.LogWarning($"[WaveManager] Le SpawnPoint {spawnPointTransform.name} (index {pathIndex}) n'a pas de Nœuds de chemin (waypoints) configurés !");
-            yield break;
-        }
-
-        Transform[] availableNodes = spData.waypoints;
+        var spData = pathManager.spawnPointsData[pIndex];
 
         foreach (var batch in pathGroup.enemies)
         {
             for (int i = 0; i < batch.count; i++)
             {
-                bool isFlying = batch.enemyPrefab.GetComponent<EnemyAir>() != null;
-                bool isGrounded = batch.enemyPrefab.GetComponent<EnemyNav>() != null;
+                if (batch.enemyPrefab == null) continue;
 
-                GameObject obj = null;
-                bool enemySpawned = false;
-
-                if (isFlying)
-                {
-                    if (airSpawnPoints != null && airSpawnPoints.Length > 0)
-                    {
-                        Transform airSpawn = null;
-
-                        if (pathIndex >= 0 && pathIndex < airSpawnPoints.Length)
-                        {
-                            airSpawn = airSpawnPoints[pathIndex];
-                        }
-                        else
-                        {
-                            airSpawn = airSpawnPoints[0];
-                        }
-
-                        if (airSpawn != null)
-                        {
-                            obj = Instantiate(batch.enemyPrefab, airSpawn.position, airSpawn.rotation);
-                            enemySpawned = true;
-                        }
-                    }
-                }
-                else if (isGrounded)
-                {
-                    Transform selectedNode = availableNodes[Random.Range(0, availableNodes.Length)];
-
-                    List<Transform> pathPoints = new List<Transform>();
-                    foreach (Transform point in selectedNode)
-                    {
-                        pathPoints.Add(point);
-                    }
-
-                    if (pathPoints.Count == 0)
-                    {
-                        //Debug.LogWarning($"Le Nœud sélectionné ({selectedNode.name}) ne contient aucun point de chemin !");
-                        continue;
-                    }
-
-                    obj = Instantiate(batch.enemyPrefab, spawnPointTransform.position, spawnPointTransform.rotation);
-
-                    EnemyNav nav = obj.GetComponent<EnemyNav>();
-                    if (nav != null)
-                    {
-                        nav.SetPath(pathPoints.ToArray());
-                        enemySpawned = true;
-                    }
-                    else
-                    {
-                            Debug.LogError($"L'ennemi au sol {batch.enemyPrefab.name} n'a pas de composant EnemyNav !");
-                    }
-                }
-
-                if (enemySpawned)
-                {
-                    RegisterEnemy();
-                }
+                GameObject obj = InstantiateEnemy(batch.enemyPrefab, pIndex, spData);
+                if (obj != null) RegisterEnemy(gameObject.name);
 
                 yield return new WaitForSeconds(batch.spawnInterval);
             }
         }
     }
+
+    private GameObject InstantiateEnemy(GameObject prefab, int pathIndex, PathManager.SpawnPointData spData)
+    {
+        bool isFlying = prefab.GetComponent<EnemyAir>() != null;
+        if (isFlying)
+        {
+            Transform spawn = (airSpawnPoints != null && pathIndex < airSpawnPoints.Length) ? airSpawnPoints[pathIndex] : airSpawnPoints[0];
+            return Instantiate(prefab, spawn.position, spawn.rotation);
+        }
+        else
+        {
+            if (spData.waypoints.Length == 0) return null;
+            Transform node = spData.waypoints[Random.Range(0, spData.waypoints.Length)];
+            GameObject obj = Instantiate(prefab, spData.spawnPointTransform.position, spData.spawnPointTransform.rotation);
+            obj.GetComponent<EnemyNav>()?.SetPath(node.Cast<Transform>().ToArray());
+            return obj;
+        }
+    }
+
     private void CheckForVictory()
     {
-        if (currentWave >= waves.Length)
+        if (currentWaveIndex >= waves.Length && aliveEnemies <= 0)
         {
-            Debug.Log("VICTOIRE FINALE : Toutes les vagues sont vaincues et les ennemis sont détruits.");
-
-            if (aliveEnemies <= 0)
-            {
-                OnGameVictory?.Invoke();
-                StopAllCoroutines();
-                this.enabled = false;
-            }
+            OnGameVictory?.Invoke();
+            this.enabled = false;
         }
     }
 }

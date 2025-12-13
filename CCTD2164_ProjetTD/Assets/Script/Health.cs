@@ -13,15 +13,16 @@ public class Health : MonoBehaviour
 
     public event System.Action OnDie;
 
+    private bool isDead = false;
+
     void Awake()
     {
         currentHealth = maxHealth;
     }
 
-
     public void TakeDamage(float damage)
     {
-        if (currentHealth <= 0) return;
+        if (isDead || currentHealth <= 0) return;
 
         currentHealth -= damage;
 
@@ -33,6 +34,11 @@ public class Health : MonoBehaviour
 
     public virtual void Die()
     {
+        if (isDead) return;
+
+        isDead = true;
+        currentHealth = 0; 
+
         OnDie?.Invoke();
 
         if (WaveManager.instance != null)
@@ -49,9 +55,9 @@ public class Health : MonoBehaviour
 
             if (isEnemy)
             {
-                WaveManager.instance.UnregisterEnemy();
+                WaveManager.instance.UnregisterEnemy(gameObject.name);
             }
-            else if (gameObject.CompareTag("Nexus")) 
+            else if (gameObject.CompareTag("Nexus"))
             {
                 OnNexusDied?.Invoke();
             }
@@ -62,11 +68,12 @@ public class Health : MonoBehaviour
 
     public void Heal(float amount)
     {
+        if (isDead) return; 
         currentHealth = Mathf.Min(currentHealth + amount, maxHealth);
     }
 
     public float GetCurrentHealth() => currentHealth;
     public float GetMaxHealth() => maxHealth;
-    public bool IsAlive() => currentHealth > 0;
+    public bool IsAlive() => !isDead && currentHealth > 0;
 }
 
