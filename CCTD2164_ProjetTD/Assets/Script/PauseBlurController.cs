@@ -19,21 +19,17 @@ public class PauseBlurController : MonoBehaviour
     public float transitionDuration = 0.1f;
     private Coroutine blurCoroutine;
 
-    void Start()
+    void Awake()
     {
         if (globalVolume.profile.TryGet<DepthOfField>(out dof))
         {
-            // 1. Sauvegarde la valeur par défaut LUE DU VOLUME
             defaultFocusDistance = dof.focusDistance.value;
 
-            // 🔥 DEBUG CRUCIAL : Regardez ce qui est affiché dans la console au lancement
-            Debug.Log($"[BlurController] Démarrage: Focus Distance lue: {defaultFocusDistance} m.");
+            //Debug.Log($"[BlurController] Démarrage: Focus Distance lue: {defaultFocusDistance} m.");
 
-            // 2. On s'assure que la valeur lue n'est pas déjà notre valeur de flou maximal (0.1)
             if (defaultFocusDistance < 1f)
             {
                 Debug.LogError($"[BlurController] Erreur: La Focus Distance initiale ({defaultFocusDistance} m) est trop faible! Veuillez régler l'asset Volume Profile sur 10m.");
-                // Si la valeur est trop basse, on la force à la valeur non-floue souhaitée
                 defaultFocusDistance = 10f;
                 dof.focusDistance.value = defaultFocusDistance;
             }
@@ -59,9 +55,9 @@ public class PauseBlurController : MonoBehaviour
         }
         else
         {
-            // Rétablir les valeurs par défaut
-            dof.aperture.value = 1f; // (Valeur par défaut ou celle que vous utilisez)
-            dof.focalLength.value = 50f; // (Valeur par défaut)
+
+            dof.aperture.value = 1f; 
+            dof.focalLength.value = 50f; 
         }
 
         float targetDistance = isPaused ? blurFocusDistance : defaultFocusDistance;
