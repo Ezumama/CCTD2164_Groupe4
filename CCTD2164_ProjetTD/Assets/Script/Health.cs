@@ -16,6 +16,8 @@ public class Health : MonoBehaviour
     [SerializeField] private GameObject DeathVFXSpawnPoint;
     public event System.Action OnDie;
 
+    public int goldDrop;
+
     private bool isDead = false;
 
     void Awake()
@@ -59,6 +61,7 @@ public class Health : MonoBehaviour
             if (isEnemy)
             {
                 WaveManager.instance.UnregisterEnemy(gameObject.name);
+                GameManager.Instance.GainMoney(goldDrop);
             }
             else if (gameObject.CompareTag("Nexus"))
             {

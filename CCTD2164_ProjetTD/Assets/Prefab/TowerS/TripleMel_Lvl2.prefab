@@ -62,6 +62,7 @@ MonoBehaviour:
   _damageAmount: 35
   _feedbackFXOut: {fileID: 1376696033527059834, guid: 88108968e5b7c5d4b8820ffca0d86646, type: 3}
   SideDeadZone: 0
+  _rotationSpeed: 8
   Tag1: EnemyAir
   Tag2: EnemyGround
 --- !u!114 &-4734686508610255139

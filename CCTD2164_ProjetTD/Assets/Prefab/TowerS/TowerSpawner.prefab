@@ -63,6 +63,9 @@ MonoBehaviour:
   towerChoicePanelPrefab: {fileID: 4820201920367666653, guid: 0b675531a6193d04bba134e43cb1e5e3, type: 3}
   _uiRaycaster: {fileID: 0}
   _eventSystem: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
   _gatlingCostText: {fileID: 0}
   _teslaCostText: {fileID: 0}
   _groundCostText: {fileID: 0}
@@ -78,8 +81,8 @@ MonoBehaviour:
   _towerUpgradeDowngradePanelLvl2_Prefab: {fileID: 4820201920367666653, guid: 1d1875c5f20679f43824b05e2189d55b, type: 3}
   _towerUpgradeDowngradePanelLvl3_Prefab: {fileID: 4820201920367666653, guid: bbd20797619bc3d40951dc4cd7d7385a, type: 3}
   _levelUpgrade: 0
-  _blueprintCostLvl2: 0
-  _blueprintCostLvl3: 0
+  _blueprintCostLvl2: 1
+  _blueprintCostLvl3: 1
 --- !u!114 &3508742159765835672
 MonoBehaviour:
   m_ObjectHideFlags: 0
