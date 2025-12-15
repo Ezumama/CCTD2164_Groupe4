@@ -9,8 +9,7 @@ public class InGameUIText : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _redBlueprintCountTxt;
     [SerializeField] private TextMeshProUGUI _greenBlueprintCountTxt;
     [SerializeField] private TextMeshProUGUI _yellowBlueprintCountTxt;
-    [SerializeField] private TextMeshProUGUI _energyCountTxt;
-    [SerializeField] private TextMeshProUGUI _WorkerCountTxt;
+    [SerializeField] private TextMeshProUGUI _workerCountTxt;
 
     [SerializeField] private TextMeshProUGUI _yellowWorkerPriceTxt;
     [SerializeField] private TextMeshProUGUI _redWorkerPriceTxt;

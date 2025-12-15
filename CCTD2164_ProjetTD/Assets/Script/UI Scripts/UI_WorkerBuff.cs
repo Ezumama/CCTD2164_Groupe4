@@ -41,14 +41,17 @@ public class UI_WorkerBuff : MonoBehaviour
         if (_shooterScript != null)
         {
             _shooterScript.BuffDamage();
+            GameManager.Instance.FireWorker(1);
         }
         else if (_shooterMultiScript != null)
         {
             _shooterMultiScript.BuffDamage();
+            GameManager.Instance.FireWorker(1);
         }
         else if (_shooterThreeScript != null)
         {
             _shooterThreeScript.BuffDamage();
+            GameManager.Instance.FireWorker(1);
         }
     }
 
@@ -57,14 +60,17 @@ public class UI_WorkerBuff : MonoBehaviour
         if (_shooterScript != null)
         {
             _shooterScript.StopBuff();
+            GameManager.Instance.HireWorker(1);
         }
         else if (_shooterMultiScript != null)
         {
             _shooterMultiScript.StopBuff();
+            GameManager.Instance.HireWorker(1);
         }
         else if (_shooterThreeScript != null)
         {
             _shooterThreeScript.StopBuff();
+            GameManager.Instance.HireWorker(1);
         }
     }
 }
