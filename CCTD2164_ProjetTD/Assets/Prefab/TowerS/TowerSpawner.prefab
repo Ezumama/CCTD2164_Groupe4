@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f6c097ba0aca94fb6c94a4637a90ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActivated: 1
   _towers:
   - {fileID: 7941172316868332899, guid: af1c0c7f3ddacc54491ed2ab7b368f92, type: 3}
   - {fileID: 4054113880313410571, guid: 2dcc5cf829912574e8fdf341fcbf2584, type: 3}
@@ -61,8 +62,7 @@ MonoBehaviour:
   - {fileID: 7395371565769671855, guid: f47306a88abff2d49b045d00898050fb, type: 3}
   - {fileID: 7395371565769671855, guid: b3d4c8596d1495149a5f2b8a550e37f9, type: 3}
   towerChoicePanelPrefab: {fileID: 4820201920367666653, guid: 0b675531a6193d04bba134e43cb1e5e3, type: 3}
-  _uiRaycaster: {fileID: 0}
-  _eventSystem: {fileID: 0}
+  uiActivateDeactivateScript: {fileID: 0}
   mask:
     serializedVersion: 2
     m_Bits: 0

@@ -9,11 +9,20 @@ using UnityEngine.UI;
 
 public class TowerSpawner : MonoBehaviour
 {
+    [Header("DEBUG")]
+    [SerializeField] private bool _isActivated = true;
+   
+    private bool _previousState;
+    private int _tripleMelCost;
+    private int _bigBettyCost;
+    private int _simpleLizaCost;
+
+    private GameObject _tower;
+
     [SerializeField] private GameObject[] _towers;
     [SerializeField] private GameObject towerChoicePanelPrefab;
 
-    [SerializeField] private GraphicRaycaster _uiRaycaster;
-    [SerializeField] private EventSystem _eventSystem;
+    public UI_ActivateDeactivate uiActivateDeactivateScript;
 
     public LayerMask mask;
 
@@ -90,6 +99,7 @@ public class TowerSpawner : MonoBehaviour
         _spawner = gameObject;
         mask = LayerMask.GetMask("Default");
 
+        #region set everything
         // Get TowerChoiceUI script from UI Panel and assign Spawner to this tower spawner
         _towerChoicePanel = Instantiate(towerChoicePanelPrefab, transform);
         _towerChoicePanel.SetActive(false);
@@ -123,11 +133,18 @@ public class TowerSpawner : MonoBehaviour
         _towerPanelLvl3.SetActive(false);
         _towerUIScriptLvl3 = _towerPanelLvl3.GetComponentInChildren<TowerUpgradeUI>();
         _towerUIScriptLvl3.SetUpgrade(this);
+        #endregion
 
         foreach (Renderer r in _spawner.GetComponentsInChildren<Renderer>())
         {
             r.material.SetInt("_UpgradeEmmisive", 1);
         }
+
+        _previousState = _isActivated;
+
+        _tripleMelCost = GameManager.Instance.GatlingEnergyCost;
+        _bigBettyCost = GameManager.Instance.TeslaEnergyCost;
+        _simpleLizaCost = GameManager.Instance.GroundEnergyCost;
 
         _levelUpgrade = 0;
     }
@@ -236,6 +253,9 @@ public class TowerSpawner : MonoBehaviour
 
     private void Update()
     {
+        _tower = _currentTower;
+
+        #region Clicking Logic
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log($"Mouse clicked! IsBuilding: {_isBuilding}");
@@ -257,8 +277,10 @@ public class TowerSpawner : MonoBehaviour
                 Debug.Log("Cannot click - currently building");
             }
         }
+        #endregion
 
-        if(!_isBuilding)
+        #region change color when building
+        if (!_isBuilding)
         {
             foreach (Renderer r in _spawner.GetComponentsInChildren<Renderer>())
             {
@@ -272,7 +294,76 @@ public class TowerSpawner : MonoBehaviour
                 r.material.SetInt("_UpgradeEmmisive", 1);
             }
         }
+        #endregion
+
+        #region Activate/Deactivate Tower Logic
+        if (_isActivated != _previousState)
+        {
+            if (_isActivated)
+            {
+                Debug.Log("Activating Tower (ONCE)");
+                ActivateTower();
+            }
+            else
+            {
+                Debug.Log("Deactivating Tower (ONCE)");
+                DeactivateTower();
+            }
+
+            // Store new state
+            _previousState = _isActivated;
+        }
+        #endregion
     }
+
+    #region Activate/Deactivate Tower Methods
+    public void DeactivateTower()
+    {
+        if (_isTripleMelTower)
+        {
+            GameManager.Instance.GainEnergy(_tripleMelCost);
+        }
+
+        else if (_isBigBettyTower)
+        {
+            GameManager.Instance.GainEnergy(_bigBettyCost);
+        }
+
+        else if (_isSimpleLizaTower)
+        {
+            GameManager.Instance.GainEnergy(_simpleLizaCost);
+        }
+
+        foreach (Renderer r in _tower.GetComponentsInChildren<Renderer>())
+        {
+            r.material.SetInt("_UseEmmissive", 0);
+        }
+    }
+
+    public void ActivateTower()
+    {
+        if (_isTripleMelTower)
+        {
+            GameManager.Instance.LoseEnergy(_tripleMelCost);
+        }
+
+        else if (_isBigBettyTower)
+        {
+            GameManager.Instance.LoseEnergy(_bigBettyCost);
+        }
+
+        else if (_isSimpleLizaTower)
+        {
+            GameManager.Instance.LoseEnergy(_simpleLizaCost);
+        }
+
+        foreach (Renderer r in _tower.GetComponentsInChildren<Renderer>())
+        {
+            r.material.SetInt("_UseEmmissive", 1);
+        }
+
+    }
+    #endregion
 
     #region tower choice
     public void GatlingChoice()
