@@ -9,11 +9,15 @@ public class PauseMenu : MonoBehaviour
     public PauseBlurController blurController;
     public GameObject pauseMenuUI;
 
+    [Tooltip("L'objet GameObject racine de votre interface utilisateur en jeu (HUD).")]
+    public GameObject gameHUDUI;
+
 
     void Start()
     {
         Resume();
     }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -35,16 +39,27 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
 
+        if (gameHUDUI != null)
+        {
+            gameHUDUI.SetActive(true);
+        }
+
         if (blurController != null)
         {
             blurController.SetPauseBlur(false);
         }
     }
+
     public void Pause()
     {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
+
+        if (gameHUDUI != null)
+        {
+            gameHUDUI.SetActive(false);
+        }
 
         if (blurController != null)
         {
@@ -62,7 +77,6 @@ public class PauseMenu : MonoBehaviour
     }
 
     public void Quit()
-
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
