@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 37a396efcf8eef742b1f5212c7e846d2, type: 2}
+    - target: {fileID: -7284944804741583154, guid: 25f64e056ab4aae45ad37ef8fbb25645, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 467d65e8e14c21349982816ae7902316, type: 2}
     - target: {fileID: 919132149155446097, guid: 25f64e056ab4aae45ad37ef8fbb25645, type: 3}
       propertyPath: m_Name
       value: SM_Trash_Can_01_BO
