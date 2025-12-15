@@ -22,7 +22,7 @@ public class InGameUIText : MonoBehaviour
         _yellowBlueprintCountTxt.text = GameManager.Instance.CurrentYellowBlueprintAmount.ToString();
         _redBlueprintCountTxt.text = GameManager.Instance.CurrentRedBlueprintAmount.ToString();
         _greenBlueprintCountTxt.text = GameManager.Instance.CurrentGreenBlueprintAmount.ToString();
-        _WorkerCountTxt.text = GameManager.Instance.CurrentWorkerAmount.ToString();
+        _workerCountTxt.text = GameManager.Instance.CurrentWorkerAmount.ToString();
 
         _redWorkerPriceTxt.text = GameManager.Instance.RedBluePrintCost.ToString();
         _greenWorkerPriceTxt.text = GameManager.Instance.GreenBluePrintCost.ToString();
