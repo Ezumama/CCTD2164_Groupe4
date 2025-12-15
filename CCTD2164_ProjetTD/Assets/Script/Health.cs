@@ -11,6 +11,9 @@ public class Health : MonoBehaviour
     [SerializeField] public float maxHealth = 100f;
     public float currentHealth;
 
+    [Header("VFX")]
+    [SerializeField] private GameObject deathVFX;
+    [SerializeField] private GameObject DeathVFXSpawnPoint;
     public event System.Action OnDie;
 
     private bool isDead = false;
@@ -60,6 +63,18 @@ public class Health : MonoBehaviour
             else if (gameObject.CompareTag("Nexus"))
             {
                 OnNexusDied?.Invoke();
+            }
+        }
+
+        if (deathVFX != null)
+        {
+            if (DeathVFXSpawnPoint != null)
+            {
+                Instantiate(deathVFX, DeathVFXSpawnPoint.transform.position, DeathVFXSpawnPoint.transform.rotation);
+            }
+            else
+            {
+                Instantiate(deathVFX, transform.position, transform.rotation);
             }
         }
 
