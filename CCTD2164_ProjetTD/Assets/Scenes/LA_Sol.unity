@@ -4938,6 +4938,8 @@ MonoBehaviour:
   timeBetweenWaves: 10
   pathManager: {fileID: 1778680043}
   waveDisplay: {fileID: 0}
+  currentWaveIndex: 0
+  aliveEnemies: 0
 --- !u!4 &791461462
 Transform:
   m_ObjectHideFlags: 0
@@ -12848,6 +12850,7 @@ MonoBehaviour:
   RedBluePrintCost: 0
   GreenBluePrintCost: 0
   YellowBluePrintCost: 0
+  HealthBar: {fileID: 0}
 --- !u!4 &1992738532
 Transform:
   m_ObjectHideFlags: 0
