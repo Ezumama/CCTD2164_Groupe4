@@ -3198,7 +3198,7 @@ MonoBehaviour:
   _redBlueprintCountTxt: {fileID: 2007320827633442157}
   _greenBlueprintCountTxt: {fileID: 2607039964151047322}
   _yellowBlueprintCountTxt: {fileID: 3511043481178076319}
-  _energyCountTxt: {fileID: 0}
+  _workerCountTxt: {fileID: 6795080198689679098}
 --- !u!114 &7140862448046319054
 MonoBehaviour:
   m_ObjectHideFlags: 0
