@@ -16,18 +16,18 @@ RenderSettings:
   serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  m_FogMode: 3
-  m_FogDensity: 0.01
-  m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_FogMode: 1
+  m_FogDensity: 0
+  m_LinearFogStart: 300
+  m_LinearFogEnd: 1000
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
-  m_HaloStrength: 0.5
+  m_SkyboxMaterial: {fileID: 2100000, guid: a1f574f1eacde5641aa300f48f04f143, type: 2}
+  m_HaloStrength: 0.344
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
@@ -14033,6 +14033,8 @@ MonoBehaviour:
   timeBetweenWaves: 10
   pathManager: {fileID: 1778680043}
   waveDisplay: {fileID: 0}
+  currentWaveIndex: 0
+  aliveEnemies: 0
 --- !u!4 &791461462
 Transform:
   m_ObjectHideFlags: 0
@@ -14215,8 +14217,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 1
-  m_Color: {r: 0.8188045, g: 0.5707547, b: 1, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1.3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -14259,8 +14261,8 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
+  m_ColorTemperature: 1500
+  m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
@@ -14278,13 +14280,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 794332833}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.9953894, y: -0.0439631, z: 0.005110855, w: 0.08509505}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0.9971983, y: -0, z: -0, w: -0.07480468}
+  m_LocalPosition: {x: -111.5, y: 36.1, z: 5.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -9.727, y: -178.974, z: 174.855}
+  m_LocalEulerAnglesHint: {x: 188.58, y: 0, z: 0}
 --- !u!114 &794332836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37315,6 +37317,7 @@ MonoBehaviour:
   RedBluePrintCost: 0
   GreenBluePrintCost: 0
   YellowBluePrintCost: 0
+  HealthBar: {fileID: 0}
 --- !u!4 &1992738532
 Transform:
   m_ObjectHideFlags: 0
