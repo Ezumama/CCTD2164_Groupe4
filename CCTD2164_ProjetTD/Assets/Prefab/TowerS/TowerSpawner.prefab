@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f6c097ba0aca94fb6c94a4637a90ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isActivated: 1
   _towers:
   - {fileID: 7941172316868332899, guid: af1c0c7f3ddacc54491ed2ab7b368f92, type: 3}
   - {fileID: 4054113880313410571, guid: 2dcc5cf829912574e8fdf341fcbf2584, type: 3}
@@ -61,8 +62,10 @@ MonoBehaviour:
   - {fileID: 7395371565769671855, guid: f47306a88abff2d49b045d00898050fb, type: 3}
   - {fileID: 7395371565769671855, guid: b3d4c8596d1495149a5f2b8a550e37f9, type: 3}
   towerChoicePanelPrefab: {fileID: 4820201920367666653, guid: 0b675531a6193d04bba134e43cb1e5e3, type: 3}
-  _uiRaycaster: {fileID: 0}
-  _eventSystem: {fileID: 0}
+  uiActivateDeactivateScript: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
   _gatlingCostText: {fileID: 0}
   _teslaCostText: {fileID: 0}
   _groundCostText: {fileID: 0}
@@ -78,8 +81,8 @@ MonoBehaviour:
   _towerUpgradeDowngradePanelLvl2_Prefab: {fileID: 4820201920367666653, guid: 1d1875c5f20679f43824b05e2189d55b, type: 3}
   _towerUpgradeDowngradePanelLvl3_Prefab: {fileID: 4820201920367666653, guid: bbd20797619bc3d40951dc4cd7d7385a, type: 3}
   _levelUpgrade: 0
-  _blueprintCostLvl2: 0
-  _blueprintCostLvl3: 0
+  _blueprintCostLvl2: 1
+  _blueprintCostLvl3: 1
 --- !u!114 &3508742159765835672
 MonoBehaviour:
   m_ObjectHideFlags: 0

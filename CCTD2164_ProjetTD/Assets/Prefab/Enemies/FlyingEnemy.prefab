@@ -102,6 +102,7 @@ MonoBehaviour:
   currentHealth: 0
   deathVFX: {fileID: 3741652767287630916, guid: 0960915ba196f864f9f8b697a55d5f42, type: 3}
   DeathVFXSpawnPoint: {fileID: 7196315779573439493}
+  goldDrop: 200
 --- !u!114 &-5463712529436315611
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -62,6 +62,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _ColorBrigntness: 1
     - _Emmissive_Colored: 0
     - _Emmissive_Intensity: 0
     - _Metallic: 0
@@ -71,6 +72,8 @@ Material:
     - _Step1: 0.788
     - _Step2: 0.511
     - _Step3: 0.511
+    - _Textbrightness: 0
+    - _UpgradeEmmisive: 0
     - _UseAlphaText: 0
     - _UseEmmissive: 0
     - _UseFlatColor: 0
@@ -79,6 +82,7 @@ Material:
     - _UseSmoothMap: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Emmisive_Alternative: {r: 16.1888, g: 2.158506, b: 0, a: 0}
     - _Emmissive_Color: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

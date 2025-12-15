@@ -10,7 +10,7 @@ public class TowerActivateDeactivate : MonoBehaviour
 
     private bool _previousState;
 
-    private GameObject _tower; 
+    private GameObject _tower;
 
     private TowerSpawner _towerSpawner;
     private int _tripleMelCost;
@@ -28,6 +28,11 @@ public class TowerActivateDeactivate : MonoBehaviour
 
         _towerSpawner = GetComponent<TowerSpawner>();
         _tower = gameObject;
+
+        if(GameManager.Instance == null )
+        {
+            Debug.LogError("GameManager instance is null COMME UNITY EN FAIT JE SUI SUN KK");
+        }
 
 
         _tripleMelCost = GameManager.Instance.GatlingEnergyCost;
@@ -56,16 +61,22 @@ public class TowerActivateDeactivate : MonoBehaviour
         }
     }
 
-    private void DeactivateTower()
+    public void DeactivateTower()
     {
         if (_isTripleMel)
+        {
             GameManager.Instance.GainEnergy(_tripleMelCost);
+        }
 
         else if (_isBigBetty)
+        {
             GameManager.Instance.GainEnergy(_bigBettyCost);
+        }
 
         else if (_isSimpleLiza)
+        {
             GameManager.Instance.GainEnergy(_simpleLizaCost);
+        }
 
         foreach (Renderer r in _tower.GetComponentsInChildren<Renderer>())
         {
@@ -73,17 +84,23 @@ public class TowerActivateDeactivate : MonoBehaviour
         }
     }
 
-    private void ActivateTower()
+    public void ActivateTower()
     {
         if (_isTripleMel)
+        {
             GameManager.Instance.LoseEnergy(_tripleMelCost);
+        }
 
         else if (_isBigBetty)
+        {
             GameManager.Instance.LoseEnergy(_bigBettyCost);
+        }
 
         else if (_isSimpleLiza)
+        {
             GameManager.Instance.LoseEnergy(_simpleLizaCost);
-        
+        }
+
         foreach (Renderer r in _tower.GetComponentsInChildren<Renderer>())
         {
             r.material.SetInt("_UseEmmissive", 1);
