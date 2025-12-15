@@ -137,7 +137,7 @@ public class Shooter : MonoBehaviour
             Debug.DrawRay(_shootingPoint.position, forward * hit.distance, Color.red, 0.2f);
 
 
-            Enemy enemy = hit.transform.GetComponent<Enemy>();
+            Health enemy = hit.transform.GetComponent<Health>();
             if (enemy != null)
             {
                 enemy.TakeDamage(_damageAmount);       

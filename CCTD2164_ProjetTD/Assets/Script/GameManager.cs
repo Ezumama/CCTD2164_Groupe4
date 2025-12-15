@@ -69,8 +69,7 @@ public class GameManager : MonoBehaviour
     {
         return Mathf.Max(value, 0);
     }
-
-    #region workers
+#region workers
     public void HireWorker(int amount)
     {
         CurrentWorkerAmount += amount;
