@@ -35,6 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4138041290193019997}
+  - {fileID: 492491718684356621}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8761154375039733512
@@ -99,6 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 50
   currentHealth: 0
+  deathVFX: {fileID: 3741652767287630916, guid: 0960915ba196f864f9f8b697a55d5f42, type: 3}
+  DeathVFXSpawnPoint: {fileID: 7196315779573439493}
 --- !u!114 &-5463712529436315611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +129,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageToNexus: 10
   attackCooldown: 1
+--- !u!1 &7196315779573439493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 492491718684356621}
+  m_Layer: 0
+  m_Name: DeathFX Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &492491718684356621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7196315779573439493}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.4849615, z: -0.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6766498294981188580}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4532872872232207286
 PrefabInstance:
   m_ObjectHideFlags: 0

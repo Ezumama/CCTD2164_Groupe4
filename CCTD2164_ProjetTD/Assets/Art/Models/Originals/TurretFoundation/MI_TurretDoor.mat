@@ -142,7 +142,7 @@ Material:
     - _Step2: 0.511
     - _Step3: 0.511
     - _Surface: 0
-    - _UpgradeEmmisive: 1
+    - _UpgradeEmmisive: 0
     - _UseAlphaText: 0
     - _UseEmmissive: 1
     - _UseFlatColor: 0

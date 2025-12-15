@@ -85,6 +85,18 @@ PrefabInstance:
       value: Simple Liza 2
       objectReference: {fileID: 0}
     - target: {fileID: 1066613800320033908, guid: 86fea3e46e6d97949b84e67ed7b5c6ae, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066613800320033908, guid: 86fea3e46e6d97949b84e67ed7b5c6ae, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066613800320033908, guid: 86fea3e46e6d97949b84e67ed7b5c6ae, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066613800320033908, guid: 86fea3e46e6d97949b84e67ed7b5c6ae, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}

@@ -43,11 +43,11 @@ public class SmoothNormalBaker : MonoBehaviour
         int totalMeshes = meshFilters.Length + skinnedMeshRenderers.Length;
         if (totalMeshes > 0)
         {
-            Debug.Log($"<color=cyan>Smooth Normals Baked</color> for {totalMeshes} meshes in hierarchy: {name}");
+            //Debug.Log($"<color=cyan>Smooth Normals Baked</color> for {totalMeshes} meshes in hierarchy: {name}");
         }
         else
         {
-            Debug.LogWarning("No MeshFilter or SkinnedMeshRenderer found in hierarchy.");
+            //Debug.LogWarning("No MeshFilter or SkinnedMeshRenderer found in hierarchy.");
         }
     }
 

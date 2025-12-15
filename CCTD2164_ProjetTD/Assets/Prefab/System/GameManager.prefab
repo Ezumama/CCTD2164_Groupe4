@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentMoneyAmount: 0
-  BaseMoneyAmount: 0
+  BaseMoneyAmount: 1000
   CurrentRedBlueprintAmount: 0
   CurrentYellowBlueprintAmount: 0
   CurrentGreenBlueprintAmount: 0
@@ -53,12 +53,15 @@ MonoBehaviour:
   BaseYellowBlueprintAmount: 0
   BaseGreenBlueprintAmount: 0
   CurrentEnergyAmount: 0
-  BaseEnergyAmount: 0
-  GatlingCost: 0
-  TeslaCost: 0
-  GroundCost: 0
-  GatlingEnergyCost: 0
-  TeslaEnergyCost: 0
-  GroundEnergyCost: 0
-  MaxWorkerAmount: 0
-  CurrentWorkerAmount: 0
+  BaseEnergyAmount: 8
+  GatlingCost: 145
+  TeslaCost: 230
+  GroundCost: 185
+  GatlingEnergyCost: 1
+  TeslaEnergyCost: 1
+  GroundEnergyCost: 1
+  MaxWorkerAmount: 10
+  CurrentWorkerAmount: 5
+  RedBluePrintCost: 50
+  GreenBluePrintCost: 50
+  YellowBluePrintCost: 50

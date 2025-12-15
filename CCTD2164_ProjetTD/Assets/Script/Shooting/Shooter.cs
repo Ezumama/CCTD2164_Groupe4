@@ -20,6 +20,10 @@ public class Shooter : MonoBehaviour
     [SerializeField] private float _damageAmount;
     [SerializeField] private float _shootingCooldown;
     [SerializeField] private bool _isBigBetty;
+    
+    [Header("Aim smoothing")]
+    [SerializeField] private float _rotationSpeed = 8f; // How fast the head/body rotates to face the target
+    [SerializeField] private float _pitchSpeed = 8f; // How fast the cannon pitches up/down
 
     [Header("Tag(s) for targets")]
     [SerializeField] private string _tag1;
@@ -51,7 +55,13 @@ public class Shooter : MonoBehaviour
 
         if (_target != null && _isBigBetty == false)
         {
-            _towerShootingHead.transform.LookAt(_target.transform.position);
+            // Smoothly rotate the shooting head towards the target
+            Vector3 directionToTarget = _target.transform.position - _towerShootingHead.transform.position;
+            if (directionToTarget != Vector3.zero)
+            {
+                Quaternion desiredRotation = Quaternion.LookRotation(directionToTarget);
+                _towerShootingHead.transform.rotation = Quaternion.Slerp(_towerShootingHead.transform.rotation, desiredRotation, _rotationSpeed * Time.deltaTime);
+            }
         }
 
         else if (_target != null && _isBigBetty == true)
@@ -62,7 +72,9 @@ public class Shooter : MonoBehaviour
 
             if (directionToTarget != Vector3.zero)
             {
-                _towerBody.transform.rotation = Quaternion.LookRotation(directionToTarget);
+                // Smoothly rotate the body left/right towards the target
+                Quaternion desiredBodyRotation = Quaternion.LookRotation(directionToTarget);
+                _towerBody.transform.rotation = Quaternion.Slerp(_towerBody.transform.rotation, desiredBodyRotation, _rotationSpeed * Time.deltaTime);
             }
 
             // Cannon looking up and down
@@ -70,7 +82,8 @@ public class Shooter : MonoBehaviour
 
             float angleX = Mathf.Atan2(localDirection.y, localDirection.z) * Mathf.Rad2Deg;
             angleX = -angleX;
-            _towerShootingHead.transform.localRotation = Quaternion.Euler(angleX, 0f, 0f);
+            Quaternion desiredLocalRotation = Quaternion.Euler(angleX, 0f, 0f);
+            _towerShootingHead.transform.localRotation = Quaternion.Slerp(_towerShootingHead.transform.localRotation, desiredLocalRotation, _pitchSpeed * Time.deltaTime);
         }
     }
 

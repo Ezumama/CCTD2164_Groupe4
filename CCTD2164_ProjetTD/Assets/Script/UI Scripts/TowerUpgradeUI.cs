@@ -8,7 +8,7 @@ public class TowerUpgradeUI : MonoBehaviour
 
     public void SetUpgrade(TowerSpawner _upgradeScript)
     {
-        Debug.Log("SetUpgrade CALLED on: " + gameObject.name);
+        //Debug.Log("SetUpgrade CALLED on: " + gameObject.name);
         _towerUpgradeScript = _upgradeScript;
 
         InitializeUI();

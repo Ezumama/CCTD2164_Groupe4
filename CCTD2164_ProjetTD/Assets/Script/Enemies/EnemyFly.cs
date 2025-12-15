@@ -8,7 +8,7 @@ public class EnemyFly : MonoBehaviour
     void Start()
     {
         target = GameObject.Find("Generateur").transform;
-        WaveManager.instance.RegisterEnemy();
+        WaveManager.instance.RegisterEnemy(gameObject.name);
     }
 
     void Update()
@@ -20,7 +20,7 @@ public class EnemyFly : MonoBehaviour
 
         if (Vector3.Distance(transform.position, target.position) < 1f)
         {
-            WaveManager.instance.UnregisterEnemy();
+            WaveManager.instance.UnregisterEnemy(gameObject.name);
             Destroy(gameObject);
         }
     }
