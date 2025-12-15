@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9176812715328494454, guid: c0b6df1c601c00242a130b7c07145670, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -9176812715328494454, guid: c0b6df1c601c00242a130b7c07145670, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 53177ba223dda604d8d3d138c2f35736, type: 2}
+    - target: {fileID: -9176812715328494454, guid: c0b6df1c601c00242a130b7c07145670, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b97b5dc34129b5c46ab6bee7f2d9115b, type: 2}
     - target: {fileID: -8679921383154817045, guid: c0b6df1c601c00242a130b7c07145670, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5
@@ -71,5 +83,27 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -78998484035058385, guid: c0b6df1c601c00242a130b7c07145670, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5502428355802716346}
   m_SourcePrefab: {fileID: 100100000, guid: c0b6df1c601c00242a130b7c07145670, type: 3}
+--- !u!1 &7559405934235482831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -78998484035058385, guid: c0b6df1c601c00242a130b7c07145670, type: 3}
+  m_PrefabInstance: {fileID: 1589542972152496096}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5502428355802716346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7559405934235482831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6111d2408515f3e45ae2d131b6717b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnAwake: 1
+  cloneMesh: 1

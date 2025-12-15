@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6003271934022048001
+--- !u!114 &-9066126970371540040
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MI_Sign_08
+  m_Name: MI_Building_Var_04
   m_Shader: {fileID: -6465566751694194690, guid: 13dac1883c566434b84272dd937f2052, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -50,7 +50,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Color_Texture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 3421c2b0744024e44bef9e5c764a3c05, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -70,7 +70,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emmissive:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 2042ec7fe5cad1f4f956c548c418a022, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -127,6 +127,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _ColorBrigntness: 1
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -134,7 +135,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _Emmissive_Colored: 0
-    - _Emmissive_Intensity: 0
+    - _Emmissive_Intensity: 10
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -157,7 +158,7 @@ Material:
     - _Surface: 0
     - _UpgradeEmmisive: 0
     - _UseAlphaText: 0
-    - _UseEmmissive: 0
+    - _UseEmmissive: 1
     - _UseFlatColor: 0
     - _UseMetallic: 0
     - _UseNormal: 0
@@ -169,7 +170,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emmisive_Alternative: {r: 16.1888, g: 2.158506, b: 0, a: 0}
-    - _Emmissive_Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Emmissive_Color: {r: 0.4117647, g: 0.23529412, b: 0.48235294, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
