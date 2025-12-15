@@ -3213,6 +3213,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hpBar: {fileID: 6226719350762537615}
   _generator: {fileID: 0}
+  energyImages:
+  - {fileID: 6468126343841658933}
+  - {fileID: 698965313164976854}
+  - {fileID: 6359795070774827043}
+  - {fileID: 1778518844172009677}
+  - {fileID: 4731911906022499971}
+  - {fileID: 4448510773806117575}
+  - {fileID: 5074983218285889344}
+  - {fileID: 4463494443323947642}
+  - {fileID: 8059563131938587353}
+  - {fileID: 2590748424724612216}
 --- !u!114 &7288736341037877915
 MonoBehaviour:
   m_ObjectHideFlags: 0

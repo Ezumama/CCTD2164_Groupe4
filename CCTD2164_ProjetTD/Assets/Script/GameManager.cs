@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour
@@ -49,6 +50,8 @@ public class GameManager : MonoBehaviour
     public int YellowBluePrintCost;
     #endregion
 
+    public UI_HealthBar HealthBar;
+
     private void Start()
     {
         CurrentMoneyAmount = BaseMoneyAmount;
@@ -58,6 +61,8 @@ public class GameManager : MonoBehaviour
         CurrentEnergyAmount = BaseEnergyAmount;
 
         CurrentWorkerAmount = MaxWorkerAmount;
+
+        HealthBar.UpdateEnergyDisplay();
     }
 
     private int ClampToZero(int value)
@@ -68,7 +73,7 @@ public class GameManager : MonoBehaviour
     #region workers
     public void HireWorker(int amount)
     {
-            CurrentWorkerAmount += amount;
+        CurrentWorkerAmount += amount;
     }
     public void FireWorker(int amount)
     {
@@ -130,11 +135,14 @@ public class GameManager : MonoBehaviour
     public void GainEnergy(int amount)
     {
         CurrentEnergyAmount += amount;
+        HealthBar.UpdateEnergyDisplay();
+
     }
 
     public void LoseEnergy(int amount)
     {
         CurrentEnergyAmount = ClampToZero(CurrentEnergyAmount - amount);
+        HealthBar.UpdateEnergyDisplay();
     }
 
     #endregion

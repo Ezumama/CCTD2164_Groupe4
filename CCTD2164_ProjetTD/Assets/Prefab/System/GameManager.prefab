@@ -60,6 +60,17 @@ MonoBehaviour:
   GatlingEnergyCost: 1
   TeslaEnergyCost: 1
   GroundEnergyCost: 1
+  energyImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   MaxWorkerAmount: 10
   CurrentWorkerAmount: 5
   RedBluePrintCost: 50

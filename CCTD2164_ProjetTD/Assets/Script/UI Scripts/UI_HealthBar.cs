@@ -5,6 +5,7 @@ public class UI_HealthBar : MonoBehaviour
 {
     [SerializeField] private Image _hpBar;
     [SerializeField] private GameObject _generator;
+    [SerializeField] private Image[] energyImages;
 
     private Health _health;
     private float _currentHp;
@@ -50,6 +51,15 @@ public class UI_HealthBar : MonoBehaviour
         else if (_currentHp < (_maxHp / 4))
         {
             _hpBar.color = _red;
+        }
+    }
+
+    public void UpdateEnergyDisplay()
+    {
+        for (int i = 0; i < energyImages.Length; i++)
+        {
+            // Show image if index is less than current energy
+            energyImages[i].enabled = (i < GameManager.Instance.CurrentEnergyAmount);
         }
     }
 }
