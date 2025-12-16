@@ -48,6 +48,7 @@ public class Shooter_MultiTarget : MonoBehaviour
     {
         AssignTargets();
         RotateCannons();
+        Debug.Log("Damage Amount: " + _damageAmount);
     }
 
     private void AssignTargets()
@@ -140,7 +141,7 @@ public class Shooter_MultiTarget : MonoBehaviour
         if (Physics.Raycast(cannon.ShootingPoint.position, forward, out hit, _shootingDistance))
         {
             Debug.DrawRay(cannon.ShootingPoint.position, forward * hit.distance, Color.red, 0.2f);
-            Enemy enemy = hit.transform.GetComponent<Enemy>();
+            Health enemy = hit.transform.GetComponent<Health>();
             if (enemy != null)
             {
                 enemy.TakeDamage(_damageAmount);

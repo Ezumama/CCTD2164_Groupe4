@@ -43,6 +43,7 @@ public class Shooter_ThreeTargets : MonoBehaviour
     {
         AssignTargets();
         RotateCannons();
+        Debug.Log("Damage Amount: " + _damageAmount);
     }
 
     #region tower orientation
@@ -106,7 +107,7 @@ public class Shooter_ThreeTargets : MonoBehaviour
         {
             Debug.DrawRay(cannon.ShootingPoint.position, forward * hit.distance, Color.red, 0.2f);
 
-            Enemy enemy = hit.transform.GetComponent<Enemy>();
+            Health enemy = hit.transform.GetComponent<Health>();
             if (enemy != null)
             {
                 enemy.TakeDamage(_damageAmount);
