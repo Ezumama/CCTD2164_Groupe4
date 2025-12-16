@@ -27,6 +27,7 @@ public class TowerSpawner : MonoBehaviour
     public Shooter_MultiTarget shooterMultiTargetScript;
     public Shooter_ThreeTargets shooterThreeTargetsScript;
 
+    public bool _canAfford;
     public LayerMask mask;
 
     #region int costs
@@ -95,8 +96,6 @@ public class TowerSpawner : MonoBehaviour
     private GameObject _towerChoicePanel;
     private bool _isBuilding = false;
     #endregion
-
-    public bool _canAfford;
 
     private void Start()
     {
@@ -577,6 +576,46 @@ public class TowerSpawner : MonoBehaviour
         _towerPanelLvl1.SetActive(false);
         _towerPanelLvl2.SetActive(false);
         _towerPanelLvl3.SetActive(false);
+    }
+
+    public void OnBuff()
+    {
+            Debug.LogError("Tower buffed");
+            if (shooterScript != null)
+            {
+                shooterScript.BuffDamage();
+                GameManager.Instance.FireWorker(1);
+            }
+            else if (shooterMultiTargetScript != null)
+            {
+                shooterMultiTargetScript.BuffDamage();
+                GameManager.Instance.FireWorker(1);
+            }
+            else if (shooterThreeTargetsScript != null)
+            {
+                shooterThreeTargetsScript.BuffDamage();
+                GameManager.Instance.FireWorker(1);
+            }
+    }
+
+    public void OnDebuff()
+    {
+        Debug.LogError("Tower NOT buffed");
+        if (shooterScript != null)
+        {
+            shooterScript.StopBuff();
+            GameManager.Instance.HireWorker(1);
+        }
+        else if (shooterMultiTargetScript != null)
+        {
+            shooterMultiTargetScript.StopBuff();
+            GameManager.Instance.HireWorker(1);
+        }
+        else if (shooterThreeTargetsScript != null)
+        {
+            shooterThreeTargetsScript.StopBuff();
+            GameManager.Instance.HireWorker(1);
+        }
     }
 
     #region Level 2 Upgrade (from Level 1)
