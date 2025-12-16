@@ -108,7 +108,7 @@ public class PauseMenu : MonoBehaviour
 
     // ----------- RESET -----------
 
-    void ResumeInstant()
+    public void ResumeInstant()
     {
         Time.timeScale = 1f;
         GameIsPaused = false;
