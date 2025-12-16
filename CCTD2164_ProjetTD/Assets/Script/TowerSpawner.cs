@@ -23,6 +23,10 @@ public class TowerSpawner : MonoBehaviour
 
     public UI_ActivateDeactivate uiActivateDeactivateScript;
 
+    public Shooter shooterScript;
+    public Shooter_MultiTarget shooterMultiTargetScript;
+    public Shooter_ThreeTargets shooterThreeTargetsScript;
+
     public LayerMask mask;
 
     #region int costs
@@ -145,6 +149,7 @@ public class TowerSpawner : MonoBehaviour
         _bigBettyCost = GameManager.Instance.TeslaEnergyCost;
         _simpleLizaCost = GameManager.Instance.GroundEnergyCost;
 
+
         _levelUpgrade = 0;
     }
 
@@ -196,6 +201,24 @@ public class TowerSpawner : MonoBehaviour
         {
             _currentTower.transform.position = endPos;
         }
+
+        shooterScript = GetComponentInChildren<Shooter>();
+        if (shooterScript == null)
+        {
+            //Debug.LogError("Shooter script not found in children!");
+            shooterMultiTargetScript = GetComponentInChildren<Shooter_MultiTarget>();
+        }
+
+        if (shooterMultiTargetScript == null)
+        {
+            //Debug.LogError("Shooter_MultiTarget script not found in children!");
+            shooterThreeTargetsScript = GetComponentInChildren<Shooter_ThreeTargets>();
+        }
+        //// debug
+        //if (shooterThreeTargetsScript == null)
+        //{
+        //    Debug.LogError("Shooter_ThreeTargets script not found in children!");
+        //}
 
         _isBuilding = false;
 
@@ -318,6 +341,7 @@ public class TowerSpawner : MonoBehaviour
     #region Activate/Deactivate Tower Methods
     public void DeactivateTower()
     {
+        #region regain energy on deactivation
         if (_isTripleMelTower)
         {
             GameManager.Instance.GainEnergy(_tripleMelCost);
@@ -332,15 +356,33 @@ public class TowerSpawner : MonoBehaviour
         {
             GameManager.Instance.GainEnergy(_simpleLizaCost);
         }
+        #endregion
+
+        // Disable shooting scripts
+        if (shooterScript != null)
+        {
+            shooterScript.enabled = false;
+        }
+
+        else if (shooterMultiTargetScript != null)
+        {
+            shooterMultiTargetScript.enabled = false;
+        }
+
+        else if (shooterThreeTargetsScript != null)
+        {
+            shooterThreeTargetsScript.enabled = false;
+        }
 
         foreach (Renderer r in _tower.GetComponentsInChildren<Renderer>())
         {
-            r.material.SetInt("_UseEmmissive", 0);
+                r.material.SetInt("_UseEmmissive", 0);
         }
     }
 
     public void ActivateTower()
     {
+        #region deduct energy on activation
         if (_isTripleMelTower)
         {
             GameManager.Instance.LoseEnergy(_tripleMelCost);
@@ -354,6 +396,23 @@ public class TowerSpawner : MonoBehaviour
         else if (_isSimpleLizaTower)
         {
             GameManager.Instance.LoseEnergy(_simpleLizaCost);
+        }
+        #endregion
+
+        // Enable the shooter script
+        if (shooterScript != null)
+        {
+            shooterScript.enabled = true;
+        }
+
+        else if (shooterMultiTargetScript != null)
+        {
+            shooterMultiTargetScript.enabled = true;
+        }
+
+        else if (shooterThreeTargetsScript != null)
+        {
+            shooterThreeTargetsScript.enabled = true;
         }
 
         foreach (Renderer r in _tower.GetComponentsInChildren<Renderer>())
