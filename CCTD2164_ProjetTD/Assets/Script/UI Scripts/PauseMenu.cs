@@ -1,79 +1,136 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
-    public PauseBlurController blurController;
-    public GameObject pauseMenuUI;
 
-    [Tooltip("L'objet GameObject racine de votre interface utilisateur en jeu (HUD).")]
+    [Header("UI")]
+    public RectTransform pauseMenuUI;
+    public GameObject buttonsGroup;
     public GameObject gameHUDUI;
 
+    [Header("Animation")]
+    public float animationDuration = 1f;
+    public float openScaleY = 1f;
+
+    [Header("Effects")]
+    public PauseBlurController blurController;
+
+    private bool isAnimating = false;
 
     void Start()
     {
-        Resume();
+        ResumeInstant();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !isAnimating)
         {
             if (GameIsPaused)
-            {
-                Resume();
-            }
+                StartCoroutine(CloseMenu());
             else
-            {
-                Pause();
-            }
+                StartCoroutine(OpenMenu());
         }
     }
 
-    public void Resume()
+    // ----------- OPEN -----------
+
+    IEnumerator OpenMenu()
     {
-        pauseMenuUI.SetActive(false);
+        isAnimating = true;
+        GameIsPaused = true;
+
+        pauseMenuUI.gameObject.SetActive(true);
+        buttonsGroup.SetActive(false);
+
+        if (gameHUDUI != null)
+            gameHUDUI.SetActive(false);
+
+        if (blurController != null)
+            blurController.SetPauseBlur(true);
+
+        Time.timeScale = 0f;
+
+        pauseMenuUI.localScale = new Vector3(1f, 0f, 1f);
+
+        float t = 0f;
+        while (t < animationDuration)
+        {
+            t += Time.unscaledDeltaTime;
+            float smoothT = Mathf.SmoothStep(0f, 1f, t / animationDuration);
+            float y = Mathf.Lerp(0f, openScaleY, smoothT);
+            pauseMenuUI.localScale = new Vector3(1f, y, 1f);
+            yield return null;
+        }
+
+        pauseMenuUI.localScale = new Vector3(1f, openScaleY, 1f);
+        buttonsGroup.SetActive(true);
+
+        isAnimating = false;
+    }
+
+    // ----------- CLOSE -----------
+
+    IEnumerator CloseMenu()
+    {
+        isAnimating = true;
+        buttonsGroup.SetActive(false);
+
+        float t = 0f;
+        float startY = pauseMenuUI.localScale.y;
+
+        while (t < animationDuration)
+        {
+            t += Time.unscaledDeltaTime;
+            float smoothT = Mathf.SmoothStep(0f, 1f, t / animationDuration);
+            float y = Mathf.Lerp(startY, 0f, smoothT);
+            pauseMenuUI.localScale = new Vector3(1f, y, 1f);
+            yield return null;
+        }
+
+        pauseMenuUI.localScale = new Vector3(1f, 0f, 1f);
+        pauseMenuUI.gameObject.SetActive(false);
+
+        if (blurController != null)
+            blurController.SetPauseBlur(false);
+
+        if (gameHUDUI != null)
+            gameHUDUI.SetActive(true);
+
         Time.timeScale = 1f;
         GameIsPaused = false;
 
-        if (gameHUDUI != null)
-        {
-            gameHUDUI.SetActive(true);
-        }
-
-        if (blurController != null)
-        {
-            blurController.SetPauseBlur(false);
-        }
+        isAnimating = false;
     }
 
-    public void Pause()
-    {
-        pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
-        GameIsPaused = true;
+    // ----------- RESET -----------
 
-        if (gameHUDUI != null)
-        {
-            gameHUDUI.SetActive(false);
-        }
-
-        if (blurController != null)
-        {
-            blurController.SetPauseBlur(true);
-        }
-    }
-
-    public void options()
+    void ResumeInstant()
     {
         Time.timeScale = 1f;
-        Debug.Log("Options Menu Loaded");
+        GameIsPaused = false;
 
-        // Mettre le nom de la scène des options ici
-        //SceneManager.LoadScene("");
+        pauseMenuUI.localScale = new Vector3(1f, 0f, 1f);
+        pauseMenuUI.gameObject.SetActive(false);
+
+        if (buttonsGroup != null)
+            buttonsGroup.SetActive(false);
+
+        if (gameHUDUI != null)
+            gameHUDUI.SetActive(true);
+
+        if (blurController != null)
+            blurController.SetPauseBlur(false);
+    }
+
+    // ----------- BUTTONS -----------
+
+    public void Options()
+    {
+        Debug.Log("Options Menu Loaded");
     }
 
     public void Quit()
@@ -82,3 +139,4 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene("LA_Title_Menu");
     }
 }
+
