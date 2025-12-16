@@ -113,8 +113,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
 
-        pauseMenuUI.localScale = new Vector3(1f, 0f, 1f);
-        pauseMenuUI.gameObject.SetActive(false);
+        //pauseMenuUI.localScale = new Vector3(1f, 0f, 1f);
+        //pauseMenuUI.gameObject.SetActive(false);
 
         if (buttonsGroup != null)
             buttonsGroup.SetActive(false);

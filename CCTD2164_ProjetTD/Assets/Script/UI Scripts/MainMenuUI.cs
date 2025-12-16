@@ -11,18 +11,18 @@ public class MainMenuUI : MonoBehaviour
 
     private void Start()
     {
-        optionPanel.SetActive(false);
+        //optionPanel.SetActive(false);
     }
 
     #region main menu panel
     public void StartGame()
     {
-        SceneManager.LoadScene("Final_Level");
+        SceneManager.LoadScene(1);
     }
 
     public void OptionMenu()
     {
-        optionPanel.SetActive(true);
+        //optionPanel.SetActive(true);
     }
 
     public void QuitGame()
