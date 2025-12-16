@@ -3199,9 +3199,9 @@ MonoBehaviour:
   _greenBlueprintCountTxt: {fileID: 2607039964151047322}
   _yellowBlueprintCountTxt: {fileID: 3511043481178076319}
   _workerCountTxt: {fileID: 6795080198689679098}
-  _yellowWorkerPriceTxt: {fileID: 0}
-  _redWorkerPriceTxt: {fileID: 0}
-  _greenWorkerPriceTxt: {fileID: 0}
+  _yellowPriceTxt: {fileID: 5412847012048485131}
+  _redPriceTxt: {fileID: 5139235827418113709}
+  _greenPriceTxt: {fileID: 7956767852509059018}
 --- !u!114 &7140862448046319054
 MonoBehaviour:
   m_ObjectHideFlags: 0
