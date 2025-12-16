@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 293078688083535870}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.48, y: 0, z: 0}
+  m_LocalPosition: {x: 5.61, y: 0, z: -0.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -88,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 1212975671437929958}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3300002, y: 0, z: -2.226}
+  m_LocalPosition: {x: -1.3300002, y: 0.85, z: -3.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -158,16 +158,16 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: -2.9, y: 2.98, z: 0}
+      - m_Value: {x: -4.92, y: 2.98, z: 1.59}
         m_Name: Pos1
         m_Overridden: 1
-      - m_Value: {x: -1.3300002, y: 2.98, z: -2.226}
+      - m_Value: {x: -1.3300002, y: 3.83, z: -3.38}
         m_Name: Pos2
         m_Overridden: 1
-      - m_Value: {x: 1.27, y: 4.76, z: 0}
+      - m_Value: {x: 1.27, y: 0.8000002, z: 2.09}
         m_Name: Pos3
         m_Overridden: 1
-      - m_Value: {x: 4.48, y: 2.98, z: 0}
+      - m_Value: {x: 5.61, y: 2.98, z: -0.83}
         m_Name: Pos4
         m_Overridden: 1
     m_Vector4f:
@@ -340,7 +340,7 @@ Transform:
   m_GameObject: {fileID: 5963133581579356486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.27, y: 1.78, z: 0}
+  m_LocalPosition: {x: 1.27, y: -2.18, z: 2.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -371,7 +371,7 @@ Transform:
   m_GameObject: {fileID: 6038743406453051072}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.9, y: 0, z: 0}
+  m_LocalPosition: {x: -4.92, y: 0, z: 1.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
