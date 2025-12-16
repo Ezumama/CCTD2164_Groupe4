@@ -11,7 +11,7 @@ public class TowerChoiceUI : MonoBehaviour
 
     public void GatlingClicked()
     {
-        Debug.Log("Spawner utilisé");
+        //Debug.Log("Spawner utilisé");
         _towerSpawnerScript.GatlingChoice();
     }
 
@@ -22,7 +22,7 @@ public class TowerChoiceUI : MonoBehaviour
 
     public void GroundClicked()
     {
-        Debug.Log("cheese");
+        //Debug.Log("cheese");
         _towerSpawnerScript.GroundChoice();
     }
 }

@@ -130,7 +130,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Options()
     {
-        Debug.Log("Options Menu Loaded");
+        //Debug.Log("Options Menu Loaded");
     }
 
     public void Quit()

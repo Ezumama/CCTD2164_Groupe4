@@ -18,7 +18,7 @@ public class UI_HealthBar : MonoBehaviour
         _health = _generator.GetComponent<Health>();
         if (_health == null)
         {
-            Debug.LogError("Le GameObject assigné à '_generator' ne possède pas le composant Health !", _generator);
+            //Debug.LogError("Le GameObject assigné à '_generator' ne possède pas le composant Health !", _generator);
             Destroy(this);
         }
 

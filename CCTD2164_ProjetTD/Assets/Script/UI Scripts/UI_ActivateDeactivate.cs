@@ -30,10 +30,10 @@ public class UI_ActivateDeactivate : MonoBehaviour
 
     private void ButtonClicked()
     {
-        if (_activationScript == null)
-        {
-            Debug.LogError("TowerActivateDeactivate script not found on the GameObject.");
-        }
+        //if (_activationScript == null)
+        //{
+        //    Debug.LogError("TowerActivateDeactivate script not found on the GameObject.");
+        //}
 
         _activationScript.DeactivateTower();
         _energyIconOn.enabled = false;
