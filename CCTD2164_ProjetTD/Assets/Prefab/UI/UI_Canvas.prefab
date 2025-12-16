@@ -687,7 +687,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1221.8, y: -488.8573}
+  m_AnchoredPosition: {x: -1099, y: -428.0008}
   m_SizeDelta: {x: 222.4, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2151865758463626445
@@ -747,8 +747,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
-  m_fontSizeBase: 55
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1093,7 +1093,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -291, y: -513.2179}
+  m_AnchoredPosition: {x: -266, y: -453.99963}
   m_SizeDelta: {x: 90.5, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2588498353843938278
@@ -1151,8 +1151,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1325,8 +1325,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -415.1, y: -37.75}
-  m_SizeDelta: {x: 2040, y: 1024}
+  m_AnchoredPosition: {x: -374, y: -32.9}
+  m_SizeDelta: {x: 1840, y: 900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4156104040986183028
 CanvasRenderer:
@@ -1356,7 +1356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4b8adaca894dba24bb8e1e23ef912c75, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8aa7ae78f2faaca429a98f84d346c18f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1632,7 +1632,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -895, y: -513.2179}
+  m_AnchoredPosition: {x: -808, y: -454}
   m_SizeDelta: {x: 89.8, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4940319257054538889
@@ -1690,8 +1690,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1979,7 +1979,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1659.5, y: -488.85748}
+  m_AnchoredPosition: {x: -1495.4, y: -431}
   m_SizeDelta: {x: 201.6, y: 76.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8392052884403159081
@@ -2037,8 +2037,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 55
-  m_fontSizeBase: 55
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3132,8 +3132,8 @@ RectTransform:
   - {fileID: 1223816084931157434}
   - {fileID: 1987789508270749764}
   - {fileID: 6789464751356877494}
-  - {fileID: 3804145034385593725}
   - {fileID: 6647553426741428066}
+  - {fileID: 3804145034385593725}
   - {fileID: 1751305805076889782}
   - {fileID: 6634382014095896823}
   - {fileID: 7247696578238535247}
@@ -3481,7 +3481,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -596, y: -513.2179}
+  m_AnchoredPosition: {x: -542, y: -453.99963}
   m_SizeDelta: {x: 96.8, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3353349545666293583
@@ -3539,8 +3539,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3648,7 +3648,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f0c48f0f1580cba4993a298d19929823, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 55a210339f203c843aa6130e6a8b18e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
