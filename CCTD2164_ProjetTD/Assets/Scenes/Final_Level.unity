@@ -191,7 +191,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7892683914620035421, guid: b729215ff57cfb2458c013078b0683d1, type: 3}
       propertyPath: maxHealth
-      value: 1
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 8760059198668216309, guid: b729215ff57cfb2458c013078b0683d1, type: 3}
       propertyPath: m_Name
@@ -220,6 +220,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 362045886}
   m_SourcePrefab: {fileID: 100100000, guid: b729215ff57cfb2458c013078b0683d1, type: 3}
+--- !u!114 &83707816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5139235827418113709, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+  m_PrefabInstance: {fileID: 1921207288}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &94992071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,6 +1069,17 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 1d70fcb766514124595eaa6378d99a8d, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &364387447 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7956767852509059018, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+  m_PrefabInstance: {fileID: 1921207288}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &385396362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3379,6 +3401,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3445706963376456935, guid: 0ae399a83d3a37749a87b0a4e6fe7498, type: 3}
   m_PrefabInstance: {fileID: 7725785119153370077}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1417359383 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5412847012048485131, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+  m_PrefabInstance: {fileID: 1921207288}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1423492567 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 258784789133433868, guid: 0ae399a83d3a37749a87b0a4e6fe7498, type: 3}
@@ -4220,6 +4253,18 @@ PrefabInstance:
       propertyPath: _WorkerCountTxt
       value: 
       objectReference: {fileID: 794956790}
+    - target: {fileID: 316755475364633207, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: _redWorkerPriceTxt
+      value: 
+      objectReference: {fileID: 83707816}
+    - target: {fileID: 316755475364633207, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: _greenWorkerPriceTxt
+      value: 
+      objectReference: {fileID: 364387447}
+    - target: {fileID: 316755475364633207, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
+      propertyPath: _yellowWorkerPriceTxt
+      value: 
+      objectReference: {fileID: 1417359383}
     - target: {fileID: 4609689883979838114, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
