@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Floor_Lamp_01_BO
       objectReference: {fileID: 0}
+    - target: {fileID: 3946182117861856372, guid: d8aa2acd5f9bf06418e80d60c7855797, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 321c194f308ba0a44ba6086e4dc50cdf, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
