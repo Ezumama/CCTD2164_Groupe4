@@ -19,10 +19,12 @@ public class PauseMenu : MonoBehaviour
     public PauseBlurController blurController;
 
     private bool isAnimating = false;
+    [SerializeField] private GameObject optionPanel;
 
     void Start()
     {
         ResumeInstant();
+        optionPanel.SetActive(false);
     }
 
     void Update()
@@ -131,6 +133,7 @@ public class PauseMenu : MonoBehaviour
     public void Options()
     {
         //Debug.Log("Options Menu Loaded");
+        optionPanel.SetActive(true);
     }
 
     public void Quit()
