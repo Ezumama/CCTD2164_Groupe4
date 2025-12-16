@@ -43,7 +43,7 @@ public class Shooter_ThreeTargets : MonoBehaviour
     {
         AssignTargets();
         RotateCannons();
-        Debug.Log("Damage Amount: " + _damageAmount);
+        //Debug.Log("Damage Amount: " + _damageAmount);
     }
 
     #region tower orientation

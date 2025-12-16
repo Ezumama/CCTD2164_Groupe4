@@ -285,18 +285,18 @@ public class TowerSpawner : MonoBehaviour
             // mouse hovering over a UI element?
             if (EventSystem.current.IsPointerOverGameObject())
             {
-                Debug.Log("Pointer is over UI - ignoring click");
+                //Debug.Log("Pointer is over UI - ignoring click");
                 return;
             }
 
             if (_isBuilding == false)
             {
-                Debug.Log("Calling OnClick()");
+                //Debug.Log("Calling OnClick()");
                 OnClick();
             }
             else
             {
-                Debug.Log("Cannot click - currently building");
+                //Debug.Log("Cannot click - currently building");
             }
         }
         #endregion

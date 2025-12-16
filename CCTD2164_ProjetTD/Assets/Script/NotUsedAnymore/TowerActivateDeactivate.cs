@@ -29,10 +29,10 @@ public class TowerActivateDeactivate : MonoBehaviour
         _towerSpawner = GetComponent<TowerSpawner>();
         _tower = gameObject;
 
-        if(GameManager.Instance == null )
-        {
-            Debug.LogError("GameManager instance is null COMME UNITY EN FAIT JE SUI SUN KK");
-        }
+        //if(GameManager.Instance == null )
+        //{
+        //    Debug.LogError("GameManager instance is null COMME UNITY EN FAIT JE SUI SUN KK");
+        //}
 
 
         _tripleMelCost = GameManager.Instance.GatlingEnergyCost;
@@ -47,12 +47,12 @@ public class TowerActivateDeactivate : MonoBehaviour
         {
             if (_isActivated)
             {
-                Debug.Log("Activating Tower (ONCE)");
+                //Debug.Log("Activating Tower (ONCE)");
                 ActivateTower();
             }
             else
             {
-                Debug.Log("Deactivating Tower (ONCE)");
+                //Debug.Log("Deactivating Tower (ONCE)");
                 DeactivateTower();
             }
 

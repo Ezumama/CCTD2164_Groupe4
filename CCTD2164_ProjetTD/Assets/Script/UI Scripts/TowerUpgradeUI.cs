@@ -72,13 +72,13 @@ public class TowerUpgradeUI : MonoBehaviour
 
     public void TooPoor()
     {
-        Debug.LogError("Not enough money to upgrade!");
+        //Debug.LogError("Not enough money to upgrade!");
         _upgradeButton.enabled = false;
     }
 
     public void CanAfford()
     {
-        Debug.LogError("C'est good patate");
+        //Debug.LogError("C'est good patate");
         _upgradeButton.enabled = true;
     }
 
