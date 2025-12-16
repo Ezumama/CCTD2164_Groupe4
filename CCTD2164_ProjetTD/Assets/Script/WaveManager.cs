@@ -35,25 +35,29 @@ public class WaveManager : MonoBehaviour
 
     void Start()
     {
-        if (pathManager == null) { Debug.LogError("PathManager manquant !"); return; }
+        if (pathManager == null) 
+        { 
+            //Debug.LogError("PathManager manquant !"); 
+            return; 
+        }
         StartCoroutine(StartWavesRoutine());
     }
 
     public void RegisterEnemy(string enemyName)
     {
         aliveEnemies++;
-        Debug.Log($"[INSCRIPTION] {enemyName} ajouté. Total : {aliveEnemies}");
+        //Debug.Log($"[INSCRIPTION] {enemyName} ajouté. Total : {aliveEnemies}");
     }
 
     public void UnregisterEnemy(string enemyName)
     {
         aliveEnemies = Mathf.Max(0, aliveEnemies - 1);
-        Debug.Log($"[DÉPART] {enemyName} est mort. Restants : {aliveEnemies}");
+        //Debug.Log($"[DÉPART] {enemyName} est mort. Restants : {aliveEnemies}");
 
-        if (!isSpawning && aliveEnemies <= 0)
-        {
-            Debug.Log("<color=yellow>Compteur à zéro, prêt pour la suite.</color>");
-        }
+        //if (!isSpawning && aliveEnemies <= 0)
+        //{
+        //    Debug.Log("<color=yellow>Compteur à zéro, prêt pour la suite.</color>");
+        //}
     }
 
     IEnumerator StartWavesRoutine()
@@ -61,7 +65,7 @@ public class WaveManager : MonoBehaviour
         while (currentWaveIndex < waves.Length)
         {
             UpdateWaveDisplay(currentWaveIndex + 1);
-            Debug.Log($"<color=cyan>--- Lancement Vague {currentWaveIndex + 1} ---</color>");
+            //Debug.Log($"<color=cyan>--- Lancement Vague {currentWaveIndex + 1} ---</color>");
 
             isSpawning = true;
             yield return StartCoroutine(SpawnWave(waves[currentWaveIndex]));
@@ -78,7 +82,7 @@ public class WaveManager : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
             }
 
-            Debug.Log($"<color=green>Vague {currentWaveIndex + 1} terminée !</color>");
+            //Debug.Log($"<color=green>Vague {currentWaveIndex + 1} terminée !</color>");
             currentWaveIndex++;
 
             if (currentWaveIndex < waves.Length)
@@ -87,7 +91,7 @@ public class WaveManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Félicitations, toutes les vagues sont terminées !");
+        //Debug.Log("Félicitations, toutes les vagues sont terminées !");
         CheckForVictory();
     }
 

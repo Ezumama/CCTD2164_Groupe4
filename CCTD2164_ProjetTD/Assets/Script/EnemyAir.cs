@@ -18,7 +18,7 @@ public class EnemyAir : EnemyBase
 
         if (nexusTarget == null)
         {
-            Debug.LogError("AirWaypoint/Nexus Target non trouvé");
+            //Debug.LogError("AirWaypoint/Nexus Target non trouvé");
             enabled = false;
         }
     }

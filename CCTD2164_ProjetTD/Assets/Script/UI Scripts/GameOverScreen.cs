@@ -66,7 +66,7 @@ public class GameOverScreen : MonoBehaviour
 
         isGameOver = true;
 
-        Debug.Log("GAME OVER !");
+        //Debug.Log("GAME OVER !");
 
         StartCoroutine(FadeToBlackAndShowGameOver());
     }
@@ -77,7 +77,7 @@ public class GameOverScreen : MonoBehaviour
 
         isGameOver = true;
 
-        Debug.Log("Le joueur a gagné !");
+        //Debug.Log("Le joueur a gagné !");
 
         StartCoroutine(FadeToBlackAndShowVictoryScreen());
     }

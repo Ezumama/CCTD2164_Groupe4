@@ -48,7 +48,7 @@ public class Shooter_MultiTarget : MonoBehaviour
     {
         AssignTargets();
         RotateCannons();
-        Debug.Log("Damage Amount: " + _damageAmount);
+        //Debug.Log("Damage Amount: " + _damageAmount);
     }
 
     private void AssignTargets()

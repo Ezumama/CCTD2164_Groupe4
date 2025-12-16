@@ -29,14 +29,14 @@ public class PauseBlurController : MonoBehaviour
 
             if (defaultFocusDistance < 1f)
             {
-                Debug.LogError($"[BlurController] Erreur: La Focus Distance initiale ({defaultFocusDistance} m) est trop faible! Veuillez régler l'asset Volume Profile sur 10m.");
+                //Debug.LogError($"[BlurController] Erreur: La Focus Distance initiale ({defaultFocusDistance} m) est trop faible! Veuillez régler l'asset Volume Profile sur 10m.");
                 defaultFocusDistance = 10f;
                 dof.focusDistance.value = defaultFocusDistance;
             }
         }
         else
         {
-            Debug.LogError("Composant Depth Of Field manquant dans le Volume Profile!");
+            //Debug.LogError("Composant Depth Of Field manquant dans le Volume Profile!");
             enabled = false;
         }
     }

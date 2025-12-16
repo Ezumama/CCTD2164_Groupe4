@@ -18,7 +18,7 @@ public class EnemyNexusDamage : MonoBehaviour
             if (nexusHealth != null)
             {
                 nexusHealth.TakeDamage(damageToNexus);
-                Debug.Log($"[Attaque Nexus] {gameObject.name} fait {damageToNexus} dégâts."); 
+                //Debug.Log($"[Attaque Nexus] {gameObject.name} fait {damageToNexus} dégâts."); 
             }
             lastAttackTime = Time.time;
         }

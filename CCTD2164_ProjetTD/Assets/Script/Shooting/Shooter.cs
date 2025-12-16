@@ -87,7 +87,7 @@ public class Shooter : MonoBehaviour
         }
 #endregion
 
-        Debug.Log("Damage Amount: " + _damageAmount);
+        //Debug.Log("Damage Amount: " + _damageAmount);
     }
 
     // Find bots with given tag(s)

@@ -20,7 +20,7 @@ public class EnemyNav : EnemyBase
 
         if (agent == null)
         {
-            Debug.LogError("[EnemyNav] NavMeshAgent manquant !");
+            //Debug.LogError("[EnemyNav] NavMeshAgent manquant !");
             enabled = false;
             return;
         }
