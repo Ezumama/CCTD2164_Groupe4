@@ -135,12 +135,12 @@ public class Shooter_ThreeTargets : MonoBehaviour
     #region worker buff
     public void BuffDamage()
     {
-        _damageAmount *= 2;
+        _damageAmount = _damageAmount * 2;
     }
 
     public void StopBuff()
     {
-        _damageAmount /= 2;
+        _damageAmount = _damageAmount / 2;
     }
     #endregion
 }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -24,6 +23,11 @@ public class TowerSpawner : MonoBehaviour
 
     public UI_ActivateDeactivate uiActivateDeactivateScript;
 
+    public Shooter shooterScript;
+    public Shooter_MultiTarget shooterMultiTargetScript;
+    public Shooter_ThreeTargets shooterThreeTargetsScript;
+
+    public bool _canAfford;
     public LayerMask mask;
 
     #region int costs
@@ -74,8 +78,7 @@ public class TowerSpawner : MonoBehaviour
 
     #region upgrade cost
     [Header("Upgrade Cost")]
-    [SerializeField] private int _blueprintCostLvl2;
-    [SerializeField] private int _blueprintCostLvl3;
+    [SerializeField] private int _blueprintCostUpgrade;
     #endregion
 
     #region private variables
@@ -146,6 +149,7 @@ public class TowerSpawner : MonoBehaviour
         _bigBettyCost = GameManager.Instance.TeslaEnergyCost;
         _simpleLizaCost = GameManager.Instance.GroundEnergyCost;
 
+
         _levelUpgrade = 0;
     }
 
@@ -197,6 +201,24 @@ public class TowerSpawner : MonoBehaviour
         {
             _currentTower.transform.position = endPos;
         }
+
+        shooterScript = GetComponentInChildren<Shooter>();
+        if (shooterScript == null)
+        {
+            //Debug.LogError("Shooter script not found in children!");
+            shooterMultiTargetScript = GetComponentInChildren<Shooter_MultiTarget>();
+        }
+
+        if (shooterMultiTargetScript == null)
+        {
+            //Debug.LogError("Shooter_MultiTarget script not found in children!");
+            shooterThreeTargetsScript = GetComponentInChildren<Shooter_ThreeTargets>();
+        }
+        //// debug
+        //if (shooterThreeTargetsScript == null)
+        //{
+        //    Debug.LogError("Shooter_ThreeTargets script not found in children!");
+        //}
 
         _isBuilding = false;
 
@@ -314,11 +336,25 @@ public class TowerSpawner : MonoBehaviour
             _previousState = _isActivated;
         }
         #endregion
+
+        if (_isTripleMelTower)
+        {
+            _canAfford = GameManager.Instance.CurrentRedBlueprintAmount >= _blueprintCostUpgrade;
+        }
+        else if (_isBigBettyTower)
+        {
+            _canAfford = GameManager.Instance.CurrentGreenBlueprintAmount >= _blueprintCostUpgrade;
+        }
+        else if (_isSimpleLizaTower)
+        {
+            _canAfford = GameManager.Instance.CurrentYellowBlueprintAmount >= _blueprintCostUpgrade;
+        }
     }
 
     #region Activate/Deactivate Tower Methods
     public void DeactivateTower()
     {
+        #region regain energy on deactivation
         if (_isTripleMelTower)
         {
             GameManager.Instance.GainEnergy(_tripleMelCost);
@@ -333,6 +369,23 @@ public class TowerSpawner : MonoBehaviour
         {
             GameManager.Instance.GainEnergy(_simpleLizaCost);
         }
+        #endregion
+
+        // Disable shooting scripts
+        if (shooterScript != null)
+        {
+            shooterScript.enabled = false;
+        }
+
+        else if (shooterMultiTargetScript != null)
+        {
+            shooterMultiTargetScript.enabled = false;
+        }
+
+        else if (shooterThreeTargetsScript != null)
+        {
+            shooterThreeTargetsScript.enabled = false;
+        }
 
         foreach (Renderer r in _tower.GetComponentsInChildren<Renderer>())
         {
@@ -342,6 +395,7 @@ public class TowerSpawner : MonoBehaviour
 
     public void ActivateTower()
     {
+        #region deduct energy on activation
         if (_isTripleMelTower)
         {
             GameManager.Instance.LoseEnergy(_tripleMelCost);
@@ -355,6 +409,23 @@ public class TowerSpawner : MonoBehaviour
         else if (_isSimpleLizaTower)
         {
             GameManager.Instance.LoseEnergy(_simpleLizaCost);
+        }
+        #endregion
+
+        // Enable the shooter script
+        if (shooterScript != null)
+        {
+            shooterScript.enabled = true;
+        }
+
+        else if (shooterMultiTargetScript != null)
+        {
+            shooterMultiTargetScript.enabled = true;
+        }
+
+        else if (shooterThreeTargetsScript != null)
+        {
+            shooterThreeTargetsScript.enabled = true;
         }
 
         foreach (Renderer r in _tower.GetComponentsInChildren<Renderer>())
@@ -507,22 +578,72 @@ public class TowerSpawner : MonoBehaviour
         _towerPanelLvl3.SetActive(false);
     }
 
+    public void OnBuff()
+    {
+            Debug.LogError("Tower buffed");
+            if (shooterScript != null)
+            {
+                shooterScript.BuffDamage();
+                GameManager.Instance.FireWorker(1);
+            }
+            else if (shooterMultiTargetScript != null)
+            {
+                shooterMultiTargetScript.BuffDamage();
+                GameManager.Instance.FireWorker(1);
+            }
+            else if (shooterThreeTargetsScript != null)
+            {
+                shooterThreeTargetsScript.BuffDamage();
+                GameManager.Instance.FireWorker(1);
+            }
+    }
+
+    public void OnDebuff()
+    {
+        Debug.LogError("Tower NOT buffed");
+        if (shooterScript != null)
+        {
+            shooterScript.StopBuff();
+            GameManager.Instance.HireWorker(1);
+        }
+        else if (shooterMultiTargetScript != null)
+        {
+            shooterMultiTargetScript.StopBuff();
+            GameManager.Instance.HireWorker(1);
+        }
+        else if (shooterThreeTargetsScript != null)
+        {
+            shooterThreeTargetsScript.StopBuff();
+            GameManager.Instance.HireWorker(1);
+        }
+    }
+
     #region Level 2 Upgrade (from Level 1)
     public void UpgradeTowerLevel2()
     {
         // Don't upgrade if already building
         if (_isBuilding) return;
 
-        // Pay the cost
-        if (_isTripleMelTower)
-            GameManager.Instance.LoseRedBlueprint(_blueprintCostLvl2);
-        else if (_isBigBettyTower)
-            GameManager.Instance.LoseGreenBlueprint(_blueprintCostLvl2);
-        else if (_isSimpleLizaTower)
-            GameManager.Instance.LoseYellowBlueprint(_blueprintCostLvl2);
+        if (_canAfford)
+        {
+            if (GameManager.Instance.CurrentRedBlueprintAmount >= _blueprintCostUpgrade && _isTripleMelTower)
+            {
+                GameManager.Instance.LoseRedBlueprint(_blueprintCostUpgrade);
+            }
 
-        // Start the animation
-        StartCoroutine(UpgradeSequence(_towerLevel2, 2));
+            else if (GameManager.Instance.CurrentGreenBlueprintAmount >= _blueprintCostUpgrade && _isBigBettyTower)
+            {
+                GameManager.Instance.LoseGreenBlueprint(_blueprintCostUpgrade);
+            }
+
+            else if (GameManager.Instance.CurrentYellowBlueprintAmount >= _blueprintCostUpgrade && _isSimpleLizaTower)
+            {
+                GameManager.Instance.LoseYellowBlueprint(_blueprintCostUpgrade);
+            }
+
+            StartCoroutine(UpgradeSequence(_towerLevel2, 2));
+        }
+
     }
     #endregion
 
@@ -532,45 +653,54 @@ public class TowerSpawner : MonoBehaviour
         // Don't upgrade if already building
         if (_isBuilding) return;
 
-        // Pay the cost
-        if (_isTripleMelTower)
-            GameManager.Instance.LoseRedBlueprint(_blueprintCostLvl3);
-        else if (_isBigBettyTower)
-            GameManager.Instance.LoseGreenBlueprint(_blueprintCostLvl3);
-        else if (_isSimpleLizaTower)
-            GameManager.Instance.LoseYellowBlueprint(_blueprintCostLvl3);
+        if (_canAfford)
+        {
+            if (GameManager.Instance.CurrentRedBlueprintAmount >= _blueprintCostUpgrade && _isTripleMelTower)
+            {
+                GameManager.Instance.LoseRedBlueprint(_blueprintCostUpgrade);
+            }
 
-        // Start the animation
-        StartCoroutine(UpgradeSequence(_towerLevel3, 3));
+            else if (GameManager.Instance.CurrentGreenBlueprintAmount >= _blueprintCostUpgrade && _isBigBettyTower)
+            {
+                GameManager.Instance.LoseGreenBlueprint(_blueprintCostUpgrade);
+            }
+
+            else if (GameManager.Instance.CurrentYellowBlueprintAmount >= _blueprintCostUpgrade && _isSimpleLizaTower)
+            {
+                GameManager.Instance.LoseYellowBlueprint(_blueprintCostUpgrade);
+            }
+
+            StartCoroutine(UpgradeSequence(_towerLevel3, 3));
+        }
     }
     #endregion
 
-    #region Downgrade Level 3 to Level 2
-    public void DowngradeToLevel2()
-    {
-        if (_isBuilding)
-        {
-            return;
-        }
+    //#region Downgrade Level 3 to Level 2
+    //public void DowngradeToLevel2()
+    //{
+    //    if (_isBuilding)
+    //    {
+    //        return;
+    //    }
 
-        // Refund the Level 3 upgrade cost
-        if (_isTripleMelTower)
-        {
-            GameManager.Instance.GainRedBlueprint(_blueprintCostLvl3);
-        }
-        else if (_isBigBettyTower)
-        {
-            GameManager.Instance.GainGreenBlueprint(_blueprintCostLvl3);
-        }
-        else if (_isSimpleLizaTower)
-        {
-            GameManager.Instance.GainYellowBlueprint(_blueprintCostLvl3);
-        }
+    //    // Refund the Level 3 upgrade cost
+    //    if (_isTripleMelTower)
+    //    {
+    //        GameManager.Instance.GainRedBlueprint(_blueprintCostLvl3);
+    //    }
+    //    else if (_isBigBettyTower)
+    //    {
+    //        GameManager.Instance.GainGreenBlueprint(_blueprintCostLvl3);
+    //    }
+    //    else if (_isSimpleLizaTower)
+    //    {
+    //        GameManager.Instance.GainYellowBlueprint(_blueprintCostLvl3);
+    //    }
 
-        // Start the downgrade animation
-        StartCoroutine(UpgradeSequence(_towerLevel2, 2));
-    }
-    #endregion
+    //    // Start the downgrade animation
+    //    StartCoroutine(UpgradeSequence(_towerLevel2, 2));
+    //}
+    //#endregion
 
     //#region Downgrade Level 2 to Level 1
     //public void DowngradeToLevel1()

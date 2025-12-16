@@ -1,10 +1,25 @@
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class TowerUpgradeUI : MonoBehaviour
 {
     private TowerSpawner _towerUpgradeScript;
-    [SerializeField] private GameObject _downgradeButton;
-    [SerializeField] private GameObject _upgradeButton;
+    [SerializeField] private Button _downgradeButton;
+    [SerializeField] private Button _upgradeButton;
+
+    public void Update()
+    {
+        if (_towerUpgradeScript._canAfford == false)
+        {
+            TooPoor();
+        }
+
+        else
+        {
+            CanAfford();
+        }
+    }
 
     public void SetUpgrade(TowerSpawner _upgradeScript)
     {
@@ -15,22 +30,23 @@ public class TowerUpgradeUI : MonoBehaviour
     }
     private void InitializeUI()
     {
-        if (_towerUpgradeScript._levelUpgrade == 1 || _towerUpgradeScript._levelUpgrade == 2)
-        {
-            _downgradeButton.SetActive(false);
+        if (_towerUpgradeScript._levelUpgrade == 1)
+        { 
+            _downgradeButton.interactable = false; 
         }
+
         else
-        {   
-            _downgradeButton.SetActive(true);
+        {
+            _downgradeButton.interactable = false;
         }
 
         if (_towerUpgradeScript._levelUpgrade == 3)
         {
-            _upgradeButton.SetActive(false);
+            _upgradeButton.interactable = false;
         }
         else
         {
-            _upgradeButton.SetActive(true);
+            _upgradeButton.interactable = true;
         }
     }
 
@@ -54,12 +70,24 @@ public class TowerUpgradeUI : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-
-    // Downgrade level 3 to level 2
-    public void DowngradeFromLvl3()
+    public void TooPoor()
     {
-        _towerUpgradeScript.DowngradeToLevel2();
+        Debug.LogError("Not enough money to upgrade!");
+        _upgradeButton.enabled = false;
     }
+
+    public void CanAfford()
+    {
+        Debug.LogError("C'est good patate");
+        _upgradeButton.enabled = true;
+    }
+
+
+    //// Downgrade level 3 to level 2
+    //public void DowngradeFromLvl3()
+    //{
+    //    _towerUpgradeScript.DowngradeToLevel2();
+    //}
 
     //// Downgrade level 2 to level 1
     //public void DowngradeFromLvl2()
