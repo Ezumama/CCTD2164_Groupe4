@@ -37,7 +37,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Color_Texture:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e57ca12f9fc77c346891e0cc18c8330f, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -57,7 +57,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emmissive:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: e80e73bc4ab24034187d4fd660f996b0, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -122,7 +122,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _Emmissive_Colored: 0
-    - _Emmissive_Intensity: 0
+    - _Emmissive_Intensity: 10
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -145,7 +145,7 @@ Material:
     - _Surface: 0
     - _UpgradeEmmisive: 0
     - _UseAlphaText: 0
-    - _UseEmmissive: 0
+    - _UseEmmissive: 1
     - _UseFlatColor: 0
     - _UseMetallic: 0
     - _UseNormal: 0
@@ -157,7 +157,7 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Emmisive_Alternative: {r: 16.1888, g: 2.158506, b: 0, a: 0}
-    - _Emmissive_Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Emmissive_Color: {r: 0.003921569, g: 0.7019608, b: 0.84313726, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
