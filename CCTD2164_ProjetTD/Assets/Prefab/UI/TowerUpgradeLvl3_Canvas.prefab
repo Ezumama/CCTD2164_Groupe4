@@ -583,8 +583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cb9744ec1ad3b4e87536501d504c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _downgradeButton: {fileID: 7941401541142389754}
-  _upgradeButton: {fileID: 1770755659365622734}
+  _downgradeButton: {fileID: 3829009198701084266}
+  _upgradeButton: {fileID: 4106743482397363941}
 --- !u!114 &6168041346604167195
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -197,7 +197,19 @@ MonoBehaviour:
   m_Group: {fileID: 0}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4365472984395239026}
+        m_TargetAssemblyTypeName: UI_ActivateDeactivate, Assembly-CSharp
+        m_MethodName: ToggleClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1748300513921003505
 GameObject:
@@ -525,19 +537,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1925295238860407842}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8247042232726079814}
-        m_TargetAssemblyTypeName: TowerUpgradeUI, Assembly-CSharp
-        m_MethodName: DowngradeFromLvl2
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &3622049908311787987
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,8 +642,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cb9744ec1ad3b4e87536501d504c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _downgradeButton: {fileID: 3098094758971131780}
-  _upgradeButton: {fileID: 1770755659365622734}
+  _downgradeButton: {fileID: 4150431140954293169}
+  _upgradeButton: {fileID: 4106743482397363941}
 --- !u!114 &3215312159623680734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,7 +760,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4648893870702061719
 MonoBehaviour:
   m_ObjectHideFlags: 0

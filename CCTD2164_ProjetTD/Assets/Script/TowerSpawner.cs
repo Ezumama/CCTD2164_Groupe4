@@ -77,8 +77,7 @@ public class TowerSpawner : MonoBehaviour
 
     #region upgrade cost
     [Header("Upgrade Cost")]
-    [SerializeField] private int _blueprintCostLvl2;
-    [SerializeField] private int _blueprintCostLvl3;
+    [SerializeField] private int _blueprintCostUpgrade;
     #endregion
 
     #region private variables
@@ -96,6 +95,8 @@ public class TowerSpawner : MonoBehaviour
     private GameObject _towerChoicePanel;
     private bool _isBuilding = false;
     #endregion
+
+    public bool _canAfford;
 
     private void Start()
     {
@@ -336,6 +337,19 @@ public class TowerSpawner : MonoBehaviour
             _previousState = _isActivated;
         }
         #endregion
+
+        if (_isTripleMelTower)
+        {
+            _canAfford = GameManager.Instance.CurrentRedBlueprintAmount >= _blueprintCostUpgrade;
+        }
+        else if (_isBigBettyTower)
+        {
+            _canAfford = GameManager.Instance.CurrentGreenBlueprintAmount >= _blueprintCostUpgrade;
+        }
+        else if (_isSimpleLizaTower)
+        {
+            _canAfford = GameManager.Instance.CurrentYellowBlueprintAmount >= _blueprintCostUpgrade;
+        }
     }
 
     #region Activate/Deactivate Tower Methods
@@ -376,7 +390,7 @@ public class TowerSpawner : MonoBehaviour
 
         foreach (Renderer r in _tower.GetComponentsInChildren<Renderer>())
         {
-                r.material.SetInt("_UseEmmissive", 0);
+            r.material.SetInt("_UseEmmissive", 0);
         }
     }
 
@@ -571,16 +585,26 @@ public class TowerSpawner : MonoBehaviour
         // Don't upgrade if already building
         if (_isBuilding) return;
 
-        // Pay the cost
-        if (_isTripleMelTower)
-            GameManager.Instance.LoseRedBlueprint(_blueprintCostLvl2);
-        else if (_isBigBettyTower)
-            GameManager.Instance.LoseGreenBlueprint(_blueprintCostLvl2);
-        else if (_isSimpleLizaTower)
-            GameManager.Instance.LoseYellowBlueprint(_blueprintCostLvl2);
+        if (_canAfford)
+        {
+            if (GameManager.Instance.CurrentRedBlueprintAmount >= _blueprintCostUpgrade && _isTripleMelTower)
+            {
+                GameManager.Instance.LoseRedBlueprint(_blueprintCostUpgrade);
+            }
 
-        // Start the animation
-        StartCoroutine(UpgradeSequence(_towerLevel2, 2));
+            else if (GameManager.Instance.CurrentGreenBlueprintAmount >= _blueprintCostUpgrade && _isBigBettyTower)
+            {
+                GameManager.Instance.LoseGreenBlueprint(_blueprintCostUpgrade);
+            }
+
+            else if (GameManager.Instance.CurrentYellowBlueprintAmount >= _blueprintCostUpgrade && _isSimpleLizaTower)
+            {
+                GameManager.Instance.LoseYellowBlueprint(_blueprintCostUpgrade);
+            }
+
+            StartCoroutine(UpgradeSequence(_towerLevel2, 2));
+        }
+
     }
     #endregion
 
@@ -590,45 +614,54 @@ public class TowerSpawner : MonoBehaviour
         // Don't upgrade if already building
         if (_isBuilding) return;
 
-        // Pay the cost
-        if (_isTripleMelTower)
-            GameManager.Instance.LoseRedBlueprint(_blueprintCostLvl3);
-        else if (_isBigBettyTower)
-            GameManager.Instance.LoseGreenBlueprint(_blueprintCostLvl3);
-        else if (_isSimpleLizaTower)
-            GameManager.Instance.LoseYellowBlueprint(_blueprintCostLvl3);
+        if (_canAfford)
+        {
+            if (GameManager.Instance.CurrentRedBlueprintAmount >= _blueprintCostUpgrade && _isTripleMelTower)
+            {
+                GameManager.Instance.LoseRedBlueprint(_blueprintCostUpgrade);
+            }
 
-        // Start the animation
-        StartCoroutine(UpgradeSequence(_towerLevel3, 3));
+            else if (GameManager.Instance.CurrentGreenBlueprintAmount >= _blueprintCostUpgrade && _isBigBettyTower)
+            {
+                GameManager.Instance.LoseGreenBlueprint(_blueprintCostUpgrade);
+            }
+
+            else if (GameManager.Instance.CurrentYellowBlueprintAmount >= _blueprintCostUpgrade && _isSimpleLizaTower)
+            {
+                GameManager.Instance.LoseYellowBlueprint(_blueprintCostUpgrade);
+            }
+
+            StartCoroutine(UpgradeSequence(_towerLevel3, 3));
+        }
     }
     #endregion
 
-    #region Downgrade Level 3 to Level 2
-    public void DowngradeToLevel2()
-    {
-        if (_isBuilding)
-        {
-            return;
-        }
+    //#region Downgrade Level 3 to Level 2
+    //public void DowngradeToLevel2()
+    //{
+    //    if (_isBuilding)
+    //    {
+    //        return;
+    //    }
 
-        // Refund the Level 3 upgrade cost
-        if (_isTripleMelTower)
-        {
-            GameManager.Instance.GainRedBlueprint(_blueprintCostLvl3);
-        }
-        else if (_isBigBettyTower)
-        {
-            GameManager.Instance.GainGreenBlueprint(_blueprintCostLvl3);
-        }
-        else if (_isSimpleLizaTower)
-        {
-            GameManager.Instance.GainYellowBlueprint(_blueprintCostLvl3);
-        }
+    //    // Refund the Level 3 upgrade cost
+    //    if (_isTripleMelTower)
+    //    {
+    //        GameManager.Instance.GainRedBlueprint(_blueprintCostLvl3);
+    //    }
+    //    else if (_isBigBettyTower)
+    //    {
+    //        GameManager.Instance.GainGreenBlueprint(_blueprintCostLvl3);
+    //    }
+    //    else if (_isSimpleLizaTower)
+    //    {
+    //        GameManager.Instance.GainYellowBlueprint(_blueprintCostLvl3);
+    //    }
 
-        // Start the downgrade animation
-        StartCoroutine(UpgradeSequence(_towerLevel2, 2));
-    }
-    #endregion
+    //    // Start the downgrade animation
+    //    StartCoroutine(UpgradeSequence(_towerLevel2, 2));
+    //}
+    //#endregion
 
     //#region Downgrade Level 2 to Level 1
     //public void DowngradeToLevel1()
