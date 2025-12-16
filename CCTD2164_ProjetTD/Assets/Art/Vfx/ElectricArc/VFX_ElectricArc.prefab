@@ -153,7 +153,13 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 0.761
+        m_Name: NoisePower
+        m_Overridden: 1
+      - m_Value: 10
+        m_Name: NoiseSpeed
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
