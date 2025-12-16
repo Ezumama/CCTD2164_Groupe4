@@ -118,13 +118,13 @@ public class Shooter : MonoBehaviour
     #region worker buff
     public void BuffDamage()
     {
-        Debug.LogError("BuffDamage called");
+        //Debug.LogError("BuffDamage called");
         _damageAmount = _damageAmount * 2;
     }
 
     public void StopBuff()
     {
-        Debug.LogError("StopBuff called");
+        //Debug.LogError("StopBuff called");
         _damageAmount = _damageAmount / 2;
     }
     #endregion
