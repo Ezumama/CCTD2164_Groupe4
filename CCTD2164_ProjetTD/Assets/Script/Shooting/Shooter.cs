@@ -42,7 +42,7 @@ public class Shooter : MonoBehaviour
         FindTarget();
 
         Debug.DrawRay(_shootingPoint.position, _shootingPoint.forward * 2f, Color.red);
-
+        #region tower orientation
         if (_target == null)
         {
             Debug.Log("NO TARGET FOUND");
@@ -83,8 +83,11 @@ public class Shooter : MonoBehaviour
             float angleX = Mathf.Atan2(localDirection.y, localDirection.z) * Mathf.Rad2Deg;
             angleX = -angleX;
             Quaternion desiredLocalRotation = Quaternion.Euler(angleX, 0f, 0f);
-            _towerShootingHead.transform.localRotation = Quaternion.Slerp(_towerShootingHead.transform.localRotation, desiredLocalRotation, _pitchSpeed * Time.deltaTime);
+            _towerShootingHead.transform.localRotation = Quaternion.Slerp(_towerShootingHead.transform.localRotation, desiredLocalRotation, _pitchSpeed * Time.deltaTime);  
         }
+#endregion
+
+        Debug.Log("Damage Amount: " + _damageAmount);
     }
 
     // Find bots with given tag(s)
@@ -115,12 +118,14 @@ public class Shooter : MonoBehaviour
     #region worker buff
     public void BuffDamage()
     {
-        _damageAmount *= 2;
+        Debug.LogError("BuffDamage called");
+        _damageAmount = _damageAmount * 2;
     }
 
     public void StopBuff()
     {
-        _damageAmount /= 2;
+        Debug.LogError("StopBuff called");
+        _damageAmount = _damageAmount / 2;
     }
     #endregion
 

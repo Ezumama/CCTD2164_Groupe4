@@ -68,8 +68,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Traffic_Light_01_BO
       objectReference: {fileID: 0}
+    - target: {fileID: 5026921913114157609, guid: 11a96427f05c6e345bb8a300da359baf, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5026921913114157609, guid: 11a96427f05c6e345bb8a300da359baf, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 91c78099575d3b449b3862c1949cf626, type: 2}
+    - target: {fileID: 5026921913114157609, guid: 11a96427f05c6e345bb8a300da359baf, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b97b5dc34129b5c46ab6bee7f2d9115b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 11a96427f05c6e345bb8a300da359baf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8581711700730889342}
   m_SourcePrefab: {fileID: 100100000, guid: 11a96427f05c6e345bb8a300da359baf, type: 3}
+--- !u!1 &7792402745083749819 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 11a96427f05c6e345bb8a300da359baf, type: 3}
+  m_PrefabInstance: {fileID: 6982062471870929130}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8581711700730889342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7792402745083749819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6111d2408515f3e45ae2d131b6717b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  runOnAwake: 1
+  cloneMesh: 1

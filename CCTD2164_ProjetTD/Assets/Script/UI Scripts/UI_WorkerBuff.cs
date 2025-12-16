@@ -12,32 +12,20 @@ public class UI_WorkerBuff : MonoBehaviour
     [SerializeField] private Image _boostIconOn, _boostIconOff;
     [SerializeField] private Image _boostTextOn, _boostTextOff;
 
+    private TowerSpawner _towerSpawner;
+
     private void Start()
     {
         _boostIconOff.enabled = true;
         _boostIconOn.enabled = false;
         _boostTextOff.enabled = true;
         _boostTextOn.enabled = false;
+        _towerSpawner = GetComponentInParent<TowerSpawner>();
 
-        #region setting shooter script
-        // Finding which shooter script is attached
-        _shooterScript = GetComponent<Shooter>();
-
-        if (_shooterScript == null)
+        if (_towerSpawner == null)
         {
-            Debug.Log("Shooter script not found, checking for Shooter_MultiTarget script.");
-            _shooterMultiScript = GetComponent<Shooter_MultiTarget>();
+                       Debug.LogError("TowerSpawner component not found in parent.");
         }
-        if (_shooterMultiScript == null)
-        {
-            Debug.Log("Shooter_MultiTarget script not found, checking for Shooter_ThreeTargets script.");
-            _shooterThreeScript = GetComponent<Shooter_ThreeTargets>();
-        }
-        if (_shooterThreeScript == null)
-        {
-            Debug.Log("ShooterThree script not found.");
-        }
-        #endregion
     }
 
     // When toggle state changes
@@ -63,39 +51,11 @@ public class UI_WorkerBuff : MonoBehaviour
 
     private void ButtonClicked()
     {
-        if (_shooterScript != null)
-        {
-            _shooterScript.BuffDamage();
-            GameManager.Instance.FireWorker(1);
-        }
-        else if (_shooterMultiScript != null)
-        {
-            _shooterMultiScript.BuffDamage();
-            GameManager.Instance.FireWorker(1);
-        }
-        else if (_shooterThreeScript != null)
-        {
-            _shooterThreeScript.BuffDamage();
-            GameManager.Instance.FireWorker(1);
-        }
+        _towerSpawner.OnBuff();
     }
 
     private void ButtonUnclicked()
     {
-        if (_shooterScript != null)
-        {
-            _shooterScript.StopBuff();
-            GameManager.Instance.HireWorker(1);
-        }
-        else if (_shooterMultiScript != null)
-        {
-            _shooterMultiScript.StopBuff();
-            GameManager.Instance.HireWorker(1);
-        }
-        else if (_shooterThreeScript != null)
-        {
-            _shooterThreeScript.StopBuff();
-            GameManager.Instance.HireWorker(1);
-        }
+        _towerSpawner.OnDebuff();
     }
 }
