@@ -76,10 +76,7 @@ public class GameManager : MonoBehaviour
     }
     public void FireWorker(int amount)
     {
-        if (CurrentWorkerAmount >= amount)
-        {
-            ClampToZero(CurrentWorkerAmount - amount);
-        }
+            CurrentWorkerAmount = ClampToZero(CurrentWorkerAmount - amount);
     }
     #endregion
 
