@@ -113,6 +113,7 @@ public class PauseMenu : MonoBehaviour
     public void ResumeInstant()
     {
         Time.timeScale = 1f;
+        StartCoroutine(CloseMenu());
         GameIsPaused = false;
 
         //pauseMenuUI.localScale = new Vector3(1f, 0f, 1f);
@@ -126,6 +127,7 @@ public class PauseMenu : MonoBehaviour
 
         if (blurController != null)
             blurController.SetPauseBlur(false);
+       
     }
 
     // ----------- BUTTONS -----------
