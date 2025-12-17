@@ -10,24 +10,25 @@ public class TowerSpawner : MonoBehaviour
 {
     [Header("DEBUG")]
     [SerializeField] private bool _isActivated = true;
-   
+
+    #region cost and state variables
     private bool _previousState;
     private int _tripleMelCost;
     private int _bigBettyCost;
     private int _simpleLizaCost;
+    public bool _canAfford;
+    #endregion
 
     private GameObject _tower;
-
     [SerializeField] private GameObject[] _towers;
     [SerializeField] private GameObject towerChoicePanelPrefab;
 
-    public UI_ActivateDeactivate uiActivateDeactivateScript;
+    #region scripts
+    private Shooter shooterScript;
+    private Shooter_MultiTarget shooterMultiTargetScript;
+    private Shooter_ThreeTargets shooterThreeTargetsScript;
+    #endregion
 
-    public Shooter shooterScript;
-    public Shooter_MultiTarget shooterMultiTargetScript;
-    public Shooter_ThreeTargets shooterThreeTargetsScript;
-
-    public bool _canAfford;
     public LayerMask mask;
 
     #region int costs
@@ -578,6 +579,7 @@ public class TowerSpawner : MonoBehaviour
         _towerPanelLvl3.SetActive(false);
     }
 
+    #region buff/debuff methods
     public void OnBuff()
     {
             Debug.LogError("Tower buffed");
@@ -617,6 +619,7 @@ public class TowerSpawner : MonoBehaviour
             GameManager.Instance.HireWorker(1);
         }
     }
+    #endregion
 
     #region Level 2 Upgrade (from Level 1)
     public void UpgradeTowerLevel2()

@@ -24,7 +24,7 @@ public class UI_WorkerBuff : MonoBehaviour
 
         if (_towerSpawner == null)
         {
-                       //Debug.LogError("TowerSpawner component not found in parent.");
+            //Debug.LogError("TowerSpawner component not found in parent.");
         }
     }
 

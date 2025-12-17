@@ -6,6 +6,7 @@ using UnityEngine.VFX;
 
 public class Shooter : MonoBehaviour
 {
+    #region Tower Parts
     [Header("Tower Parts")]
     [SerializeField] private Transform _shootingPoint;
     [SerializeField] private float _shootingDistance;
@@ -15,15 +16,20 @@ public class Shooter : MonoBehaviour
     //// Making sure the tower canon is facing forward for LookAt
     //[Header("Face forward correction")]
     //[SerializeField] private Vector3 _modelForwardOffset = new Vector3(90f, 0f, 0f);
+    #endregion
 
+    #region Tower Specs
     [Header("Tower Specs")]
     [SerializeField] private float _damageAmount;
     [SerializeField] private float _shootingCooldown;
     [SerializeField] private bool _isBigBetty;
-    
+    #endregion
+
+    #region Aim Smoothing
     [Header("Aim smoothing")]
     [SerializeField] private float _rotationSpeed = 8f; // How fast the head/body rotates to face the target
     [SerializeField] private float _pitchSpeed = 8f; // How fast the cannon pitches up/down
+    #endregion
 
     [Header("Tag(s) for targets")]
     [SerializeField] private string _tag1;
