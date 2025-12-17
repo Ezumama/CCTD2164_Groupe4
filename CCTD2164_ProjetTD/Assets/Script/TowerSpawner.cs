@@ -206,24 +206,15 @@ public class TowerSpawner : MonoBehaviour
         shooterScript = GetComponentInChildren<Shooter>();
         if (shooterScript == null)
         {
-            //Debug.LogError("Shooter script not found in children!");
             shooterMultiTargetScript = GetComponentInChildren<Shooter_MultiTarget>();
         }
 
-        if (shooterMultiTargetScript == null)
+        else if (shooterMultiTargetScript == null)
         {
-            //Debug.LogError("Shooter_MultiTarget script not found in children!");
             shooterThreeTargetsScript = GetComponentInChildren<Shooter_ThreeTargets>();
         }
-        //// debug
-        //if (shooterThreeTargetsScript == null)
-        //{
-        //    Debug.LogError("Shooter_ThreeTargets script not found in children!");
-        //}
 
         _isBuilding = false;
-
-
     }
     #endregion
 
@@ -270,7 +261,18 @@ public class TowerSpawner : MonoBehaviour
 
         if (_currentTower != null) _currentTower.transform.position = upPos;
 
-        _isBuilding = false;
+            shooterScript = GetComponentInChildren<Shooter>();
+            if (shooterScript == null)
+            {
+                shooterMultiTargetScript = GetComponentInChildren<Shooter_MultiTarget>();
+            }
+
+            else if (shooterMultiTargetScript == null)
+            {
+                shooterThreeTargetsScript = GetComponentInChildren<Shooter_ThreeTargets>();
+            }
+
+            _isBuilding = false;
     }
     #endregion
 
@@ -324,12 +326,12 @@ public class TowerSpawner : MonoBehaviour
         {
             if (_isActivated)
             {
-                Debug.Log("Activating Tower (ONCE)");
+                //Debug.Log("Activating Tower (ONCE)");
                 ActivateTower();
             }
             else
             {
-                Debug.Log("Deactivating Tower (ONCE)");
+                //Debug.Log("Deactivating Tower (ONCE)");
                 DeactivateTower();
             }
 
@@ -355,7 +357,6 @@ public class TowerSpawner : MonoBehaviour
     #region Activate/Deactivate Tower Methods
     public void DeactivateTower()
     {
-        #region regain energy on deactivation
         if (_isTripleMelTower)
         {
             GameManager.Instance.GainEnergy(_tripleMelCost);
@@ -370,8 +371,8 @@ public class TowerSpawner : MonoBehaviour
         {
             GameManager.Instance.GainEnergy(_simpleLizaCost);
         }
-        #endregion
 
+        
         // Disable shooting scripts
         if (shooterScript != null)
         {
@@ -731,4 +732,5 @@ public class TowerSpawner : MonoBehaviour
     //    StartCoroutine(UpgradeSequence(_towerLevel1, 1));
     //}
     //#endregion
+
 }
