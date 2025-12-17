@@ -8676,7 +8676,7 @@ PrefabInstance:
     - target: {fileID: 7140862448046319054, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
       propertyPath: _generator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7725785119153370078}
     - target: {fileID: 7272109259662161209, guid: a589def116864a04098637f2b0fcf6a2, type: 3}
       propertyPath: m_Name
       value: UI_Canvas
@@ -10242,6 +10242,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 302096167701319687, guid: 0ae399a83d3a37749a87b0a4e6fe7498, type: 3}
+      propertyPath: maxHealth
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 646408083808791350, guid: 0ae399a83d3a37749a87b0a4e6fe7498, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -10358,9 +10362,15 @@ PrefabInstance:
     - {fileID: 3009336715890314310, guid: 0ae399a83d3a37749a87b0a4e6fe7498, type: 3}
     - {fileID: 5609249673937673179, guid: 0ae399a83d3a37749a87b0a4e6fe7498, type: 3}
     - {fileID: 3215331566622931107, guid: 0ae399a83d3a37749a87b0a4e6fe7498, type: 3}
+    - {fileID: 7579875332404389190, guid: 0ae399a83d3a37749a87b0a4e6fe7498, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ae399a83d3a37749a87b0a4e6fe7498, type: 3}
+--- !u!1 &7725785119153370078 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3812633557904188895, guid: 0ae399a83d3a37749a87b0a4e6fe7498, type: 3}
+  m_PrefabInstance: {fileID: 7725785119153370077}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9201795137549504709
 PrefabInstance:
   m_ObjectHideFlags: 0
