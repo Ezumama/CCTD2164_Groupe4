@@ -9,14 +9,10 @@ public class MainMenuUI : MonoBehaviour
 {
     private const bool Value = false;
     [SerializeField] private GameObject optionPanel;
-    //[SerializeField] private GameObject CreditsBG;
-    [SerializeField] private Image _fuckingcredits;
 
     private void Start()
     {
         optionPanel.SetActive(false);
-        //CreditsBG.SetActive(false);
-        _fuckingcredits.enabled = false;
     }
 
     #region main menu panel
@@ -32,8 +28,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void OpenCredits()
     {
-        //CreditsBG.SetActive(true);
-        _fuckingcredits.enabled = false;
+        SceneManager.LoadScene(2);
     }
 
     public void QuitGame()
