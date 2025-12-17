@@ -2,56 +2,54 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class GameOverScreen : MonoBehaviour
 {
     public static GameOverScreen Instance { get; private set; }
 
-    [Header("UI")]
+    [Header("UI Panels")]
     public GameObject gameOverPanel;
     public GameObject victoryPanel;
 
-    [Header("Fade Effect")] 
-    [Tooltip("Le Canvas Group sur le panneau noir pour le fondu.")]
-    public CanvasGroup fadeGroup;
+    [Header("Fade Effects")]
+    [Tooltip("Le Canvas Group de l'image de fond pour la DEFAITE.")]
+    public CanvasGroup gameOverFadeGroup;
+
+    [Tooltip("Le Canvas Group de l'image de fond pour la VICTOIRE.")]
+    public CanvasGroup victoryFadeGroup;
+
     public float fadeDuration = 1.5f;
 
     private bool isGameOver = false;
 
     void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (Instance == null) { Instance = this; }
+        else { Destroy(gameObject); }
     }
 
     void Start()
     {
-        if (gameOverPanel != null)
-        {
-            gameOverPanel.SetActive(false);
-        }
+        // Initialisation des panneaux
+        if (gameOverPanel != null) gameOverPanel.SetActive(false);
+        if (victoryPanel != null) victoryPanel.SetActive(false);
 
-        if (fadeGroup != null)
-        {
-            fadeGroup.alpha = 0f;
-            fadeGroup.blocksRaycasts = false;
-            fadeGroup.interactable = false;
-        }
-
-        if (victoryPanel != null)
-        {
-            victoryPanel.SetActive(false);
-        }
+        // Initialisation des fondus (tout à zéro)
+        InitFadeGroup(gameOverFadeGroup);
+        InitFadeGroup(victoryFadeGroup);
 
         Health.OnNexusDied += HandleGameOver;
         WaveManager.OnGameVictory += HandleGameVictory;
+    }
+
+    private void InitFadeGroup(CanvasGroup group)
+    {
+        if (group != null)
+        {
+            group.alpha = 0f;
+            group.blocksRaycasts = false;
+            group.interactable = false;
+        }
     }
 
     void OnDestroy()
@@ -63,78 +61,45 @@ public class GameOverScreen : MonoBehaviour
     private void HandleGameOver()
     {
         if (isGameOver) return;
-
         isGameOver = true;
-
-        //Debug.Log("GAME OVER !");
-
-        StartCoroutine(FadeToBlackAndShowGameOver());
+        StartCoroutine(FadeAndShowUI(gameOverFadeGroup, gameOverPanel));
     }
 
     private void HandleGameVictory()
     {
-        if (isGameOver) return; 
-
+        if (isGameOver) return;
         isGameOver = true;
-
-        //Debug.Log("Le joueur a gagné !");
-
-        StartCoroutine(FadeToBlackAndShowVictoryScreen());
+        StartCoroutine(FadeAndShowUI(victoryFadeGroup, victoryPanel));
     }
 
-    private IEnumerator FadeToBlackAndShowVictoryScreen()
+    // Une seule coroutine générique pour gérer les deux cas
+    private IEnumerator FadeAndShowUI(CanvasGroup targetFade, GameObject targetPanel)
     {
-        yield return StartCoroutine(FadeToBlack());
-
-
-        Time.timeScale = 0f;
-
-        if (victoryPanel != null)
-        {
-            victoryPanel.SetActive(true);
-        }
-
-        if (fadeGroup != null)
-        {
-            fadeGroup.blocksRaycasts = false;
-            fadeGroup.interactable = false;
-        }
-    }
-
-    private IEnumerator FadeToBlack()
-    {
-        if (fadeGroup != null)
+        if (targetFade != null)
         {
             float timer = 0f;
-
             while (timer < fadeDuration)
             {
                 timer += Time.unscaledDeltaTime;
-                float alpha = Mathf.Clamp01(timer / fadeDuration);
-
-                fadeGroup.alpha = alpha;
-
+                targetFade.alpha = Mathf.Clamp01(timer / fadeDuration);
                 yield return null;
             }
-            fadeGroup.alpha = 1f;
+            targetFade.alpha = 1f;
         }
-    }
 
-    private IEnumerator FadeToBlackAndShowGameOver()
-    {
-        yield return StartCoroutine(FadeToBlack());
-
+        // On fige le jeu APRES le fondu
         Time.timeScale = 0f;
 
-        if (gameOverPanel != null)
+        if (targetPanel != null)
         {
-            gameOverPanel.SetActive(true);
+            targetPanel.SetActive(true);
         }
 
-        if (fadeGroup != null)
+        // On permet de cliquer à travers le fondu pour atteindre les boutons du panel
+        if (targetFade != null)
         {
-            fadeGroup.blocksRaycasts = false;
-            fadeGroup.interactable = false;
+            targetFade.blocksRaycasts = false;
+            targetFade.interactable = false;
         }
     }
 

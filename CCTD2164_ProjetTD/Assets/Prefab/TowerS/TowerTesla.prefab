@@ -51,7 +51,7 @@ MonoBehaviour:
   _towerShootingHead: {fileID: 1634227893720734}
   _towerBody: {fileID: 3498616460457262473}
   _damageAmount: 25
-  _shootingCooldown: 1
+  _shootingCooldown: 1.5
   _isBigBetty: 1
   _rotationSpeed: 8
   _pitchSpeed: 8

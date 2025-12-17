@@ -50,8 +50,8 @@ MonoBehaviour:
   _feedbackFXOut: {fileID: 1376696033527059834, guid: 88108968e5b7c5d4b8820ffca0d86646, type: 3}
   _towerShootingHead: {fileID: 7825960095001789809}
   _towerBody: {fileID: 8750561131393777368}
-  _damageAmount: 50
-  _shootingCooldown: 1
+  _damageAmount: 30
+  _shootingCooldown: 1.2
   _isBigBetty: 1
   _rotationSpeed: 8
   _pitchSpeed: 8

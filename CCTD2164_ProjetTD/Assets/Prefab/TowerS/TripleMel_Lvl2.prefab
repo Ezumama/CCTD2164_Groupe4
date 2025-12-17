@@ -57,8 +57,8 @@ MonoBehaviour:
     Target: {fileID: 0}
     IsLeftSide: 1
   _shootingDistance: 20
-  _shootingCooldown: 0.2
-  _damageAmount: 35
+  _shootingCooldown: 0.6
+  _damageAmount: 20
   _feedbackFXOut: {fileID: 1376696033527059834, guid: 88108968e5b7c5d4b8820ffca0d86646, type: 3}
   SideDeadZone: 0
   _rotationSpeed: 8
