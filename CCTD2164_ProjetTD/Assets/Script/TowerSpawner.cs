@@ -209,7 +209,7 @@ public class TowerSpawner : MonoBehaviour
             shooterMultiTargetScript = GetComponentInChildren<Shooter_MultiTarget>();
         }
 
-        else if (shooterMultiTargetScript == null)
+        if (shooterMultiTargetScript == null)
         {
             shooterThreeTargetsScript = GetComponentInChildren<Shooter_ThreeTargets>();
         }
@@ -267,7 +267,7 @@ public class TowerSpawner : MonoBehaviour
                 shooterMultiTargetScript = GetComponentInChildren<Shooter_MultiTarget>();
             }
 
-            else if (shooterMultiTargetScript == null)
+            if (shooterMultiTargetScript == null)
             {
                 shooterThreeTargetsScript = GetComponentInChildren<Shooter_ThreeTargets>();
             }
@@ -583,38 +583,37 @@ public class TowerSpawner : MonoBehaviour
     #region buff/debuff methods
     public void OnBuff()
     {
-            Debug.LogError("Tower buffed");
-            if (shooterScript != null)
-            {
-                shooterScript.BuffDamage();
-                GameManager.Instance.FireWorker(1);
-            }
-            else if (shooterMultiTargetScript != null)
-            {
-                shooterMultiTargetScript.BuffDamage();
-                GameManager.Instance.FireWorker(1);
-            }
-            else if (shooterThreeTargetsScript != null)
-            {
-                shooterThreeTargetsScript.BuffDamage();
-                GameManager.Instance.FireWorker(1);
-            }
+        if (shooterScript != null)
+        {
+            shooterScript.BuffDamage();
+            GameManager.Instance.FireWorker(1);
+        }
+        if (shooterMultiTargetScript != null)
+        {
+            shooterMultiTargetScript.BuffDamage();
+            GameManager.Instance.FireWorker(1);
+        }
+        if (shooterThreeTargetsScript != null)
+        {
+            shooterThreeTargetsScript.BuffDamage();
+            GameManager.Instance.FireWorker(1);
+        }
+        
     }
 
     public void OnDebuff()
     {
-        Debug.LogError("Tower NOT buffed");
         if (shooterScript != null)
         {
             shooterScript.StopBuff();
             GameManager.Instance.HireWorker(1);
         }
-        else if (shooterMultiTargetScript != null)
+        if (shooterMultiTargetScript != null)
         {
             shooterMultiTargetScript.StopBuff();
             GameManager.Instance.HireWorker(1);
         }
-        else if (shooterThreeTargetsScript != null)
+        if (shooterThreeTargetsScript != null)
         {
             shooterThreeTargetsScript.StopBuff();
             GameManager.Instance.HireWorker(1);

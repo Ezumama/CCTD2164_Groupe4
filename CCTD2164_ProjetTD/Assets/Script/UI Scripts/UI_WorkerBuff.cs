@@ -3,10 +3,6 @@ using UnityEngine.UI;
 
 public class UI_WorkerBuff : MonoBehaviour
 {
-    private Shooter _shooterScript;
-    private Shooter_MultiTarget _shooterMultiScript;
-    private Shooter_ThreeTargets _shooterThreeScript;
-
     [Header("UI Images")]
     [SerializeField] private Toggle _toggleBoost;
     [SerializeField] private Image _boostIconOn, _boostIconOff;
