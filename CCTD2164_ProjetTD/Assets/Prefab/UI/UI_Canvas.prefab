@@ -2093,6 +2093,7 @@ GameObject:
   - component: {fileID: 3863280555946631170}
   - component: {fileID: 1664293101927433988}
   - component: {fileID: 8848630262441711228}
+  - component: {fileID: 2509931959233864263}
   m_Layer: 5
   m_Name: OpenPauseButton
   m_TagString: Untagged
@@ -2203,9 +2204,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEditor.MonoScript, UnityEditor.CoreModule
-        m_MethodName: 
-        m_Mode: 5
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2214,6 +2215,22 @@ MonoBehaviour:
           m_StringArgument: Pause
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2509931959233864263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5510861720268405959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb27afb0a7709645a3651dcd679c2d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultCursorTexture: {fileID: 2800000, guid: fe492e7b3986a154fa5dfb2980b9f4dc, type: 3}
+  _highlightCursorTexture: {fileID: 2800000, guid: 28f3fcee45342f347966c2b405cb0571, type: 3}
+  CursorMode: 0
+  HotSpotMouse: {x: 0, y: 0}
 --- !u!1 &5615968596501075486
 GameObject:
   m_ObjectHideFlags: 0

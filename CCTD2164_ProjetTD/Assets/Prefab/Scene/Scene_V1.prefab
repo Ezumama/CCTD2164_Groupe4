@@ -12235,6 +12235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2139608678216922760}
+  - component: {fileID: 1670552773799620514}
   m_Layer: 0
   m_Name: Scene_V1
   m_TagString: Untagged
@@ -12257,7 +12258,6 @@ Transform:
   m_Children:
   - {fileID: 9219231736134992937}
   - {fileID: 8590446862787787943}
-  - {fileID: 7326549089637498958}
   - {fileID: 6615269787045276600}
   - {fileID: 2841234843897239434}
   - {fileID: 801029230722520152}
@@ -12273,6 +12273,38 @@ Transform:
   - {fileID: 1243067367170469000}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1670552773799620514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8760059198668216309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 1d70fcb766514124595eaa6378d99a8d, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &8767217326291725958
 GameObject:
   m_ObjectHideFlags: 0
@@ -14774,7 +14806,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (8)
+      value: Fake_Ray_Light_09
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14836,7 +14868,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (4)
+      value: Fake_Ray_Light_05
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20401,6 +20433,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 53755597cd2d0ca4ab8eeb7abeacb11f, type: 2}
+    - target: {fileID: 4848685068197480452, guid: fd82708fe5f71784e86bac8d01325c19, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -20820,7 +20856,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (5)
+      value: Fake_Ray_Light_06
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20863,7 +20899,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7736726965671381784, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
@@ -22653,7 +22690,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (1)
+      value: Fake_Ray_Light_02
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23224,7 +23261,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (20)
+      value: Fake_Ray_Light_20
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23973,7 +24010,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (16)
+      value: Fake_Ray_Light_15
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24189,7 +24226,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (3)
+      value: Fake_Ray_Light_04
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25223,7 +25260,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight
+      value: Fake_Ray_Light_01
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25266,7 +25303,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7736726965671381784, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
@@ -25738,7 +25776,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (2)
+      value: Fake_Ray_Light_03
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26331,7 +26369,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (21)
+      value: Fake_Ray_Light_21
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26544,7 +26582,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (9)
+      value: Fake_Ray_Light_10
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26636,6 +26674,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: b97b5dc34129b5c46ab6bee7f2d9115b, type: 2}
+    - target: {fileID: 464005262657630023, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 538073540988873484, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.0041962
@@ -26684,6 +26726,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -6.4
       objectReference: {fileID: 0}
+    - target: {fileID: 1266034191112218461, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1267688511080685316, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1356497442848456779, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: m_LocalPosition.y
       value: -9.009
@@ -26696,10 +26746,26 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 467d65e8e14c21349982816ae7902316, type: 2}
+    - target: {fileID: 1427020722551858588, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806519645453413882, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1968912430160701930, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2097301843409031767, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 467d65e8e14c21349982816ae7902316, type: 2}
+    - target: {fileID: 2108986789160782693, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2296392200998254319, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: m_LocalPosition.y
       value: -6.3800035
@@ -26740,9 +26806,17 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 31.23
       objectReference: {fileID: 0}
+    - target: {fileID: 3244209367076510798, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3601181557936800255, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: m_Name
       value: Environment_Asset (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808839780864204794, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4268156501407936855, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: m_Materials.Array.size
@@ -26780,6 +26854,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4839826987172516272, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4890701620563968661, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -26787,6 +26865,14 @@ PrefabInstance:
     - target: {fileID: 5511630131935479030, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: m_LocalPosition.y
       value: -6.3800054
+      objectReference: {fileID: 0}
+    - target: {fileID: 5604855525299173748, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5665940970246405465, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5696831854118738004, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: m_Materials.Array.size
@@ -26803,6 +26889,22 @@ PrefabInstance:
     - target: {fileID: 5981508770975416298, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: m_LocalPosition.y
       value: -9.009212
+      objectReference: {fileID: 0}
+    - target: {fileID: 6052676023985074075, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6089012775804684336, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135171094730711531, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7234105505707165373, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7395591695283492932, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: m_Materials.Array.size
@@ -26828,6 +26930,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 467d65e8e14c21349982816ae7902316, type: 2}
+    - target: {fileID: 7706473026528832400, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7800343686476987263, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -26900,6 +27006,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 8819598377338533639, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9003252271465679221, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -26912,6 +27022,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: b97b5dc34129b5c46ab6bee7f2d9115b, type: 2}
+    - target: {fileID: 9059198009091486263, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9215043876063106716, guid: 0b4532c3825064244be8e21eb047a0c1, type: 3}
       propertyPath: m_LocalPosition.y
       value: -6.3800044
@@ -27149,7 +27263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6111d2408515f3e45ae2d131b6717b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runOnAwake: 1
+  runOnAwake: 0
   cloneMesh: 1
 --- !u!1 &802357346410182716 stripped
 GameObject:
@@ -27287,7 +27401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6111d2408515f3e45ae2d131b6717b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runOnAwake: 1
+  runOnAwake: 0
   cloneMesh: 1
 --- !u!1 &6841414365432750234 stripped
 GameObject:
@@ -27306,7 +27420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6111d2408515f3e45ae2d131b6717b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runOnAwake: 1
+  runOnAwake: 0
   cloneMesh: 1
 --- !u!1 &7075943351331468840 stripped
 GameObject:
@@ -34458,7 +34572,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (7)
+      value: Fake_Ray_Light_08
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -37984,7 +38098,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (10)
+      value: Fake_Ray_Light_11
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -40101,7 +40215,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (14)
+      value: Fake_Ray_Light_23
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -40389,9 +40503,117 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2139608678216922760}
     m_Modifications:
+    - target: {fileID: 310141844572805644, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 534907603274178369, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 687852603916690123, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1298467103399854933, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1314748420561306549, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1320601951717592473, guid: c8561512209489247a16d0df0296ef04, type: 3}
       propertyPath: m_Name
       value: LA_Enemies (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359441573979987566, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1371215613306034070, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1604998903791971816, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1891081405334754038, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1993850214060611157, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2163734985605578043, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2274229914093670225, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2566079314760562464, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2757797967460976097, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3917330406015814916, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027425667224353297, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315635682610906395, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4549436561945779334, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4648698434726602239, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4963452377009725150, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970581644263669951, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5542027085042913890, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5916291704372393058, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177199881483020021, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408788170239320141, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723818421001147425, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6765766464362128687, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7052967109119635622, guid: c8561512209489247a16d0df0296ef04, type: 3}
       propertyPath: m_LocalPosition.x
@@ -40431,6 +40653,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7052967109119635622, guid: c8561512209489247a16d0df0296ef04, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7219072844924491267, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7285102915799790864, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424484082145245383, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7483735923128780907, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8449244273378651170, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8525776636182393133, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572450764250103307, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638156840890518873, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8856721542983703986, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9137069527553368267, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212727258779913531, guid: c8561512209489247a16d0df0296ef04, type: 3}
+      propertyPath: runOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -40922,7 +41188,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (22)
+      value: Fake_Ray_Light_17
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -42038,7 +42304,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (6)
+      value: Fake_Ray_Light_07
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -46988,7 +47254,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (18)
+      value: Fake_Ray_Light_18
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -48907,68 +49173,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7295560229642598345, guid: b186434d34d4811429290d2ef2d0eb22, type: 3}
   m_PrefabInstance: {fileID: 5611592220655445606}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &5631466213802493650
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2139608678216922760}
-    m_Modifications:
-    - target: {fileID: 2927193264793797084, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
-      propertyPath: m_Name
-      value: TankEnemy (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137844811051157148, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 110.65897
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137844811051157148, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -70.57813
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137844811051157148, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 32.83922
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137844811051157148, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137844811051157148, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137844811051157148, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.000001505017
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137844811051157148, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137844811051157148, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137844811051157148, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3137844811051157148, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
---- !u!4 &7326549089637498958 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3137844811051157148, guid: d8e097389fe584942ba3903819cc5fe6, type: 3}
-  m_PrefabInstance: {fileID: 5631466213802493650}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5640445756654311093
 PrefabInstance:
@@ -52796,7 +53000,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (17)
+      value: Fake_Ray_Light_16
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -53721,7 +53925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6111d2408515f3e45ae2d131b6717b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runOnAwake: 1
+  runOnAwake: 0
   cloneMesh: 1
 --- !u!1001 &6363846809728642456
 PrefabInstance:
@@ -57179,7 +57383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6111d2408515f3e45ae2d131b6717b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runOnAwake: 1
+  runOnAwake: 0
   cloneMesh: 1
 --- !u!1001 &6925479396632710186
 PrefabInstance:
@@ -59178,9 +59382,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1056546375406795971, guid: 45b485f2594363648826a5e9a533abcc, type: 3}
+      propertyPath: maxHealth
+      value: 500000
+      objectReference: {fileID: 0}
     - target: {fileID: 4499636492546459931, guid: 45b485f2594363648826a5e9a533abcc, type: 3}
       propertyPath: m_Name
       value: Generateur (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488715668983679428, guid: 45b485f2594363648826a5e9a533abcc, type: 3}
+      propertyPath: m_Radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6488715668983679428, guid: 45b485f2594363648826a5e9a533abcc, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178742060694864034, guid: 45b485f2594363648826a5e9a533abcc, type: 3}
+      propertyPath: damageToEnemiesPerSecond
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -62324,7 +62544,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (12)
+      value: Fake_Ray_Light_13
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -66049,9 +66269,33 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -72.602
       objectReference: {fileID: 0}
+    - target: {fileID: 1166486422142248366, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 1189900882322066358, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1195883262172847398, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1215419299749206314, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1277678842151882433, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_14
+      objectReference: {fileID: 0}
     - target: {fileID: 1312388773376807605, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.293
+      objectReference: {fileID: 0}
+    - target: {fileID: 1355078953710259200, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_20
       objectReference: {fileID: 0}
     - target: {fileID: 1513023593514774093, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -66061,9 +66305,21 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -56.574
       objectReference: {fileID: 0}
+    - target: {fileID: 1696653380957703283, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_15
+      objectReference: {fileID: 0}
     - target: {fileID: 1862797697043470104, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.333
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918293811113857781, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_06
+      objectReference: {fileID: 0}
+    - target: {fileID: 2095194884338115686, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_01
       objectReference: {fileID: 0}
     - target: {fileID: 2250444785772790600, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -66097,6 +66353,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -79.961
       objectReference: {fileID: 0}
+    - target: {fileID: 3451172742670444581, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3768957582038914215, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_18
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857559558152953202, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_19
+      objectReference: {fileID: 0}
     - target: {fileID: 3883803600076997983, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.017
@@ -66104,6 +66372,18 @@ PrefabInstance:
     - target: {fileID: 3883803600076997983, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
       propertyPath: m_LocalPosition.z
       value: -130.596
+      objectReference: {fileID: 0}
+    - target: {fileID: 3908079457050465871, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4473393240741357998, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4510759265046114746, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_21
       objectReference: {fileID: 0}
     - target: {fileID: 4692513245235397871, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -66121,6 +66401,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -160.898
       objectReference: {fileID: 0}
+    - target: {fileID: 4903657944471221903, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_08
+      objectReference: {fileID: 0}
     - target: {fileID: 4964014852211963127, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.673
@@ -66132,6 +66416,18 @@ PrefabInstance:
     - target: {fileID: 4964014852211963127, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
       propertyPath: m_LocalPosition.z
       value: -12.796
+      objectReference: {fileID: 0}
+    - target: {fileID: 5030825406608348023, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_09
+      objectReference: {fileID: 0}
+    - target: {fileID: 5361441857385094489, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5732089039102821982, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_13
       objectReference: {fileID: 0}
     - target: {fileID: 5746583838244815286, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -66221,9 +66517,25 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -26.639
       objectReference: {fileID: 0}
+    - target: {fileID: 7566167729363734164, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_23
+      objectReference: {fileID: 0}
+    - target: {fileID: 7749256286921531839, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_07
+      objectReference: {fileID: 0}
+    - target: {fileID: 8523852442623653518, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 8689910018678813144, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
+      propertyPath: m_Name
+      value: Spot_Light_12
+      objectReference: {fileID: 0}
     - target: {fileID: 9148168629059500312, guid: 368c103d02aadf042a4b2875441097eb, type: 3}
       propertyPath: m_Name
-      value: LA_Light (1)
+      value: LA_Spot_Light
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -67676,7 +67988,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (15)
+      value: Fake_Ray_Light_14
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -68206,7 +68518,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (11)
+      value: Fake_Ray_Light_12
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -69823,7 +70135,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (13)
+      value: Fake_Ray_Light_22
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -71289,7 +71601,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 969093101092694666, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_Name
-      value: GrugeLight (19)
+      value: Fake_Ray_Light_19
       objectReference: {fileID: 0}
     - target: {fileID: 8113663138677744444, guid: 948d3a9884d95b0439a088ff69e0366c, type: 3}
       propertyPath: m_LocalPosition.x
