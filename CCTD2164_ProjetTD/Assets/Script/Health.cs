@@ -93,5 +93,16 @@ public class Health : MonoBehaviour
     public float GetCurrentHealth() => currentHealth;
     public float GetMaxHealth() => maxHealth;
     public bool IsAlive() => !isDead && currentHealth > 0;
-}
 
+    private void Update() {
+        if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            if (Input.GetKeyDown(KeyCode.K)) {
+                TakeDamage(1000f);
+            }
+
+        if (gameObject.CompareTag("Nexus"))
+            if (Input.GetKeyDown(KeyCode.L)) {
+                Heal(10f);
+            }
+    }
+}
