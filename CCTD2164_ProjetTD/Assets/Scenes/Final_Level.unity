@@ -10267,6 +10267,38 @@ PrefabInstance:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 1536646168}
+    - target: {fileID: 692582057146637839, guid: d342a98cc60d54f45be570ccf8f8938b, type: 3}
+      propertyPath: TeslaCost
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 692582057146637839, guid: d342a98cc60d54f45be570ccf8f8938b, type: 3}
+      propertyPath: GroundCost
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 692582057146637839, guid: d342a98cc60d54f45be570ccf8f8938b, type: 3}
+      propertyPath: GatlingCost
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 692582057146637839, guid: d342a98cc60d54f45be570ccf8f8938b, type: 3}
+      propertyPath: BaseMoneyAmount
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 692582057146637839, guid: d342a98cc60d54f45be570ccf8f8938b, type: 3}
+      propertyPath: MaxWorkerAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 692582057146637839, guid: d342a98cc60d54f45be570ccf8f8938b, type: 3}
+      propertyPath: RedBluePrintCost
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 692582057146637839, guid: d342a98cc60d54f45be570ccf8f8938b, type: 3}
+      propertyPath: GreenBluePrintCost
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 692582057146637839, guid: d342a98cc60d54f45be570ccf8f8938b, type: 3}
+      propertyPath: YellowBluePrintCost
+      value: 1500
+      objectReference: {fileID: 0}
     - target: {fileID: 4421558251319476192, guid: d342a98cc60d54f45be570ccf8f8938b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.852478

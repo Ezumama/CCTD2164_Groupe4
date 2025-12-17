@@ -143,5 +143,10 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("LA_Title_Menu");
     }
+
+    public void Button()
+    {
+        StartCoroutine(OpenMenu());
+    }
 }
 
